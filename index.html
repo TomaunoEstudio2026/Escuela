@@ -1,0 +1,2488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tomauno — Cursos, Capacitaciones & Servicios</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#E8141C;--red2:#ff2a32;--red3:#c00;
+  --w:#F0F0F0;--bk:#080808;
+  --g1:#0e0e0e;--g2:#141414;--g3:#1c1c1c;--g4:#242424;--g5:#2c2c2c;
+  --mu:#888;--mu2:#555;--mu3:#444;
+  --br:#222;--br2:#2e2e2e;--br3:#3a3a3a;
+  --fd:'Bebas Neue',sans-serif;--fb:'Outfit',sans-serif;
+  --glow:0 0 30px rgba(232,20,28,.18);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bk);color:var(--w);font-family:var(--fb);overflow-x:hidden}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--bk)}::-webkit-scrollbar-thumb{background:var(--red)}
+img{max-width:100%}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(8,8,8,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--br);height:62px;display:flex;align-items:center;padding:0 1.5rem;gap:.75rem}
+.nlogo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;flex-shrink:0}
+.nlogo-img{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--br3);object-fit:cover;background:var(--g3);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:.9rem;letter-spacing:1px;color:var(--mu);overflow:hidden;flex-shrink:0}
+.nlogo-img img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.nlogo-t{font-family:var(--fd);font-size:1.4rem;letter-spacing:3px;color:var(--w)}
+.nlogo-t em{color:var(--red);font-style:normal}
+.nright{margin-left:auto;display:flex;align-items:center;gap:1rem}
+.nlinks{display:flex;gap:1rem;align-items:center}
+.nlinks a{color:var(--mu);text-decoration:none;font-size:.77rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;white-space:nowrap}
+.nlinks a:hover,.nlinks a.active{color:var(--w)}
+.ncta{background:var(--red)!important;color:#fff!important;padding:7px 15px;border-radius:3px}
+.ncta:hover{background:var(--red2)!important}
+.hbg{display:none;flex-direction:column;gap:4px;cursor:pointer;background:none;border:none;padding:4px}
+.hbg span{display:block;width:22px;height:2px;background:var(--w);transition:.3s}
+.mmenu{display:none;position:fixed;top:62px;left:0;right:0;background:rgba(8,8,8,.98);border-bottom:1px solid var(--br);flex-direction:column;padding:1rem 1.5rem;gap:.65rem;z-index:299}
+.mmenu.open{display:flex}
+.mmenu a{color:var(--mu);text-decoration:none;font-size:.9rem;font-weight:500;padding:.35rem 0;border-bottom:1px solid var(--br);letter-spacing:1px}
+.mmenu a:hover{color:var(--w)}
+
+/* ── TABS PRINCIPALES ── */
+.main-tabs{position:sticky;top:62px;z-index:200;background:rgba(8,8,8,.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--br);display:flex;justify-content:center}
+.mtab{background:none;border:none;color:var(--mu);padding:14px 32px;font-family:var(--fd);font-size:1.3rem;letter-spacing:3px;cursor:pointer;border-bottom:3px solid transparent;transition:all .25s;white-space:nowrap}
+.mtab:hover{color:var(--w)}
+.mtab.active{color:var(--w);border-bottom-color:var(--red)}
+
+/* ── HERO ── */
+.hero{padding:62px 0 0;min-height:100vh;position:relative;overflow:hidden}
+.hbg1{position:absolute;inset:0;background:radial-gradient(ellipse 100% 55% at 50% -5%,rgba(232,20,28,.14) 0%,transparent 65%)}
+.hgrid{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(255,255,255,.016) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(255,255,255,.016) 60px)}
+.hero-in{position:relative;max-width:1200px;margin:0 auto;padding:3rem 1.5rem 5rem}
+.h-head{text-align:center;margin-bottom:3.5rem}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(232,20,28,.09);border:1px solid rgba(232,20,28,.22);color:var(--red);padding:5px 16px;border-radius:2px;font-size:.69rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:1.25rem}
+.dot{width:6px;height:6px;background:var(--red);border-radius:50%;animation:pu 1.6s infinite}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.2}}
+h1.brand{font-family:var(--fd);font-size:clamp(3.5rem,9vw,7.5rem);letter-spacing:5px;line-height:.92;color:var(--w)}
+h1.brand em{color:var(--red);font-style:normal}
+.h-tagline{font-size:clamp(.85rem,2vw,1.05rem);color:var(--mu);margin-top:.8rem;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7}
+.h-tagline em{color:var(--w);font-style:normal;font-weight:600}
+.h-stats{display:flex;gap:2.5rem;justify-content:center;margin-top:2rem;padding-top:1.75rem;border-top:1px solid var(--br);flex-wrap:wrap}
+.sn{font-family:var(--fd);font-size:2.2rem;color:var(--red);letter-spacing:2px;line-height:1}
+.sl{font-size:.68rem;color:var(--mu);letter-spacing:2px;text-transform:uppercase;margin-top:3px}
+.section-view{display:none}.section-view.active{display:block}
+
+/* ── DRAG INSTRUCTIONS ── */
+.drag-hint{text-align:center;font-size:.72rem;color:var(--mu2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;justify-content:center;gap:6px}
+.drag-hint svg{width:14px;height:14px;stroke:var(--mu2)}
+
+/* ── COURSE GRID ── */
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.empty-state{text-align:center;padding:5rem 2rem;color:var(--mu);grid-column:1/-1}
+
+/* ── COURSE CARD ── */
+.cc{background:var(--g2);border:1px solid var(--br);border-radius:8px;overflow:hidden;position:relative;cursor:pointer;transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s;user-select:none}
+.cc:hover{transform:translateY(-6px) scale(1.01);border-color:rgba(232,20,28,.4);box-shadow:var(--glow),0 20px 50px rgba(0,0,0,.5)}
+.cc.dragging{opacity:.4;transform:scale(.97)}
+.cc.drag-over{border-color:var(--red);box-shadow:var(--glow)}
+.cc.fin{opacity:.48;filter:grayscale(70%)}
+.cc.fin:hover{transform:translateY(-3px);border-color:var(--br3)}
+.card-img-wrap{position:relative;width:100%;height:360px;overflow:hidden;background:#000}
+.card-img-wrap img{width:100%;height:100%;object-fit:contain;background:#000;transition:transform .4s ease;display:block}
+.cc:hover .card-img-wrap img{transform:scale(1.03)}
+.cgrid{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card-ph{width:100%;height:100%;background:linear-gradient(135deg,var(--g3) 0%,#160808 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;position:relative;min-height:360px}
+.card-ph::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(232,20,28,.06),transparent 68%)}
+.card-ph-t{font-family:var(--fd);font-size:3.8rem;letter-spacing:4px;color:rgba(232,20,28,.2);line-height:1}
+.card-ph-s{font-size:.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--mu3);font-weight:600}
+.card-img-input{display:none}
+.card-add-img{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,.7);border:1px solid var(--br3);color:var(--mu);padding:4px 8px;border-radius:3px;font-size:.68rem;cursor:pointer;transition:all .2s;font-family:var(--fb)}
+.card-add-img:hover{border-color:var(--red);color:var(--w)}
+.cst{position:absolute;top:11px;left:11px;padding:4px 11px;border-radius:2px;font-size:.67rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;backdrop-filter:blur(8px)}
+.sa{background:rgba(232,20,28,.88);color:#fff}
+.ss{background:rgba(255,165,0,.88);color:#000}
+.sf{background:rgba(60,60,60,.88);color:#bbb}
+.ccupos-badge{position:absolute;top:11px;right:11px;background:rgba(0,0,0,.75);border:1px solid var(--br3);color:var(--w);padding:4px 9px;border-radius:2px;font-size:.68rem;font-weight:600;backdrop-filter:blur(8px)}
+.cbody{padding:1.3rem}
+.ctitle{font-family:var(--fd);font-size:1.65rem;letter-spacing:1.5px;line-height:1.05;margin-bottom:.6rem;color:var(--w)}
+.ctitle.fin-t{text-decoration:line-through;color:var(--mu)}
+.chips{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.85rem}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;background:var(--g3);border:1px solid var(--br2);padding:4px 9px;border-radius:2px;color:var(--w)}
+.chip svg{width:11px;height:11px;flex-shrink:0;stroke:var(--red);fill:none}
+.chip.cr{background:rgba(232,20,28,.07);border-color:rgba(232,20,28,.2);color:var(--red)}
+.chip.cg{background:rgba(34,197,94,.05);border-color:rgba(34,197,94,.18);color:#4ade80}
+.chip a{color:inherit;text-decoration:none}.chip a:hover{text-decoration:underline}
+.cdesc-short{font-size:.84rem;color:var(--mu);line-height:1.65;margin-bottom:1.2rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.cfoot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--br);padding-top:.95rem;gap:.75rem;flex-wrap:wrap}
+.price small{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--mu);display:block}
+.price-v{font-family:var(--fd);font-size:1.85rem;color:var(--red);letter-spacing:1px;line-height:1}
+.price-v.small-price{font-size:1.2rem}
+.btn-ver{background:var(--g4);color:var(--w);border:1px solid var(--br3);padding:9px 16px;border-radius:3px;font-family:var(--fb);font-size:.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .22s}
+.btn-ver:hover{border-color:var(--w);background:var(--g5)}
+
+/* ── SERVICES ── */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem}
+.svc-card{background:var(--g2);border:1px solid var(--br);border-radius:8px;overflow:hidden;position:relative;cursor:pointer;transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .35s,box-shadow .35s}
+.svc-card:hover{transform:translateY(-5px);border-color:rgba(232,20,28,.38);box-shadow:var(--glow),0 18px 50px rgba(0,0,0,.5)}
+.svc-card.dragging{opacity:.4}
+.svc-card.drag-over{border-color:var(--red)}
+.svc-img{width:100%;height:360px;background:#000;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.svc-img img{width:100%;height:100%;object-fit:contain;background:#000;transition:transform .4s ease;display:block}
+.svc-card:hover .svc-img img{transform:scale(1.03)}
+.svc-ico{font-size:4rem;z-index:1}
+.svc-body{padding:1.3rem}
+.svc-title{font-family:var(--fd);font-size:1.55rem;letter-spacing:1.5px;line-height:1.05;margin-bottom:.6rem}
+.svc-desc-short{font-size:.83rem;color:var(--mu);line-height:1.65;margin-bottom:1.1rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.svc-price{font-family:var(--fd);font-size:1.7rem;color:var(--red);letter-spacing:1px;margin-bottom:1rem}
+.svc-price small{font-family:var(--fb);font-size:.65rem;color:var(--mu);letter-spacing:2px;text-transform:uppercase;display:block}
+
+/* ── SECTIONS ── */
+section{padding:4.5rem 1.5rem}
+.cont{max-width:1200px;margin:0 auto}
+.stag{font-size:.67rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:.55rem}
+.stitle{font-family:var(--fd);font-size:clamp(2rem,5.5vw,3.8rem);letter-spacing:2px;line-height:1}
+.sdesc{color:var(--mu);margin-top:.65rem;font-size:.88rem;max-width:480px;line-height:1.7}
+
+/* INFO */
+#sec-info{background:var(--bk);border-top:1px solid var(--br)}
+.igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem;margin-top:2rem}
+.icard{background:var(--g1);border:1px solid var(--br);border-radius:6px;padding:1.3rem;transition:border-color .3s,transform .3s}
+.icard:hover{border-color:rgba(232,20,28,.35);transform:translateY(-3px)}
+.iico{width:36px;height:36px;background:rgba(232,20,28,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:.85rem}
+.iico svg{width:17px;height:17px;stroke:var(--red)}
+.icard h3{font-family:var(--fd);font-size:1.2rem;letter-spacing:1px;margin-bottom:.45rem}
+.icard p,.icard a{font-size:.83rem;color:var(--mu);line-height:1.7}
+.icard a{color:var(--red);text-decoration:none}.icard a:hover{text-decoration:underline}
+.studio-imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.75rem;margin-top:1.5rem}
+.studio-img-ph{width:100%;height:140px;background:var(--g2);border:1px solid var(--br);border-radius:5px;display:flex;align-items:center;justify-content:center;color:var(--mu3);font-size:.75rem;letter-spacing:1px}
+.mapwrap{border-radius:6px;overflow:hidden;border:1px solid var(--br);margin-top:1.5rem}
+
+/* FAQ */
+#sec-faq{background:var(--g1);border-top:1px solid var(--br)}
+.flist{max-width:700px;margin:1.8rem auto 0;display:flex;flex-direction:column;gap:.55rem}
+.fi{background:var(--g2);border:1px solid var(--br);border-radius:5px;overflow:hidden}
+.fq{width:100%;background:none;border:none;color:var(--w);text-align:left;padding:.85rem 1.1rem;font-family:var(--fb);font-size:.86rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;transition:background .2s}
+.fq:hover{background:rgba(255,255,255,.03)}
+.fq svg{flex-shrink:0;stroke:var(--red);transition:transform .3s;fill:none}
+.fq.open svg{transform:rotate(180deg)}
+.fa{font-size:.83rem;color:var(--mu);line-height:1.7;padding:0 1.1rem;max-height:0;overflow:hidden;transition:all .3s}
+.fa.open{padding:0 1.1rem .95rem;max-height:300px}
+
+/* ADMIN */
+#sec-admin{background:var(--g1);border-top:1px solid var(--br)}
+.apanel{display:none}
+/* ── ADMIN IMPROVED TABS ── */
+.atabs{display:flex;border-bottom:1px solid var(--br);margin-bottom:0;overflow-x:auto;gap:0}
+.atab{background:none;border:none;color:var(--mu);padding:12px 18px;font-family:var(--fb);font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:all .2s;display:flex;align-items:center;gap:6px}
+.atab:hover{color:var(--w);background:rgba(255,255,255,.03)}
+.atab.active{color:var(--w);border-bottom-color:var(--red);background:rgba(232,20,28,.04)}
+.atab .tab-badge{background:var(--red);color:#fff;border-radius:10px;padding:1px 7px;font-size:.65rem;font-weight:800}
+.atab .tab-badge.green{background:#25d366}
+.atab .tab-badge.amber{background:#f59e0b;color:#000}
+.atc{display:none}.atc.active{display:block;padding-top:1.75rem}
+/* ── ADMIN DASHBOARD ── */
+.admin-dash{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1rem;margin-bottom:2rem}
+.dash-card{background:var(--g2);border:1px solid var(--br2);border-radius:8px;padding:1.2rem 1.3rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.dash-card:hover{border-color:rgba(232,20,28,.3);transform:translateY(-2px)}
+.dash-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)}
+.dash-card.green::before{background:#25d366}
+.dash-card.amber::before{background:#f59e0b}
+.dash-card.blue::before{background:#3b82f6}
+.dash-card.purple::before{background:#8b5cf6}
+.dash-ico{font-size:1.5rem;margin-bottom:.4rem}
+.dash-val{font-family:var(--fd);font-size:2.2rem;letter-spacing:2px;color:var(--w);line-height:1}
+.dash-label{font-size:.68rem;color:var(--mu);letter-spacing:1.5px;text-transform:uppercase;margin-top:.3rem}
+.dash-sub{font-size:.73rem;color:var(--mu2);margin-top:.4rem}
+/* ── CATEGORIES ── */
+.cat-pills{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.75rem}
+.cat-pill{display:inline-flex;align-items:center;gap:5px;background:var(--g2);border:1px solid var(--br2);color:var(--mu);padding:6px 14px;border-radius:20px;font-size:.76rem;font-weight:600;letter-spacing:.5px;cursor:pointer;transition:all .22s;white-space:nowrap;user-select:none}
+.cat-pill:hover{border-color:var(--w);color:var(--w)}
+.cat-pill.active{background:var(--red);border-color:var(--red);color:#fff}
+.cat-count{background:rgba(255,255,255,.18);border-radius:10px;padding:1px 7px;font-size:.67rem;font-weight:700}
+.cat-pill.active .cat-count{background:rgba(255,255,255,.25)}
+.chip.cat-tag{background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.22);color:#93c5fd}
+/* ── SEARCH BAR ── */
+.search-wrap{position:relative;margin-bottom:1.25rem}
+.search-input{width:100%;background:var(--g2);border:1px solid var(--br2);color:var(--w);padding:12px 16px 12px 44px;border-radius:6px;font-family:var(--fb);font-size:.92rem;outline:none;transition:border .25s,box-shadow .25s}
+.search-input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(232,20,28,.1)}
+.search-input::placeholder{color:var(--mu2)}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--mu);fill:none;pointer-events:none}
+.search-clear{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--mu);cursor:pointer;font-size:1.1rem;padding:2px 6px;transition:color .2s;display:none;line-height:1}
+.search-clear:hover{color:var(--w)}
+.search-info{font-size:.78rem;color:var(--mu);margin-bottom:1rem;min-height:1.1em}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin-bottom:.8rem}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--mu)}
+.fg input,.fg textarea,.fg select{background:var(--g3);border:1px solid var(--br2);color:var(--w);padding:8px 12px;border-radius:3px;font-family:var(--fb);font-size:.86rem;outline:none;transition:border .2s;width:100%}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--red)}
+.fg textarea{resize:vertical;min-height:80px}
+.fg select option{background:var(--g2)}
+.tw{overflow-x:auto;margin-top:.4rem}
+.at{width:100%;border-collapse:collapse;font-size:.81rem;min-width:600px}
+.at th{background:var(--g3);color:var(--mu);font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:8px 10px;text-align:left;font-size:.68rem;white-space:nowrap}
+.at td{padding:8px 10px;border-bottom:1px solid var(--br);vertical-align:middle}
+.at tr:hover td{background:rgba(255,255,255,.018)}
+.pb{padding:3px 8px;border-radius:2px;font-size:.67rem;font-weight:700;letter-spacing:.5px}
+.py{background:rgba(34,197,94,.11);color:#4ade80}
+.pn{background:rgba(232,20,28,.11);color:var(--red)}
+.ab{background:none;border:1px solid var(--br2);color:var(--mu);padding:4px 9px;border-radius:3px;cursor:pointer;font-size:.71rem;font-family:var(--fb);font-weight:600;transition:all .2s;text-decoration:none;display:inline-block;white-space:nowrap}
+.ab:hover{border-color:var(--w);color:var(--w)}
+.ab.wa{border-color:rgba(37,211,102,.3);color:#25d366}.ab.wa:hover{background:rgba(37,211,102,.07)}
+.ab.dl{border-color:rgba(232,20,28,.25);color:var(--red)}.ab.dl:hover{background:rgba(232,20,28,.07)}
+.ab.pr{background:var(--red);border-color:var(--red);color:#fff}.ab.pr:hover{background:var(--red2)}
+.fbar{display:flex;gap:.65rem;margin-bottom:1.1rem;flex-wrap:wrap;align-items:center}
+.fbar select,.fbar input{background:var(--g3);border:1px solid var(--br2);color:var(--w);padding:7px 10px;border-radius:3px;font-family:var(--fb);font-size:.81rem;outline:none;min-width:140px}
+.fbar select:focus,.fbar input:focus{border-color:var(--red)}
+.erow{display:flex;gap:.55rem;margin-bottom:1.1rem;flex-wrap:wrap}
+.total-row{background:rgba(232,20,28,.06);border-top:2px solid rgba(232,20,28,.3);font-weight:700;color:var(--w)}
+
+/* Pagos */
+.pt{width:100%;border-collapse:collapse;font-size:.8rem;min-width:500px}
+.pt th{background:var(--g3);color:var(--mu);font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:8px 10px;text-align:left;font-size:.67rem}
+.pt td{padding:7px 10px;border-bottom:1px solid var(--br);vertical-align:middle}
+.pt tr:hover td{background:rgba(255,255,255,.018)}
+.pi{background:var(--g3);border:1px solid var(--br2);color:var(--w);padding:4px 7px;border-radius:3px;font-family:var(--fb);font-size:.78rem;width:100%;min-width:75px}
+.pi:focus{outline:none;border-color:var(--red)}
+
+/* Agenda */
+.slot{display:inline-block;margin:3px;padding:6px 10px;border-radius:3px;font-size:.74rem;font-weight:600;cursor:pointer;border:1px solid var(--br2);transition:all .22s}
+.sl-free{background:rgba(34,197,94,.06);border-color:rgba(34,197,94,.25);color:#4ade80}
+.sl-free:hover{background:rgba(34,197,94,.15)}
+.sl-taken{background:rgba(232,20,28,.06);border-color:rgba(232,20,28,.25);color:var(--red);cursor:not-allowed}
+.sl-selected{background:rgba(34,197,94,.22);border-color:#4ade80;color:#fff;box-shadow:0 0 10px rgba(34,197,94,.3)}
+
+/* ── MODALES PROPIOS ── */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:900;display:none;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto}
+.ov.open{display:flex}
+.modal{background:var(--g2);border:1px solid var(--br2);border-radius:10px;width:100%;max-width:680px;margin:auto;animation:su .28s ease;position:relative}
+.modal-sm{max-width:520px}
+@keyframes su{from{transform:translateY(18px);opacity:0}to{transform:translateY(0);opacity:1}}
+.mh{padding:1.4rem 1.4rem 1rem;border-bottom:1px solid var(--br);display:flex;justify-content:space-between;align-items:flex-start}
+.mt{font-family:var(--fd);font-size:1.8rem;letter-spacing:1px;line-height:1}
+.ms{font-size:.76rem;color:var(--mu);margin-top:4px}
+.mx{background:var(--g3);border:1px solid var(--br2);color:var(--mu);font-size:1.2rem;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.mx:hover{background:var(--red);border-color:var(--red);color:#fff}
+.mb{padding:1.4rem}
+.mf{padding:1rem 1.4rem 1.4rem;display:flex;gap:.7rem;justify-content:flex-end;border-top:1px solid var(--br);flex-wrap:wrap}
+
+/* DETALLE DE CURSO/SERVICIO */
+.detail-hero{background:#000;border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;position:relative;border:1px solid var(--br2)}
+.detail-hero img{width:100%;max-height:500px;object-fit:contain;background:#000;border-radius:6px;margin-bottom:1.25rem;display:block;cursor:zoom-in;transition:opacity .2s}
+.detail-hero img:hover{opacity:.9}
+.img-actions{display:flex;gap:.5rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.img-act-btn{display:inline-flex;align-items:center;gap:5px;background:var(--g3);border:1px solid var(--br2);color:var(--mu);padding:5px 12px;border-radius:3px;font-size:.72rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:.5px}
+.img-act-btn:hover{border-color:var(--w);color:var(--w)}
+.detail-status{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:2px;font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.75rem}
+.detail-title{font-family:var(--fd);font-size:clamp(2rem,5vw,3.2rem);letter-spacing:2px;line-height:1.05;margin-bottom:1rem;color:#fff}
+.detail-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem}
+.detail-section{background:var(--g1);border:1px solid var(--br);border-radius:6px;padding:1.1rem;margin-bottom:1rem}
+.detail-section h4{font-family:var(--fd);font-size:1.05rem;letter-spacing:1.5px;color:#fff;margin-bottom:.6rem;padding-bottom:.4rem;border-bottom:1px solid var(--br2)}
+.detail-section p,.detail-section li{font-size:.88rem;color:var(--mu);line-height:1.75}
+.detail-section ul{padding-left:1.2rem}
+.detail-section a{color:var(--red);text-decoration:none}.detail-section a:hover{text-decoration:underline}
+.detail-price-box{background:var(--g1);border:1px solid var(--br2);border-radius:6px;padding:1.1rem;margin-bottom:1rem}
+.detail-price-box .label{font-size:.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin-bottom:.35rem}
+.detail-price-big{font-family:var(--fd);font-size:2.5rem;color:var(--red);letter-spacing:2px;line-height:1}
+.detail-price-sub{font-size:.8rem;color:var(--mu);margin-top:.35rem}
+.interested-btn{background:transparent;border:1px solid var(--br3);color:var(--mu);padding:9px 18px;border-radius:3px;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:1px;text-transform:uppercase}
+.interested-btn:hover{border-color:var(--w);color:var(--w)}
+.interested-count{font-size:.75rem;color:var(--mu);margin-left:.5rem}
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:9999;display:none;align-items:center;justify-content:center;cursor:zoom-out;flex-direction:column;gap:1rem}
+.lightbox.open{display:flex}
+.lightbox img{max-width:95vw;max-height:88vh;object-fit:contain;border-radius:4px}
+.lightbox-btns{display:flex;gap:.75rem}
+.lb-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#fff;padding:8px 18px;border-radius:3px;font-family:var(--fb);font-size:.78rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .2s;letter-spacing:.5px}
+.lb-btn:hover{background:rgba(255,255,255,.2)}
+
+/* CIB */
+.cib{background:var(--g3);border:1px solid var(--br2);border-radius:4px;padding:.85rem;margin-bottom:1.1rem}
+.cib-t{font-family:var(--fd);font-size:1.15rem;color:var(--red);letter-spacing:1px;margin-bottom:.45rem}
+.cib-ch{display:flex;flex-wrap:wrap;gap:.35rem}
+
+/* SUCCESS */
+.succ{display:none;text-align:center;padding:2.5rem 1.5rem}
+.succ-i{font-size:3rem;margin-bottom:.75rem}
+.succ-t{font-family:var(--fd);font-size:2rem;color:var(--red);letter-spacing:2px;margin-bottom:.5rem}
+.succ-d{color:var(--mu);font-size:.86rem;line-height:1.7;max-width:380px;margin:0 auto}
+
+/* BTNS */
+.btn{background:var(--red);color:#fff;border:none;padding:12px 26px;border-radius:3px;font-family:var(--fb);font-size:.83rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .22s;text-decoration:none;display:inline-block}
+.btn:hover{background:var(--red2);transform:translateY(-1px);box-shadow:0 4px 18px rgba(232,20,28,.35)}
+.btng{background:transparent;color:var(--w);border:1px solid var(--br2);padding:12px 26px;border-radius:3px;font-family:var(--fb);font-size:.83rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .22s}
+.btng:hover{border-color:var(--w)}
+.btn-sm{padding:9px 18px;font-size:.78rem}
+.btn-wa{background:#25d366;color:#fff;border:none;padding:12px 26px;border-radius:3px;font-family:var(--fb);font-size:.83rem;font-weight:700;letter-spacing:1px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;text-decoration:none;transition:all .22s}
+.btn-wa:hover{background:#1da851}
+
+/* TOAST PROPIO */
+.toast-wrap{position:fixed;bottom:1.5rem;right:1.5rem;z-index:9999;display:flex;flex-direction:column;gap:.5rem;pointer-events:none}
+.toast{background:var(--g2);border:1px solid var(--br3);border-left:3px solid var(--red);border-radius:5px;padding:.9rem 1.2rem;transform:translateX(280%);transition:transform .35s cubic-bezier(.22,1,.36,1);max-width:300px;pointer-events:auto;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.toast.show{transform:translateX(0)}
+.toast.success{border-left-color:#25d366}
+.toast.warn{border-left-color:#f59e0b}
+.toast b{font-size:.86rem;display:block;margin-bottom:3px}
+.toast span{font-size:.79rem;color:var(--mu)}
+
+/* CONFIRM DIALOG CUSTOM */
+.cfdialog-ov{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9998;display:none;align-items:center;justify-content:center;padding:1rem}
+.cfdialog-ov.open{display:flex}
+.cfdialog{background:var(--g2);border:1px solid var(--br2);border-radius:8px;max-width:380px;width:100%;padding:2rem 1.75rem;text-align:center;animation:su .22s ease;box-shadow:0 20px 60px rgba(0,0,0,.7)}
+.cfdialog-icon{font-size:2.2rem;margin-bottom:.75rem}
+.cfdialog-title{font-family:var(--fd);font-size:1.6rem;letter-spacing:1px;margin-bottom:.5rem}
+.cfdialog-msg{font-size:.85rem;color:var(--mu);line-height:1.65;margin-bottom:1.5rem}
+.cfdialog-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+
+/* ALUMNI TESTIMONIAL MODAL */
+.test-alumni-trigger{background:rgba(232,20,28,.08);border:1px dashed rgba(232,20,28,.3);border-radius:8px;padding:1.5rem;text-align:center;cursor:pointer;transition:all .3s;margin-top:1.5rem}
+.test-alumni-trigger:hover{background:rgba(232,20,28,.14);border-color:rgba(232,20,28,.5)}
+.test-alumni-trigger h3{font-family:var(--fd);font-size:1.5rem;letter-spacing:1px;color:var(--red);margin-bottom:.4rem}
+.test-alumni-trigger p{font-size:.84rem;color:var(--mu)}
+.star-selector{display:flex;gap:.5rem;justify-content:center;margin:.75rem 0}
+.star-btn{font-size:1.6rem;cursor:pointer;color:var(--br3);transition:all .15s;background:none;border:none;line-height:1}
+.star-btn.active,.star-btn:hover{color:var(--red);transform:scale(1.15)}
+.test-pending-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);color:#f59e0b;padding:4px 12px;border-radius:2px;font-size:.7rem;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+
+/* PING */
+.ping{position:fixed;top:70px;right:1.5rem;z-index:400;display:none;align-items:center;gap:8px;background:rgba(232,20,28,.95);color:#fff;padding:10px 18px;border-radius:4px;font-size:.82rem;font-weight:700;animation:pa .4s ease;box-shadow:var(--glow)}
+.ping.show{display:flex}
+@keyframes pa{from{transform:scale(.82);opacity:0}60%{transform:scale(1.04)}to{opacity:1}}
+
+/* WA FLOAT */
+.waf{position:fixed;bottom:1.75rem;left:1.75rem;z-index:500;background:#25d366;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.4);transition:all .3s}
+.waf:hover{transform:scale(1.1)}
+.waf svg{width:24px;height:24px;fill:#fff}
+.waf-tip{position:absolute;left:58px;background:rgba(37,211,102,.95);color:#fff;padding:5px 11px;border-radius:3px;font-size:.7rem;font-weight:700;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
+.waf:hover .waf-tip{opacity:1}
+
+/* FOOTER */
+footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1.5rem}
+.fi-in{max-width:1200px;margin:0 auto}
+.ft{display:flex;gap:2.5rem;flex-wrap:wrap;justify-content:space-between;margin-bottom:2rem}
+.fb-logo{font-family:var(--fd);font-size:1.8rem;letter-spacing:3px}
+.fb-logo em{color:var(--red);font-style:normal}
+.fb-brand p{font-size:.78rem;color:var(--mu);margin-top:.4rem;max-width:185px;line-height:1.65}
+.fc h4{font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--mu);margin-bottom:.85rem}
+.fc a{display:block;color:var(--mu);text-decoration:none;font-size:.81rem;margin-bottom:.38rem;transition:color .2s}
+.fc a:hover{color:var(--w)}
+.fb-bot{border-top:1px solid var(--br);padding-top:1.1rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.65rem}
+.fb-bot p,.fb-bot a{font-size:.71rem;color:var(--mu);text-decoration:none}
+.fb-bot a:hover{color:var(--red)}
+.fsoc{display:flex;gap:.55rem}
+.sb{width:34px;height:34px;border:1px solid var(--br2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--mu);text-decoration:none;font-size:.73rem;font-weight:700;transition:all .2s}
+.sb:hover{border-color:var(--red);color:var(--red)}
+
+@media(max-width:768px){
+  .nlinks{display:none}.hbg{display:flex}
+  .cgrid,.services-grid{grid-template-columns:1fr}
+  .h-stats{gap:1.2rem}
+  .ft{gap:1.5rem}
+  .mtab{padding:12px 18px;font-size:1.1rem;letter-spacing:2px}
+}
+@media(max-width:480px){
+  nav{padding:0 1rem}
+  section{padding:3rem 1rem}
+  .hero-in{padding:2rem 1rem 3.5rem}
+  h1.brand{font-size:3.2rem}
+  .fgrid{grid-template-columns:1fr}
+}
+/* ── GALERÍA ── */
+#sec-gallery{background:var(--g1);border-top:1px solid var(--br)}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.75rem;margin-top:2rem}
+.gallery-item{position:relative;border-radius:6px;overflow:hidden;background:var(--g3);border:1px solid var(--br);aspect-ratio:1;cursor:pointer;transition:transform .3s,border-color .3s}
+.gallery-item:hover{transform:scale(1.02);border-color:rgba(232,20,28,.4)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.gallery-item:hover img{transform:scale(1.06)}
+.gallery-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.82));color:#fff;padding:.5rem .75rem;font-size:.75rem;opacity:0;transition:opacity .3s}
+.gallery-item:hover .gallery-caption{opacity:1}
+/* ── TESTIMONIOS ── */
+#sec-testimonials{background:var(--bk);border-top:1px solid var(--br)}
+.test-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;margin-top:2rem}
+.test-card{background:var(--g2);border:1px solid var(--br);border-radius:8px;padding:1.4rem;position:relative;transition:border-color .3s,transform .3s}
+.test-card:hover{border-color:rgba(232,20,28,.3);transform:translateY(-3px)}
+.test-card::before{content:'\201C';font-family:var(--fd);font-size:4rem;color:rgba(232,20,28,.13);position:absolute;top:.5rem;left:1rem;line-height:1}
+.test-stars{display:flex;gap:3px;margin-bottom:.75rem}
+.test-star{color:var(--red);font-size:1rem}
+.test-star.empty{color:var(--br3)}
+.test-text{font-size:.88rem;color:var(--mu);line-height:1.75;margin-bottom:1rem;font-style:italic}
+.test-author{display:flex;align-items:center;gap:.75rem}
+.test-avatar{width:38px;height:38px;border-radius:50%;background:var(--g3);border:1px solid var(--br2);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1rem;color:var(--red);flex-shrink:0;overflow:hidden}
+.test-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.test-name{font-weight:700;font-size:.88rem}
+.test-course{font-size:.75rem;color:var(--mu);margin-top:2px}
+.test-empty{text-align:center;padding:3rem;color:var(--mu);grid-column:1/-1}
+/* ── LISTA DE ESPERA ── */
+.waitlist-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#f59e0b;padding:3px 10px;border-radius:2px;font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:.5rem;cursor:default}
+.btn-waitlist{background:rgba(245,158,11,.12);color:#f59e0b;border:1px solid rgba(245,158,11,.35);padding:9px 18px;border-radius:3px;font-family:var(--fb);font-size:.78rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-waitlist:hover{background:rgba(245,158,11,.22);border-color:#f59e0b}
+/* ADMIN gallery items */
+.gad-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.65rem;margin-top:1rem}
+.gad-item{background:var(--g3);border:1px solid var(--br2);border-radius:5px;overflow:hidden;position:relative}
+.gad-item img{width:100%;height:120px;object-fit:cover;display:block}
+.gad-cap{padding:.35rem .5rem;font-size:.71rem;color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gad-del{position:absolute;top:5px;right:5px;background:rgba(232,20,28,.88);border:none;color:#fff;width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:.75rem;display:flex;align-items:center;justify-content:center}
+.gad-del:hover{background:var(--red2)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nlogo" onclick="logoClick()" title="Tomauno — 3 clics para admin">
+    <div class="nlogo-img" id="navLogoImg"><img src="https://i.imgur.com/oZnkCPD.png" alt="Tomauno" onerror="this.parentElement.textContent='T1'"></div>
+    <span class="nlogo-t">Toma<em>uno</em></span>
+  </div>
+  <!-- CONNECTION DOT -->
+  <div id="connIndicator" style="display:flex;align-items:center;gap:5px;margin-left:.5rem">
+    <div id="connDot" style="width:8px;height:8px;border-radius:50%;background:#f59e0b;box-shadow:0 0 8px #f59e0b;transition:all .5s;flex-shrink:0"></div>
+    <span id="connLabel" style="font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#f59e0b;transition:color .5s">Conectando</span>
+  </div>
+  <div class="nright">
+    <div class="nlinks">
+      <a href="#" onclick="showMain('cursos');return false">Cursos</a>
+      <a href="#" onclick="showMain('servicios');return false">Servicios</a>
+      <a href="#sec-info">Estudio</a>
+      <a href="#sec-faq">Preguntas Frecuentes</a>
+      <a href="https://instagram.com/tomaunomodels" target="_blank">Instagram</a>
+      <a href="#sec-info" class="ncta">Contacto</a>
+    </div>
+    <button class="hbg" onclick="toggleMob()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mmenu" id="mmenu">
+  <a href="#" onclick="showMain('cursos');toggleMob()">Cursos &amp; Capacitaciones</a>
+  <a href="#" onclick="showMain('servicios');toggleMob()">Servicios del Estudio</a>
+  <a href="#sec-info" onclick="toggleMob()">El estudio</a>
+  <a href="#sec-faq" onclick="toggleMob()">Preguntas Frecuentes</a>
+  <a href="https://instagram.com/tomaunomodels" target="_blank" onclick="toggleMob()">Instagram @tomaunomodels</a>
+  <a href="#sec-info" onclick="toggleMob()">Contacto &amp; Ubicación</a>
+</div>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <div class="hbg1"></div>
+  <div class="hgrid"></div>
+  <div class="hero-in">
+    <div class="h-head">
+      <div class="eyebrow"><span class="dot"></span>Capacitaciones Tomauno</div>
+      <h1 class="brand">Toma<em>uno</em></h1>
+      <p class="h-tagline">Porque cada día es una oportunidad de <em>crecer</em>.<br>Invertir en vos es la decisión más poderosa que podés tomar.</p>
+      <div class="h-stats">
+        <div><div class="sn" id="sA">—</div><div class="sl">Cursos activos</div></div>
+        <div><div class="sn" id="sI">—</div><div class="sl">Inscriptos</div></div>
+        <div><div class="sn">📍</div><div class="sl">Posadas, Misiones</div></div>
+      </div>
+    </div>
+
+    <!-- TABS CURSOS / SERVICIOS -->
+    <div class="main-tabs" style="position:static;margin-bottom:1.75rem">
+      <button class="mtab active" id="tabCursos" onclick="showMain('cursos')">Cursos &amp; Capacitaciones</button>
+      <button class="mtab" id="tabServicios" onclick="showMain('servicios')">Servicios</button>
+    </div>
+
+    <!-- CURSOS -->
+    <div class="section-view active" id="view-cursos">
+      <!-- SEARCH -->
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input class="search-input" type="text" id="courseSearch" placeholder="Buscar cursos por título, disertante, lugar..." oninput="filterCourses()" autocomplete="off">
+        <button class="search-clear" id="searchClear" onclick="clearSearch()">✕</button>
+      </div>
+      <!-- CATEGORY PILLS -->
+      <div class="cat-pills" id="catPills"></div>
+      <div class="search-info" id="searchInfo"></div>
+      <div class="drag-hint"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M8 9l4-4 4 4M16 15l-4 4-4-4"/></svg>Arrastrá las tarjetas para ordenarlas</div>
+      <div class="cgrid" id="cgrid"></div>
+    </div>
+
+    <!-- SERVICIOS -->
+    <div class="section-view" id="view-servicios">
+      <div class="drag-hint"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M8 9l4-4 4 4M16 15l-4 4-4-4"/></svg>Arrastrá para ordenar</div>
+      <div class="services-grid" id="sgrid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO -->
+<section id="sec-info">
+  <div class="cont">
+    <div class="stag">El estudio</div><h2 class="stitle">Toma<em style="color:var(--red);font-style:normal">uno</em></h2>
+    <p class="sdesc">Fotografía profesional, modelaje y capacitaciones en el corazón de Posadas.</p>
+    <div class="igrid">
+      <div class="icard">
+        <div class="iico"><svg viewBox="0 0 24 24" stroke-width="1.8" fill="none"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+        <h3>Dónde estamos</h3>
+        <p>Pedro Méndez 2069 entre Líbano y Estado de Israel. A 1 cuadra y media de Av. Uruguay.<br><br><a href="https://maps.app.goo.gl/3KNXZ3oeknREZwM8A" target="_blank">Ver en Google Maps →</a></p>
+      </div>
+      <div class="icard">
+        <div class="iico"><svg viewBox="0 0 24 24" stroke-width="1.8" fill="none"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11 11 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498A1 1 0 0121 19v1a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
+        <h3>Contacto</h3>
+        <p>WhatsApp: <a href="https://wa.me/5493764354522" target="_blank">+549 3764 354522</a><br>Instagram: <a href="https://instagram.com/tomaunomodels" target="_blank">@tomaunomodels</a></p>
+      </div>
+      <div class="icard">
+        <div class="iico"><svg viewBox="0 0 24 24" stroke-width="1.8" fill="none"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>Horarios</h3>
+        <p>Los horarios varían según el evento y el servicio. Consultá a Javier por WhatsApp para coordinar.</p>
+      </div>
+      <div class="icard">
+        <div class="iico"><svg viewBox="0 0 24 24" stroke-width="1.8" fill="none"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
+        <h3>El espacio</h3>
+        <p>10m x 5m. Ciclorama blanco, 9 fondos infinitos, iluminación profesional, sector maquillaje, cambiador, baño, WiFi, AC, TV plasma.</p>
+      </div>
+    </div>
+    <!-- PREGUNTAS FRECUENTES dentro de El Estudio -->
+    <div style="margin-top:3rem">
+      <div class="stag">Dudas</div><h2 class="stitle" id="sec-faq">Preguntas Frecuentes</h2>
+      <div class="flist" style="max-width:100%;margin-top:1.5rem">
+        <div class="fi"><button class="fq" onclick="faq(this)">¿Cómo reservo mi lugar en un curso?<svg width="14" height="14" viewBox="0 0 24 24" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg></button><div class="fa">Hacé clic en la tarjeta del curso, leé todos los detalles y presioná "Inscribirme". Completá el formulario y tu lugar queda reservado al instante.</div></div>
+        <div class="fi"><button class="fq" onclick="faq(this)">¿Cómo se abona?<svg width="14" height="14" viewBox="0 0 24 24" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg></button><div class="fa">El pago se coordina con Javier por WhatsApp. Una vez que abonás y enviás el comprobante, tu inscripción queda confirmada.</div></div>
+        <div class="fi"><button class="fq" onclick="faq(this)">¿Qué pasa si soy menor de edad?<svg width="14" height="14" viewBox="0 0 24 24" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg></button><div class="fa">Si tenés menos de 18 años te pediremos el WhatsApp de tu tutor o encargado para coordinar la inscripción.</div></div>
+        <div class="fi"><button class="fq" onclick="faq(this)">¿Los cupos son limitados?<svg width="14" height="14" viewBox="0 0 24 24" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg></button><div class="fa">Sí. Grupos reducidos para garantizar atención personalizada. Inscribite con anticipación para asegurar tu lugar.</div></div>
+        <div class="fi"><button class="fq" onclick="faq(this)">¿Puedo alquilar el estudio para una producción propia?<svg width="14" height="14" viewBox="0 0 24 24" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg></button><div class="fa">Sí. Contamos con el servicio de alquiler con todos los equipos incluidos. Consultá disponibilidad en la sección Servicios o escribile a Javier.</div></div>
+        <div class="fi"><button class="fq" onclick="faq(this)">¿Necesito experiencia previa para los cursos?<svg width="14" height="14" viewBox="0 0 24 24" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg></button><div class="fa">Depende del curso. La descripción indica el nivel requerido. Muchas charlas son para todos los niveles.</div></div>
+      </div>
+    </div>
+
+    <div class="mapwrap" style="margin-top:2.5rem"><iframe src="https://maps.google.com/maps?q=Pedro+M%C3%A9ndez+2069,+Posadas,+Misiones&output=embed" width="100%" height="290" style="border:0;display:block" allowfullscreen loading="lazy"></iframe></div>
+  </div>
+</section>
+
+<!-- GALERÍA DEL ESTUDIO -->
+<section id="sec-gallery">
+  <div class="cont">
+    <div class="stag">El espacio en imágenes</div>
+    <h2 class="stitle">Galería del <em style="color:var(--red);font-style:normal">Estudio</em></h2>
+    <p class="sdesc">Conocé el espacio antes de venir. Fondos, luces, equipos y todo lo que necesitás para tu producción.</p>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section id="sec-testimonials">
+  <div class="cont">
+    <div class="stag">Lo que dicen nuestros alumnos</div>
+    <h2 class="stitle">Testimonios</h2>
+    <p class="sdesc">Experiencias reales de quienes ya pasaron por Tomauno.</p>
+    <div class="test-grid" id="testGrid"></div>
+    <!-- TRIGGER ALUMNO -->
+    <div class="test-alumni-trigger" onclick="openAlumni()">
+      <h3>⭐ ¿Ya fuiste alumno de Tomauno?</h3>
+      <p>Dejá tu opinión — ayudás a otros a dar el paso y nos ayudás a crecer. ¡Tarda menos de un minuto!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ADMIN -->
+<section id="sec-admin">
+  <div class="cont">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
+      <div><div class="stag">Panel de gestión</div><h2 class="stitle">Administración</h2></div>
+      <div style="display:flex;gap:.55rem;align-items:center;flex-wrap:wrap">
+        <div id="aLB" style="display:flex;gap:.55rem">
+          <input type="password" id="aPass" placeholder="Clave admin" style="background:var(--g3);border:1px solid var(--br2);color:var(--w);padding:8px 12px;border-radius:3px;font-family:var(--fb);font-size:.86rem;outline:none;width:148px" onkeydown="if(event.key==='Enter')login()">
+          <button class="btn btn-sm" onclick="login()">Ingresar</button>
+        </div>
+        <button class="ab" id="aLOut" style="display:none" onclick="logout()">Salir</button>
+      </div>
+    </div>
+    <div class="apanel" id="apanel">
+      <!-- DASHBOARD -->
+      <div class="admin-dash" id="adminDash"></div>
+      <div class="atabs" id="adminTabs">
+        <button class="atab active" onclick="atab('ins',this)">📋 Inscripciones <span class="tab-badge" id="tabBadgeIns">0</span></button>
+        <button class="atab" onclick="atab('cur',this)">🎓 Cursos</button>
+        <button class="atab" onclick="atab('pag',this)">💰 Pagos</button>
+        <button class="atab" onclick="atab('age',this)">📅 Agenda</button>
+        <button class="atab" onclick="atab('svc',this)">🏠 Servicios</button>
+        <button class="atab" onclick="atab('gal',this)">📸 Galería</button>
+        <button class="atab" onclick="atab('test',this)">⭐ Testimonios <span class="tab-badge amber" id="tabBadgeTest" style="display:none">0</span></button>
+      </div>
+
+      <!-- INSCRIPCIONES -->
+      <div class="atc active" id="t-ins">
+        <div class="fbar">
+          <select id="fC" onchange="renderIns()"><option value="">Todos los cursos</option></select>
+          <input type="text" id="fQ" placeholder="Buscar nombre..." oninput="renderIns()">
+        </div>
+        <div class="erow">
+          <button class="ab" onclick="expCSV('ins')">Exportar CSV</button>
+          <button class="ab" onclick="expPDF()">Exportar PDF</button>
+          <button class="ab wa" onclick="grupoWA()">Crear grupo WA</button>
+        </div>
+        <div id="ins-totals" style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.83rem;color:var(--mu)"></div>
+        <div class="tw"><table class="at"><thead><tr><th>#</th><th>Nombre</th><th>Edad</th><th>DNI</th><th>Curso</th><th>Instagram</th><th>WP Alumno</th><th>WP Tutor</th><th>Estado pago</th><th>Acc.</th></tr></thead><tbody id="insB"></tbody></table></div>
+        <div id="noIns" style="text-align:center;padding:3rem;color:var(--mu);display:none">Sin inscripciones aún.</div>
+      </div>
+
+      <!-- CURSOS -->
+      <div class="atc" id="t-cur">
+        <h3 style="font-family:var(--fd);font-size:1.35rem;letter-spacing:1px;margin-bottom:1.1rem">➕ Nuevo curso</h3>
+        <div class="fgrid">
+          <div class="fg" style="grid-column:1/-1"><label>Título *</label><input type="text" id="cT" placeholder="Ej: Workshop de Retrato Profesional"></div>
+          <div class="fg" style="grid-column:1/-1"><label>Descripción completa (podés incluir @instagram, teléfonos, listas con •)</label><textarea id="cD" rows="6" placeholder="Describí el curso... el sistema detecta @usuarios, teléfonos y URLs automáticamente."></textarea></div>
+          <div class="fg"><label>A quién va dirigido</label><input type="text" id="cDirigido" placeholder="Ej: Principiantes, modelos, emprendedores..."></div>
+          <div class="fg"><label>¿Qué incluye?</label><input type="text" id="cIncluye" placeholder="Ej: Certificado, apuntes PDF, coffee break..."></div>
+          <div class="fg"><label>Cupos disponibles</label><input type="number" id="cCupos" min="1" placeholder="Ej: 15"></div>
+          <div class="fg"><label>Disertante(s)</label><input type="text" id="cDis" placeholder="Ej: Dra. Romina Suárez"></div>
+          <div class="fg"><label>Instagram disertante</label><input type="text" id="cIG" placeholder="@usuario"></div>
+          <div class="fg"><label>WhatsApp disertante</label><input type="text" id="cWDis" placeholder="3764xxxxxx"></div>
+          <div class="fg"><label>Fecha</label><input type="date" id="cF"></div>
+          <div class="fg"><label>Hora</label><input type="text" id="cH" placeholder="18:00 a 21:00hs"></div>
+          <div class="fg"><label>Lugar</label><input type="text" id="cL" value="Tomauno &quot;Estudio Fotográfico&quot; — Pedro Méndez 2069, Posadas"></div>
+          <div class="fg"><label>Modalidad pago</label>
+            <select id="cP" onchange="togglePago()">
+              <option value="unico">Pago único</option>
+              <option value="inscmas">Inscripción + cuotas mensuales</option>
+            </select>
+          </div>
+          <div class="fg"><label>Costo (pago único o inscripción)</label><input type="text" id="cC" placeholder="$5.000"></div>
+          <div class="fg" id="cCMW" style="display:none"><label>Costo por mes</label><input type="text" id="cCM" placeholder="$3.000/mes"></div>
+          <div class="fg" id="cMW" style="display:none"><label>Meses de cursada</label><input type="number" id="cM" min="1" max="24" placeholder="Ej: 4" oninput="previewMeses()"></div>
+          <div class="fg" style="grid-column:1/-1"><label>URL de imagen del flyer (imgur, drive, etc.)</label><input type="url" id="cImg" placeholder="https://i.imgur.com/XXXXXXX.jpeg"></div>
+          <div class="fg"><label>Categoría</label>
+            <select id="cCat">
+              <option value="">— Sin categoría —</option>
+              <option value="Fotografía">📷 Fotografía</option>
+              <option value="Modelaje">✨ Modelaje</option>
+              <option value="Skincare">💆 Skincare & Belleza</option>
+              <option value="Video">🎬 Video & Producción</option>
+              <option value="Emprendimiento">💡 Emprendimiento</option>
+              <option value="Arte">🎨 Arte & Diseño</option>
+              <option value="Otro">📌 Otro</option>
+            </select>
+          </div>
+          <div class="fg"><label>Estado</label>
+            <select id="cE"><option value="active">Activo</option><option value="soon">Próximamente</option><option value="finished">Finalizado</option></select>
+          </div>
+          <div class="fg"><label>Tipo</label>
+            <select id="cTp" onchange="toggleAgOpts()">
+              <option value="normal">Inscripción libre</option>
+              <option value="agenda">Con agenda de turnos (sesiones)</option>
+            </select>
+          </div>
+        </div>
+        <div id="agS" style="display:none;margin-bottom:.8rem">
+          <div class="fgrid">
+            <div class="fg"><label>Hora inicio turnos</label><input type="time" id="aS" value="09:00"></div>
+            <div class="fg"><label>Hora fin</label><input type="time" id="aE" value="22:00"></div>
+            <div class="fg"><label>Duración por turno (min)</label><input type="number" id="aD" value="30" min="10" max="180"></div>
+          </div>
+        </div>
+        <div id="mprev" style="font-size:.77rem;color:var(--mu);margin-bottom:.75rem;padding:.5rem;background:var(--g3);border-radius:3px;display:none"></div>
+        <button class="btn" onclick="addCourse()">Agregar curso</button>
+        <h3 style="font-family:var(--fd);font-size:1.35rem;letter-spacing:1px;margin:2.2rem 0 1rem">Cursos existentes</h3>
+        <div id="aCL" style="display:flex;flex-direction:column;gap:.55rem"></div>
+      </div>
+
+      <!-- PAGOS -->
+      <div class="atc" id="t-pag">
+        <div class="fbar">
+          <select id="fPC" onchange="renderPagos()"><option value="">Todos los cursos</option></select>
+        </div>
+        <div id="pag-totals" style="font-size:.83rem;color:var(--mu);margin-bottom:1rem;display:flex;gap:1.5rem;flex-wrap:wrap"></div>
+        <div class="erow">
+          <button class="ab wa" onclick="sendAllReminders()" title="Envía recordatorio a todos los que tienen al menos 1 pago pendiente">🔔 Recordar a todos los pendientes</button>
+        </div>
+        <div class="tw"><table class="pt"><thead id="pH"></thead><tbody id="pB"></tbody><tfoot id="pF"></tfoot></table></div>
+        <div id="noPag" style="text-align:center;padding:3rem;color:var(--mu);display:none">Sin registros.</div>
+      </div>
+
+      <!-- AGENDA -->
+      <div class="atc" id="t-age">
+        <div class="fbar">
+          <select id="fAC" onchange="renderAgAdmin()"><option value="">— Seleccioná un evento con turnos —</option></select>
+        </div>
+        <div class="erow" id="agAdminBtns" style="display:none">
+          <button class="ab" onclick="expAgCSV()">Exportar CSV turnos</button>
+          <button class="ab" onclick="expAgPDF()">Exportar PDF turnos</button>
+          <button class="ab wa" onclick="grupoWAag()">Crear grupo WA</button>
+        </div>
+        <div id="agView" style="margin-top:1rem"></div>
+      </div>
+
+      <!-- SERVICIOS ADMIN -->
+      <div class="atc" id="t-svc">
+        <h3 style="font-family:var(--fd);font-size:1.35rem;letter-spacing:1px;margin-bottom:1.1rem">Editar servicios existentes</h3>
+        <div id="svcEditorList" style="display:flex;flex-direction:column;gap:.75rem"></div>
+        <div style="border-top:1px solid var(--br);margin-top:2rem;padding-top:2rem">
+          <h3 style="font-family:var(--fd);font-size:1.35rem;letter-spacing:1px;margin-bottom:1.1rem">Consultas de servicios recibidas</h3>
+          <div id="svcConsultas" style="display:flex;flex-direction:column;gap:.5rem"></div>
+          <div id="noSvc" style="text-align:center;padding:2rem;color:var(--mu)">Sin consultas aún.</div>
+        </div>
+      </div>
+
+      <!-- GALERÍA ADMIN -->
+      <div class="atc" id="t-gal">
+        <h3 style="font-family:var(--fd);font-size:1.35rem;letter-spacing:1px;margin-bottom:1.1rem">Agregar foto al estudio</h3>
+        <div class="fgrid" style="max-width:600px">
+          <div class="fg" style="grid-column:1/-1"><label>URL de imagen (imgur, drive público, etc.)</label><input type="url" id="galUrl" placeholder="https://i.imgur.com/XXXXXXX.jpeg"></div>
+          <div class="fg" style="grid-column:1/-1"><label>Descripción (opcional)</label><input type="text" id="galCap" placeholder="Ej: Fondos infinitos disponibles"></div>
+        </div>
+        <button class="btn btn-sm" onclick="addGalleryPhoto()" style="margin-top:.5rem">Agregar foto</button>
+        <h3 style="font-family:var(--fd);font-size:1.25rem;letter-spacing:1px;margin:2rem 0 .75rem">Fotos actuales</h3>
+        <div class="gad-grid" id="galAdminGrid"></div>
+        <div id="galEmpty" style="color:var(--mu);font-size:.85rem;margin-top:1rem">Sin fotos aún. Agregá la primera arriba.</div>
+      </div>
+
+      <!-- TESTIMONIOS ADMIN -->
+      <div class="atc" id="t-test">
+        <h3 style="font-family:var(--fd);font-size:1.35rem;letter-spacing:1px;margin-bottom:1.1rem">Agregar testimonio (como admin)</h3>
+        <div class="fgrid">
+          <div class="fg"><label>Nombre del alumno *</label><input type="text" id="teName" placeholder="Ej: María González"></div>
+          <div class="fg"><label>Curso que realizó</label><select id="teCourse"><option value="">— Seleccioná un curso —</option></select></div>
+          <div class="fg"><label>Estrellas</label>
+            <select id="teStars">
+              <option value="5">⭐⭐⭐⭐⭐ 5 estrellas</option>
+              <option value="4">⭐⭐⭐⭐ 4 estrellas</option>
+              <option value="3">⭐⭐⭐ 3 estrellas</option>
+            </select>
+          </div>
+          <div class="fg"><label>Foto del alumno (URL, opcional)</label><input type="url" id="teAvatar" placeholder="https://i.imgur.com/..."></div>
+          <div class="fg" style="grid-column:1/-1"><label>Testimonio *</label><textarea id="teText" rows="3" placeholder="Lo que el alumno dijo sobre el curso o el estudio..."></textarea></div>
+        </div>
+        <button class="btn btn-sm" onclick="addTestimonial()" style="margin-top:.5rem">Publicar testimonio</button>
+
+        <!-- PENDIENTES DE ALUMNOS -->
+        <div style="border-top:1px solid var(--br);margin-top:2rem;padding-top:1.5rem">
+          <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;flex-wrap:wrap">
+            <h3 style="font-family:var(--fd);font-size:1.25rem;letter-spacing:1px">Enviados por alumnos</h3>
+            <span id="pendingBadge" class="test-pending-badge" style="display:none">⏳ 0 pendientes</span>
+          </div>
+          <p style="font-size:.82rem;color:var(--mu);margin-bottom:1rem">Revisá los testimonios enviados por alumnos y decidís si los publicás o los eliminás.</p>
+          <div id="pendingList" style="display:flex;flex-direction:column;gap:.6rem"></div>
+          <div id="pendingEmpty" style="color:var(--mu);font-size:.85rem">Sin opiniones pendientes de revisión.</div>
+        </div>
+
+        <div style="border-top:1px solid var(--br);margin-top:2rem;padding-top:1.5rem">
+          <h3 style="font-family:var(--fd);font-size:1.25rem;letter-spacing:1px;margin-bottom:.75rem">Testimonios publicados</h3>
+          <div id="testAdminList" style="display:flex;flex-direction:column;gap:.6rem"></div>
+          <div id="testEmpty" style="color:var(--mu);font-size:.85rem;margin-top:1rem">Sin testimonios publicados aún.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fi-in">
+    <div class="ft">
+      <div class="fb-brand"><div class="fb-logo">Toma<em>uno</em></div><p>Estudio Fotográfico &amp; Modelaje<br>Posadas, Misiones</p></div>
+      <div class="fc"><h4>Navegación</h4><a href="#" onclick="showMain('cursos')">Cursos</a><a href="#" onclick="showMain('servicios')">Servicios</a><a href="#sec-gallery">Galería</a><a href="#sec-testimonials">Testimonios</a><a href="#sec-info">El estudio</a><a href="#sec-faq">Preguntas Frecuentes</a></div>
+      <div class="fc"><h4>Contacto</h4><a href="https://wa.me/5493764354522" target="_blank">WhatsApp Javier</a><a href="https://instagram.com/tomaunomodels" target="_blank">@tomaunomodels</a><a href="https://maps.app.goo.gl/3KNXZ3oeknREZwM8A" target="_blank">Cómo llegar</a></div>
+    </div>
+    <div class="fb-bot">
+      <div>
+        <p>© 2025 Tomauno Estudio Fotográfico. Todos los derechos reservados.</p>
+        <p style="margin-top:3px">Realizado por <a href="https://wa.me/5493764354522" target="_blank">Javier Móttola ®</a></p>
+      </div>
+      <div class="fsoc">
+        <a href="https://instagram.com/tomaunomodels" target="_blank" class="sb">IG</a>
+        <a href="https://wa.me/5493764354522" target="_blank" class="sb">WA</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5493764354522" target="_blank" class="waf"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span class="waf-tip">Contactar a Javier</span></a>
+<div class="toast-wrap" id="toastWrap"></div>
+<div class="ping" id="ping">🔴 ¡Nueva inscripción!</div>
+
+<!-- MODAL DETALLE CURSO -->
+<div class="ov" id="ovDetail" onclick="if(event.target===this)closeDetail()">
+  <div class="modal" id="modalDetail">
+    <div class="mh">
+      <div><div class="mt" id="detTitle">—</div><div class="ms" id="detSub">—</div></div>
+      <button class="mx" onclick="closeDetail()">✕</button>
+    </div>
+    <div class="mb" id="detBody"></div>
+    <div class="mf" id="detFoot"></div>
+  </div>
+</div>
+
+<!-- MODAL INSCRIPCIÓN -->
+<div class="ov" id="ovInsc" onclick="if(event.target===this)closeInsc()">
+  <div class="modal modal-sm">
+    <div class="mh"><div><div class="mt">Inscripción</div><div class="ms">Completá tus datos — cupos limitados</div></div><button class="mx" onclick="closeInsc()">✕</button></div>
+    <div id="inscBody">
+      <div class="mb">
+        <div class="cib" id="inscCib"></div>
+        <div class="fgrid">
+          <div class="fg" style="grid-column:1/-1"><label>Nombre completo *</label><input type="text" id="fN" placeholder="Tu nombre y apellido"></div>
+          <div class="fg"><label>Edad *</label><input type="number" id="fA" min="1" max="99" placeholder="22" oninput="chkAge()"></div>
+          <div class="fg"><label>DNI</label><input type="text" id="fDNI" placeholder="00.000.000" oninput="fmtDNI(this)" maxlength="10"></div>
+          <div class="fg"><label>WhatsApp *</label><input type="tel" id="fWP" placeholder="3764123456"></div>
+          <div class="fg"><label>Instagram</label><input type="text" id="fIG" placeholder="@usuario"></div>
+          <div class="fg" id="tutRow" style="grid-column:1/-1;display:none"><label>WhatsApp del tutor *</label><input type="tel" id="fWT" placeholder="WhatsApp del encargado"></div>
+        </div>
+      </div>
+      <div class="mf">
+        <button class="btng btn-sm" onclick="closeInsc()">Cancelar</button>
+        <button class="btn btn-sm" onclick="submitInsc()">Confirmar inscripción →</button>
+      </div>
+    </div>
+    <div class="succ" id="inscOk">
+      <div class="succ-i">🎉</div>
+      <div class="succ-t">¡Inscripción registrada!</div>
+      <p class="succ-d">Tu lugar quedó reservado. Javier te contactará para confirmar el pago y enviarte todos los detalles.</p>
+      <button class="btn btn-sm" onclick="closeInsc()" style="margin-top:1.5rem">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL AGENDA TURNOS -->
+<div class="ov" id="ovAg" onclick="if(event.target===this)closeAg()">
+  <div class="modal modal-sm">
+    <div class="mh"><div><div class="mt" id="agMT">Reservar turno</div><div class="ms">Elegí tu horario disponible</div></div><button class="mx" onclick="closeAg()">✕</button></div>
+    <div id="agBody">
+      <div class="mb">
+        <div id="slotsDiv"></div>
+        <div id="agForm" style="display:none;margin-top:1.1rem">
+          <div class="cib"><div class="cib-t" id="selSlotLbl"></div></div>
+          <div class="fgrid" style="margin-top:.85rem">
+            <div class="fg" style="grid-column:1/-1"><label>Nombre *</label><input type="text" id="agN" placeholder="Tu nombre completo"></div>
+            <div class="fg"><label>Edad *</label><input type="number" id="agA" min="1" max="99" placeholder="22" oninput="chkAgAge()"></div>
+            <div class="fg"><label>DNI</label><input type="text" id="agDNI" placeholder="00.000.000" oninput="fmtDNI(this)" maxlength="10"></div>
+            <div class="fg"><label>WhatsApp *</label><input type="tel" id="agW" placeholder="3764123456"></div>
+            <div class="fg"><label>Instagram</label><input type="text" id="agIG" placeholder="@usuario"></div>
+            <div class="fg" id="agTutRow" style="grid-column:1/-1;display:none"><label>WhatsApp del tutor *</label><input type="tel" id="agWT" placeholder="WhatsApp del encargado"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mf" id="agFoot">
+        <button class="btng btn-sm" onclick="closeAg()">Cancelar</button>
+      </div>
+    </div>
+    <div class="succ" id="agOk">
+      <div class="succ-i">📸</div>
+      <div class="succ-t">¡Turno reservado!</div>
+      <p class="succ-d">Tu horario quedó confirmado. Javier te contactará con los detalles.</p>
+      <button class="btn btn-sm" onclick="closeAg()" style="margin-top:1.5rem">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL SERVICIO DETALLE -->
+<div class="ov" id="ovSvc" onclick="if(event.target===this)closeSvc()">
+  <div class="modal">
+    <div class="mh"><div><div class="mt" id="svcTitle">—</div><div class="ms">Consultá disponibilidad y reservá</div></div><button class="mx" onclick="closeSvc()">✕</button></div>
+    <div class="mb" id="svcBody"></div>
+    <div class="mf" id="svcFoot"></div>
+  </div>
+</div>
+
+<!-- CUSTOM CONFIRM DIALOG -->
+<div class="cfdialog-ov" id="cfOv">
+  <div class="cfdialog">
+    <div class="cfdialog-icon" id="cfIcon">⚠️</div>
+    <div class="cfdialog-title" id="cfTitle">¿Confirmar acción?</div>
+    <div class="cfdialog-msg" id="cfMsg"></div>
+    <div class="cfdialog-btns">
+      <button class="btng btn-sm" onclick="cfResolve(false)">Cancelar</button>
+      <button class="btn btn-sm" id="cfOkBtn" onclick="cfResolve(true)">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ALUMNI TESTIMONIAL MODAL -->
+<div class="ov" id="ovAlumni" onclick="if(event.target===this)closeAlumni()">
+  <div class="modal modal-sm">
+    <div class="mh">
+      <div><div class="mt">⭐ Tu opinión</div><div class="ms">Contanos tu experiencia en Tomauno</div></div>
+      <button class="mx" onclick="closeAlumni()">✕</button>
+    </div>
+    <div id="alumniBody">
+      <div class="mb">
+        <div class="cib" id="alumniCib"></div>
+        <div style="text-align:center;margin-bottom:1rem">
+          <p style="font-size:.83rem;color:var(--mu);margin-bottom:.75rem">¿Cómo calificás tu experiencia?</p>
+          <div class="star-selector" id="starSelector">
+            <button class="star-btn" data-v="1" onclick="setStar(1)">★</button>
+            <button class="star-btn" data-v="2" onclick="setStar(2)">★</button>
+            <button class="star-btn" data-v="3" onclick="setStar(3)">★</button>
+            <button class="star-btn" data-v="4" onclick="setStar(4)">★</button>
+            <button class="star-btn" data-v="5" onclick="setStar(5)">★</button>
+          </div>
+        </div>
+        <div class="fgrid">
+          <div class="fg" style="grid-column:1/-1"><label>Tu nombre *</label><input type="text" id="alN" placeholder="Nombre y apellido"></div>
+          <div class="fg"><label>Instagram (opcional)</label><input type="text" id="alIG" placeholder="@usuario"></div>
+          <div class="fg"><label>Foto de perfil (URL, opcional)</label><input type="url" id="alAvatar" placeholder="https://i.imgur.com/..."></div>
+          <div class="fg" style="grid-column:1/-1"><label>Tu experiencia *</label><textarea id="alText" rows="4" placeholder="Contanos qué te pareció el curso, el estudio, lo que aprendiste..."></textarea></div>
+        </div>
+      </div>
+      <div class="mf">
+        <button class="btng btn-sm" onclick="closeAlumni()">Cancelar</button>
+        <button class="btn btn-sm" onclick="submitAlumni()">Publicar mi opinión ⭐</button>
+      </div>
+    </div>
+    <div class="succ" id="alumniOk">
+      <div class="succ-i">🙏</div>
+      <div class="succ-t">¡Gracias!</div>
+      <p class="succ-d">Tu opinión fue enviada. Javier la revisará antes de publicarla. ¡Tu experiencia ayuda a otros a animarse!</p>
+      <button class="btn btn-sm" onclick="closeAlumni()" style="margin-top:1.5rem">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL LISTA DE ESPERA -->
+<div class="ov" id="ovWait" onclick="if(event.target===this)closeWait()">
+  <div class="modal modal-sm">
+    <div class="mh"><div><div class="mt">Lista de espera</div><div class="ms" id="waitCourseName">Anotate si se libera un lugar</div></div><button class="mx" onclick="closeWait()">✕</button></div>
+    <div id="waitBody">
+      <div class="mb">
+        <div class="cib" id="waitCib"></div>
+        <p style="font-size:.84rem;color:var(--mu);margin-bottom:1.25rem;line-height:1.65">El curso está <b style="color:#f59e0b">completo</b>. Anotate en la lista de espera y te avisamos si se libera un lugar o si abrimos una nueva fecha.</p>
+        <div class="fgrid">
+          <div class="fg" style="grid-column:1/-1"><label>Nombre completo *</label><input type="text" id="wN" placeholder="Tu nombre y apellido"></div>
+          <div class="fg"><label>WhatsApp *</label><input type="tel" id="wWP" placeholder="3764123456"></div>
+          <div class="fg"><label>Instagram</label><input type="text" id="wIG" placeholder="@usuario"></div>
+        </div>
+      </div>
+      <div class="mf">
+        <button class="btng btn-sm" onclick="closeWait()">Cancelar</button>
+        <button class="btn-waitlist" onclick="submitWait()">⏳ Anotarme en lista de espera</button>
+      </div>
+    </div>
+    <div class="succ" id="waitOk">
+      <div class="succ-i">⏳</div>
+      <div class="succ-t">¡Anotado!</div>
+      <p class="succ-d">Quedaste en la lista de espera. Javier te va a contactar si se libera un lugar o si se abre una nueva fecha.</p>
+      <button class="btn btn-sm" onclick="closeWait()" style="margin-top:1.5rem">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR SERVICIO -->
+<div class="ov" id="ovEditSvc" onclick="if(event.target===this)closeEditSvc()">
+  <div class="modal">
+    <div class="mh"><div><div class="mt">Editar servicio</div><div class="ms">Modificá los datos del servicio</div></div><button class="mx" onclick="closeEditSvc()">✕</button></div>
+    <div class="mb">
+      <div class="fgrid">
+        <div class="fg"><label>Ícono (emoji)</label><input type="text" id="seIco" placeholder="📷" style="font-size:1.4rem;text-align:center"></div>
+        <div class="fg" style="grid-column:2/-1"><label>Título *</label><input type="text" id="seTitle" placeholder="Nombre del servicio"></div>
+        <div class="fg" style="grid-column:1/-1"><label>Descripción corta (aparece en la tarjeta)</label><input type="text" id="seShort" placeholder="Descripción breve..."></div>
+        <div class="fg" style="grid-column:1/-1"><label>Descripción completa (aparece al abrir el detalle — podés usar HTML básico)</label><textarea id="seFull" rows="6" placeholder="Descripción completa del servicio, precios detallados, condiciones..."></textarea></div>
+        <div class="fg"><label>Precio / desde</label><input type="text" id="sePrice" placeholder="$40.000 / 4 horas"></div>
+        <div class="fg"><label>URL imagen (imgur, etc.)</label><input type="url" id="seImg" placeholder="https://i.imgur.com/..."></div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="btng btn-sm" onclick="closeEditSvc()">Cancelar</button>
+      <button class="btn btn-sm" onclick="saveEditSvc()">Guardar cambios</button>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lbImg" src="" alt="Flyer">
+  <div class="lightbox-btns" onclick="event.stopPropagation()">
+    <a id="lbDownload" href="" download class="lb-btn">⬇ Descargar imagen</a>
+    <a id="lbOpen" href="" target="_blank" class="lb-btn">🔗 Abrir en nueva pestaña</a>
+    <button class="lb-btn" onclick="closeLightbox()">✕ Cerrar</button>
+  </div>
+</div>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, onValue, set, push, remove, update, get, onDisconnect, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const fbApp = initializeApp({
+  apiKey: "AIzaSyBtTGAJ1X3yrvj-Dx-fsNmfe_Zw09yfrZo",
+  authDomain: "medicamentos-8352a.firebaseapp.com",
+  databaseURL: "https://medicamentos-8352a-default-rtdb.firebaseio.com",
+  projectId: "medicamentos-8352a",
+  storageBucket: "medicamentos-8352a.firebasestorage.app",
+  messagingSenderId: "828746191058",
+  appId: "1:828746191058:web:00f74a7502f7ce2121dd0b"
+});
+const db = getDatabase(fbApp);
+
+// ── Connection indicator ──
+const connRef = ref(db, '.info/connected');
+onValue(connRef, snap => {
+  const online = snap.val() === true;
+  window.__fbOnline = online;
+  const dot = document.getElementById('connDot');
+  const label = document.getElementById('connLabel');
+  if(dot){ dot.style.background = online ? '#25d366' : '#f59e0b'; dot.style.boxShadow = online ? '0 0 8px #25d366' : '0 0 8px #f59e0b'; }
+  if(label){ label.textContent = online ? 'Online' : 'Offline'; label.style.color = online ? '#25d366' : '#f59e0b'; }
+});
+
+// ── Helpers ──
+function objToArr(obj){ if(!obj) return []; return Object.keys(obj).map(k=>({...obj[k], _fbKey:k})); }
+
+// ── Expose FB functions to global scope ──
+window.FB = { db, ref, onValue, set, push, remove, update, get, objToArr };
+
+// ── COURSES sync ──
+onValue(ref(db,'tomauno/cursos'), snap => {
+  const data = snap.val();
+  if(data){
+    const arr = objToArr(data).sort((a,b)=>(a.order||0)-(b.order||0));
+    window.courses = arr;
+    localStorage.setItem('tu_c4', JSON.stringify(arr));
+  }
+  if(window.renderCourses) window.renderCourses();
+  if(window.renderAdminC) window.renderAdminC();
+});
+
+// ── REGISTRATIONS sync ──
+onValue(ref(db,'tomauno/inscripciones'), snap => {
+  const data = snap.val();
+  const arr = data ? objToArr(data).sort((a,b)=>b.createdAt-a.createdAt) : [];
+  const prev = (window.regs||[]).length;
+  window.regs = arr;
+  localStorage.setItem('tu_r4', JSON.stringify(arr));
+  if(arr.length > prev && prev > 0){
+    const nuevo = arr[arr.length-1];
+    if(window.showPing) window.showPing(nuevo?.nombre, nuevo?.courseName);
+    if(window.bip) window.bip();
+  }
+  if(window.renderCourses) window.renderCourses();
+  if(window.renderIns) window.renderIns();
+  if(window.renderPagos) window.renderPagos();
+  if(window.renderAdminDash) window.renderAdminDash();
+  const badge = document.getElementById('tabBadgeIns');
+  if(badge) badge.textContent = arr.length;
+  document.getElementById('sI').textContent = arr.length;
+});
+
+// ── GALLERY sync ──
+onValue(ref(db,'tomauno/galeria'), snap => {
+  const data = snap.val();
+  const arr = data ? objToArr(data) : [];
+  window.gallery = arr;
+  localStorage.setItem('tu_gal4', JSON.stringify(arr));
+  if(window.renderGallery) window.renderGallery();
+  if(window.renderGalleryAdmin) window.renderGalleryAdmin();
+});
+
+// ── TESTIMONIALS sync ──
+onValue(ref(db,'tomauno/testimonios'), snap => {
+  const data = snap.val();
+  const arr = data ? objToArr(data).sort((a,b)=>b.createdAt-a.createdAt) : [];
+  window.testimonials = arr;
+  localStorage.setItem('tu_tes4', JSON.stringify(arr));
+  if(window.renderTestimonials) window.renderTestimonials();
+  if(window.renderTestimonialsAdmin) window.renderTestimonialsAdmin();
+});
+
+// ── PENDING TESTIMONIALS sync ──
+onValue(ref(db,'tomauno/testimonios_pendientes'), snap => {
+  const data = snap.val();
+  const arr = data ? objToArr(data).sort((a,b)=>b.createdAt-a.createdAt) : [];
+  window.pendingTestimonials = arr;
+  localStorage.setItem('tu_ptes4', JSON.stringify(arr));
+  const badge = document.getElementById('tabBadgeTest');
+  if(badge){ badge.textContent=arr.length; badge.style.display=arr.length?'inline-flex':'none'; }
+  if(window.renderTestimonialsAdmin) window.renderTestimonialsAdmin();
+  if(window.renderAdminDash) window.renderAdminDash();
+});
+
+// ── SLOTS (agenda) sync ──
+onValue(ref(db,'tomauno/slots'), snap => {
+  const data = snap.val();
+  window.slotData = data || {};
+  localStorage.setItem('tu_s4', JSON.stringify(data||{}));
+  if(window.renderAgAdmin) window.renderAgAdmin();
+});
+
+// ── WAITLIST sync ──
+onValue(ref(db,'tomauno/espera'), snap => {
+  const data = snap.val();
+  const arr = data ? objToArr(data) : [];
+  window.waitlist = arr;
+  localStorage.setItem('tu_wait4', JSON.stringify(arr));
+  if(window.renderAdminDash) window.renderAdminDash();
+});
+
+// ── SERVICES sync ──
+onValue(ref(db,'tomauno/servicios'), snap => {
+  const data = snap.val();
+  if(data){
+    const arr = objToArr(data).sort((a,b)=>(a.order||0)-(b.order||0));
+    window.services = arr;
+    localStorage.setItem('tu_sv4', JSON.stringify(arr));
+    if(window.renderServices) window.renderServices();
+    if(window.renderSvcEditor) window.renderSvcEditor();
+  }
+});
+
+// ── INTERESTED sync ──
+onValue(ref(db,'tomauno/interesados'), snap => {
+  window.interested = snap.val() || {};
+  localStorage.setItem('tu_int4', JSON.stringify(window.interested));
+});
+
+// ══════════════════════════════════════════
+//  FIREBASE WRITE HELPERS — exposed globally
+// ══════════════════════════════════════════
+
+// Save course
+window.fbSaveCourse = async function(course){
+  const key = course._fbKey || course.id.toString();
+  const data = {...course}; delete data._fbKey;
+  await set(ref(db, 'tomauno/cursos/'+key), data);
+};
+// Delete course
+window.fbDeleteCourse = async function(course){
+  const key = course._fbKey || course.id.toString();
+  await remove(ref(db, 'tomauno/cursos/'+key));
+  // Also remove its inscripciones
+  const snap = await get(ref(db,'tomauno/inscripciones'));
+  if(snap.val()){
+    const updates={};
+    Object.keys(snap.val()).forEach(k=>{ if(snap.val()[k].courseId===course.id) updates['tomauno/inscripciones/'+k]=null; });
+    if(Object.keys(updates).length) await update(ref(db),updates);
+  }
+  // Remove slots
+  await remove(ref(db,'tomauno/slots/'+course.id));
+};
+// Save registration
+window.fbSaveReg = async function(reg){
+  const data = {...reg}; delete data._fbKey;
+  const r = await push(ref(db,'tomauno/inscripciones'), data);
+  return r.key;
+};
+// Delete registration
+window.fbDeleteReg = async function(reg){
+  const key = reg._fbKey;
+  if(key) await remove(ref(db,'tomauno/inscripciones/'+key));
+};
+// Update registration pago
+window.fbUpdateRegPago = async function(reg){
+  const key = reg._fbKey;
+  if(key) await update(ref(db,'tomauno/inscripciones/'+key), {pago: reg.pago, notaPago: reg.notaPago||''});
+};
+// Save gallery photo
+window.fbSaveGallery = async function(photo){
+  const data = {...photo}; delete data._fbKey;
+  await push(ref(db,'tomauno/galeria'), data);
+};
+// Delete gallery photo
+window.fbDeleteGallery = async function(photo){
+  if(photo._fbKey) await remove(ref(db,'tomauno/galeria/'+photo._fbKey));
+};
+// Save testimonial
+window.fbSaveTestimonial = async function(t){
+  const data = {...t}; delete data._fbKey;
+  await push(ref(db,'tomauno/testimonios'), data);
+};
+// Delete testimonial
+window.fbDeleteTestimonial = async function(t){
+  if(t._fbKey) await remove(ref(db,'tomauno/testimonios/'+t._fbKey));
+};
+// Save pending testimonial
+window.fbSavePending = async function(t){
+  const data = {...t}; delete data._fbKey;
+  await push(ref(db,'tomauno/testimonios_pendientes'), data);
+};
+// Approve pending → move to published
+window.fbApprovePending = async function(t){
+  const key = t._fbKey;
+  const data = {...t}; delete data._fbKey;
+  await push(ref(db,'tomauno/testimonios'), data);
+  if(key) await remove(ref(db,'tomauno/testimonios_pendientes/'+key));
+};
+// Reject pending
+window.fbRejectPending = async function(t){
+  if(t._fbKey) await remove(ref(db,'tomauno/testimonios_pendientes/'+t._fbKey));
+};
+// Save slot
+window.fbSaveSlot = async function(courseId, slot){
+  const data = {...slot}; delete data._fbKey;
+  await push(ref(db,'tomauno/slots/'+courseId), data);
+};
+// Delete slot
+window.fbDeleteSlot = async function(courseId, slot){
+  if(slot._fbKey) await remove(ref(db,'tomauno/slots/'+courseId+'/'+slot._fbKey));
+};
+// Save waitlist entry
+window.fbSaveWait = async function(entry){
+  const data = {...entry}; delete data._fbKey;
+  await push(ref(db,'tomauno/espera'), data);
+};
+// Save service
+window.fbSaveService = async function(svc){
+  const key = svc._fbKey || svc.id.toString();
+  const data = {...svc}; delete data._fbKey;
+  await set(ref(db,'tomauno/servicios/'+key), data);
+};
+// Save interested count
+window.fbSaveInterested = async function(courseId, count){
+  await set(ref(db,'tomauno/interesados/'+courseId), count);
+};
+// Update course status
+window.fbUpdateCourseStatus = async function(course){
+  const key = course._fbKey || course.id.toString();
+  await update(ref(db,'tomauno/cursos/'+key), {estado: course.estado});
+};
+
+console.log('%c🔥 Firebase Tomauno conectado','color:#E8141C;font-weight:bold;font-size:13px');
+</script>
+
+<script>
+// ═══════════ DATA ═══════════
+const PASS='323334';
+let courses=JSON.parse(localStorage.getItem('tu_c4')||'[]');
+// Re-seed if first course has no image yet
+if(courses.length===1&&courses[0].id===1&&!courses[0].img){courses=[];}
+let regs=JSON.parse(localStorage.getItem('tu_r4')||'[]');
+let slotData=JSON.parse(localStorage.getItem('tu_s4')||'{}');
+let interested=JSON.parse(localStorage.getItem('tu_int4')||'{}');
+let svcConsultas=JSON.parse(localStorage.getItem('tu_svcq4')||'[]');
+const SVC_VER='v2';
+let services=JSON.parse(localStorage.getItem('tu_sv4')||'null');
+if(services&&localStorage.getItem('tu_sv_ver')!==SVC_VER)services=null;
+
+// ═══════════ SEED SERVICIOS ═══════════
+if(!services){
+  services=[
+    {id:101,img:'',ico:'🏠',title:'Alquiler del Estudio',shortDesc:'Espacio completo equipado para tus producciones fotográficas y audiovisuales.',price:'$40.000 / 4 horas',fullDesc:`<b>Incluye:</b> Fondos infinitos (negro, blanco, celeste, amarillo, rosado, rojo, beige, gris, verde chroma), flashes y softboxes, sector maquillaje, cambiador, baño, WiFi, música, TV plasma, aire frío/calor, estufa, espejo.<br><br><b>Extras:</b><br>• Hora adicional: $5.000<br>• Asistencia full de Javier: +$10.000<br>• Fotos/videos de backstage: +$10.000<br><br><b>Espacio:</b> 10m x 5m. Ciclorama blanco ~4m de ancho. Pared móvil para luz natural.<br><b>Staff de modelos disponible</b> (más de 100 perfiles con medidas y fotos de referencia).<br><br><b>Dirección:</b> Pedro Méndez 2069 · <b>Horarios:</b> A consultar`,order:0},
+    {id:102,img:'',ico:'📷',title:'Photobook — Sesión Libre',shortDesc:'Hacé tus fotos profesionales de forma autónoma. Ideal para modelos, emprendedores y tímidos ante la cámara.',price:'$20.000 / hora',fullDesc:`Podés hacer todos los cambios de ropa que quieras durante el tiempo contratado. La cámara profesional de Tomauno registra cada momento.<br><br><b>Ideal para:</b><br>• Actualizar tu book de fotos<br>• Tener material profesional para promocionarte<br>• Emprendedores que quieren armar su catálogo<br>• Personas que prefieren trabajar a su propio ritmo`,order:1},
+    {id:103,img:'https://i.imgur.com/VbdFvJw.png',ico:'⭐',title:'Pack Modelos — Propuesta Exclusiva',shortDesc:'Todo lo que necesitás para lanzarte al mundo del modelaje profesional, en un solo lugar.',price:'Desde $25.000',fullDesc:`<b>1. Fotos Polaroid</b> — $25.000 (las que piden todas las agencias)<br><b>2. Fotos Test</b> — $60.000 (mismo outfit que polaroid, esquema de luz profesional)<br><b>3. Producción Elaborada</b> — $120.000 (3 cambios, opcional maquillaje y peinado)<br>&nbsp;&nbsp;&nbsp;• Maquillaje: +$45.000<br>&nbsp;&nbsp;&nbsp;• Peinado: +$40.000<br><br><b>Opcionales:</b><br>• Composite digital: $15.000<br>• Impresión A4 fotográfica: $1.000<br>• Portfolio web (link con fotos + datos): $35.000<br>• Video de presentación: $25.000<br>• Fashion Film: $50.000`,order:2},
+    {id:104,img:'',ico:'🌐',title:'Tomauno Models — Web Oficial',shortDesc:'Plataforma web donde jóvenes se registran para casting, marcas, diseñadores, showrooms y boutiques.',price:'Consultar',fullDesc:`Una plataforma exclusiva donde modelos crean su perfil digital para ser vistos por marcas y diseñadores de la región.<br><br>Javier usa esta herramienta para hacer conexiones rápidas y abrirte puertas en el mercado local.<br><br>Si querés formar parte, escribile directamente a Javier por WhatsApp.`,order:3},
+    {id:105,img:'',ico:'📲',title:'Grupo Informativo de WhatsApp',shortDesc:'Enterate primero de todos los castings, novedades y promos de Tomauno.',price:'Gratis',fullDesc:`Unite al grupo de WhatsApp de Tomauno y recibí en tiempo real:<br><br>• 📣 Castings de la ciudad<br>• 📚 Novedades de nuestros cursos y capacitaciones<br>• 💥 Promos exclusivas<br>• 🎯 Oportunidades laborales para modelos<br><br>Escribile a Javier para que te agregue.`,order:4}
+  ];
+  save();
+}
+
+// ═══════════ SEED CURSO ═══════════
+if(!courses.length){
+  courses=[{id:1,title:'Charla: Reconectá con tu Piel',desc:'Tu piel habla… ¿la estás escuchando?\n\nUn espacio pensado para que vuelvas a mirarte con intención, entender lo que tu piel necesita y aprender a cuidarla de forma real y consciente.\n\nVamos a hablar sobre Skin Care personalizado, rutinas y cómo evitar la ansiedad por resultados inmediatos.',dirigido:'Toda persona interesada en el cuidado de la piel, desde principiantes hasta quienes ya tienen una rutina.',incluye:'Charla + dinámica + preguntas y respuestas',cupos:'20',dis:'Dra. Romina Suárez',igDis:'@dermato.rominasuarez',wpDis:'3764883139',fecha:'2025-05-22',hora:'9:00hs',lugar:'Tomauno "Estudio Fotográfico" — Pedro Méndez 2069, Posadas',costo:'$5.000',costoMes:'',pago:'unico',meses:0,inicioMes:'',estado:'active',tipo:'normal',aS:'09:00',aE:'22:00',aD:30,img:'https://i.imgur.com/wpHxKd1.jpeg',order:0,createdAt:Date.now()}];
+  save();
+}
+
+function save(){
+  // Always save to localStorage as backup
+  localStorage.setItem('tu_c4',JSON.stringify(courses));
+  localStorage.setItem('tu_r4',JSON.stringify(regs));
+  localStorage.setItem('tu_s4',JSON.stringify(slotData));
+  localStorage.setItem('tu_int4',JSON.stringify(interested));
+  localStorage.setItem('tu_svcq4',JSON.stringify(svcConsultas));
+  localStorage.setItem('tu_sv4',JSON.stringify(services));
+  localStorage.setItem('tu_sv_ver',SVC_VER);
+}
+
+// ═══════════ NAV ═══════════
+let lc=0,lt=null;
+function logoClick(){lc++;clearTimeout(lt);if(lc>=3){lc=0;document.getElementById('sec-admin').scrollIntoView({behavior:'smooth'});setTimeout(()=>document.getElementById('aPass').focus(),400);}else lt=setTimeout(()=>lc=0,1100);}
+function toggleMob(){document.getElementById('mmenu').classList.toggle('open');}
+function showMain(v){
+  document.querySelectorAll('.section-view').forEach(s=>s.classList.remove('active'));
+  document.getElementById('view-'+v).classList.add('active');
+  document.getElementById('tabCursos').classList.toggle('active',v==='cursos');
+  document.getElementById('tabServicios').classList.toggle('active',v==='servicios');
+  document.getElementById('hero').scrollIntoView({behavior:'smooth'});
+}
+
+// ═══════════ FORMATO DNI ═══════════
+function fmtDNI(el){
+  let v=el.value.replace(/\D/g,'');
+  if(v.length>8)v=v.substring(0,8);
+  if(v.length>6)v=v.substring(0,2)+'.'+v.substring(2,5)+'.'+v.substring(5);
+  else if(v.length>3)v=v.substring(0,2)+'.'+v.substring(2);
+  el.value=v;
+}
+
+// ═══════════ PARSE DESCRIPTION ═══════════
+function parseDesc(txt){
+  if(!txt)return'';
+  const lines=txt.split('\n');
+  const out=[];
+  let inList=false;
+  for(let line of lines){
+    const trimmed=line.trim();
+    if(!trimmed){if(inList){out.push('</ul>');inList=false;}out.push('<br>');continue;}
+    // linkify BEFORE wrapping (only plain text, not already-linked)
+    let safe=trimmed
+      // phones: 10-digit numbers starting with 3 (Argentine mobile)
+      .replace(/(?<![">])\b(3\d{9})\b(?![^<]*>)/g,'<a href="https://wa.me/549$1" target="_blank" style="color:#25d366;font-weight:600">📱 $1</a>')
+      // @instagram handles (only plain @ not inside href)
+      .replace(/(?<![="])@([\w.]+)/g,'<a href="https://instagram.com/$1" target="_blank" style="color:var(--red)">@$1</a>')
+      // raw URLs
+      .replace(/(?<![">])(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" style="color:var(--red)">$1</a>');
+    // list items
+    if(trimmed.startsWith('•')||trimmed.startsWith('-')||trimmed.startsWith('*')){
+      if(!inList){out.push('<ul style="padding-left:1.1rem;margin:.4rem 0">');inList=true;}
+      out.push(`<li style="margin-bottom:.25rem">${safe.replace(/^[•\-*]\s*/,'')}</li>`);
+    } else {
+      if(inList){out.push('</ul>');inList=false;}
+      out.push(`<p style="margin-bottom:.35rem">${safe}</p>`);
+    }
+  }
+  if(inList)out.push('</ul>');
+  return out.join('');
+}
+
+// ═══════════ RENDER COURSES ═══════════
+// ═══════════ CATEGORIES & SEARCH ═══════════
+const CATEGORIES = [
+  {key:'',label:'Todos',emoji:'🔍'},
+  {key:'Fotografía',label:'Fotografía',emoji:'📷'},
+  {key:'Modelaje',label:'Modelaje',emoji:'✨'},
+  {key:'Skincare',label:'Skincare',emoji:'💆'},
+  {key:'Video',label:'Video',emoji:'🎬'},
+  {key:'Emprendimiento',label:'Emprendimiento',emoji:'💡'},
+  {key:'Arte',label:'Arte',emoji:'🎨'},
+  {key:'Otro',label:'Otro',emoji:'📌'},
+];
+let activeCat='';
+let searchQ='';
+
+function renderCatPills(){
+  const pills=document.getElementById('catPills');
+  if(!pills)return;
+  pills.innerHTML=CATEGORIES.map(cat=>{
+    const count=cat.key===''
+      ? courses.filter(c=>c.estado!=='hidden').length
+      : courses.filter(c=>c.estado!=='hidden'&&c.cat===cat.key).length;
+    if(cat.key!==''&&count===0)return'';
+    return`<div class="cat-pill${activeCat===cat.key?' active':''}" onclick="setCat('${cat.key}')">
+      ${cat.emoji} ${cat.label} <span class="cat-count">${count}</span>
+    </div>`;
+  }).join('');
+}
+function setCat(key){
+  activeCat=key;
+  renderCatPills();
+  renderCourses();
+}
+function filterCourses(){
+  const inp=document.getElementById('courseSearch');
+  searchQ=inp?inp.value.trim().toLowerCase():'';
+  const clr=document.getElementById('searchClear');
+  if(clr)clr.style.display=searchQ?'block':'none';
+  renderCourses();
+}
+function clearSearch(){
+  const inp=document.getElementById('courseSearch');
+  if(inp)inp.value='';
+  searchQ='';
+  const clr=document.getElementById('searchClear');
+  if(clr)clr.style.display='none';
+  renderCourses();
+  if(inp)inp.focus();
+}
+
+function fmtD(d){if(!d)return'';const[y,m,dy]=d.split('-');const ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];return`${parseInt(dy)} ${ms[parseInt(m)-1]}`;}
+function renderCourses(){
+  const grid=document.getElementById('cgrid');
+  let list=[...courses].filter(c=>c.estado!=='hidden').sort((a,b)=>(a.order||0)-(b.order||0));
+  // Category filter
+  if(activeCat) list=list.filter(c=>c.cat===activeCat);
+  // Search filter
+  if(searchQ) list=list.filter(c=>{
+    const haystack=(c.title+' '+(c.desc||'')+' '+(c.dis||'')+' '+(c.lugar||'')+' '+(c.cat||'')).toLowerCase();
+    return haystack.includes(searchQ);
+  });
+  // Search info
+  const info=document.getElementById('searchInfo');
+  if(info){
+    if(searchQ||activeCat){
+      const total=courses.filter(c=>c.estado!=='hidden').length;
+      info.textContent=`${list.length} resultado${list.length!==1?'s':''} de ${total} cursos`;
+    } else info.textContent='';
+  }
+  if(!list.length){
+    grid.innerHTML=`<div class="empty-state"><p>${searchQ||activeCat?'No se encontraron cursos con esos filtros.':'No hay cursos disponibles por el momento. ¡Volvé pronto!'}</p></div>`;
+    document.getElementById('sA').textContent=courses.filter(c=>c.estado==='active').length;
+    document.getElementById('sI').textContent=regs.length;
+    return;
+  }
+  grid.innerHTML=list.map(c=>{
+    const sMap={active:['sa','🔴 Activo'],soon:['ss','🟡 Próximamente'],finished:['sf','✔ Finalizado']};
+    const[sc,sl]=sMap[c.estado]||['sf','—'];
+    const cnt=regs.filter(r=>r.courseId===c.id).length;
+    const intCnt=(interested[c.id]||0);
+    const ig=c.igDis?`<div class="chip cr"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/></svg><a href="https://instagram.com/${c.igDis.replace('@','')}" target="_blank" onclick="event.stopPropagation()">${c.igDis}</a></div>`:'';
+    const wpDis=c.wpDis?`<div class="chip cg"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.12 1.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.09a16 16 0 006 6l.45-.45a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><a href="https://wa.me/549${c.wpDis}" target="_blank" onclick="event.stopPropagation()">${c.wpDis}</a></div>`:'';
+    const priceStr=c.pago==='inscmas'&&c.costoMes?`${c.costo}<span style="font-size:1rem;color:var(--mu);font-family:var(--fb)"> + ${c.costoMes}/mes</span>`:c.costo||'Consultar';
+    const catChip=c.cat?`<div class="chip cat-tag">${CATEGORIES.find(x=>x.key===c.cat)?.emoji||'📌'} ${c.cat}</div>`:'';
+    return`<div class="cc${c.estado==='finished'?' fin':''}" id="cc-${c.id}" draggable="true" ondragstart="dragStart(event,'c',${c.id})" ondragover="dragOver(event)" ondrop="dropCard(event,'c',${c.id})" ondragleave="dragLeave(event)" onclick="openDetail(${c.id})">
+      <div class="card-img-wrap">${c.img?`<img src="${c.img}" alt="${c.title}">`:`<div class="card-ph"><div class="card-ph-t">T1</div><div class="card-ph-s">Tomauno</div></div>`}
+      </div>
+      <span class="cst ${sc}">${sl}</span>
+      <span class="ccupos-badge">${cnt} inscripto${cnt!==1?'s':''}</span>
+      <div class="cbody">
+        <div class="ctitle${c.estado==='finished'?' fin-t':''}">${c.title}</div>
+        <div class="chips">
+          ${c.fecha?`<div class="chip"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${fmtD(c.fecha)}</div>`:''}
+          ${c.hora?`<div class="chip"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${c.hora}</div>`:''}
+          ${c.cupos?`<div class="chip">👥 ${c.cupos} cupos</div>`:''}
+          ${catChip}
+          ${ig}${wpDis}
+          ${c.tipo==='agenda'?`<div class="chip cg">📅 Con turnos</div>`:''}
+        </div>
+        <p class="cdesc-short">${c.desc}</p>
+        <div class="cfoot">
+          <div class="price"><small>Inversión</small><div class="price-v${c.pago==='inscmas'?' small-price':''}">${priceStr}</div></div>
+          ${c.estado==='active'&&isFull(c)
+            ?`<div style="text-align:right"><span style="display:block;font-size:.7rem;font-weight:700;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px">⚠️ CUPOS AGOTADOS</span><button class="btn-waitlist" style="padding:6px 12px;font-size:.72rem" onclick="event.stopPropagation();openWait(${c.id})">⏳ Lista de espera</button></div>`
+            :`<button class="btn-ver">Ver más →</button>`}
+        </div>
+        ${c.estado==='finished'&&intCnt>0?`<div style="font-size:.73rem;color:var(--mu);text-align:right;margin-top:.5rem">👀 ${intCnt} interesado${intCnt!==1?'s':''} en que vuelva</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('sA').textContent=courses.filter(c=>c.estado==='active').length;
+  document.getElementById('sI').textContent=regs.length;
+  renderCatPills();
+}
+
+// ═══════════ RENDER SERVICES ═══════════
+function renderServices(){
+  const grid=document.getElementById('sgrid');
+  const list=[...services].sort((a,b)=>(a.order||0)-(b.order||0));
+  grid.innerHTML=list.map(s=>`
+    <div class="svc-card" id="sc-${s.id}" draggable="true" ondragstart="dragStart(event,'s',${s.id})" ondragover="dragOver(event)" ondrop="dropCard(event,'s',${s.id})" ondragleave="dragLeave(event)" onclick="openSvc(${s.id})">
+      <div class="svc-img">${s.img?`<img src="${s.img}" alt="${s.title}" style="width:100%;height:100%;object-fit:contain;background:#000">`:`<span class="svc-ico">${s.ico}</span>`}</div>
+      <div class="svc-body">
+        <div class="svc-title">${s.title}</div>
+        <p class="svc-desc-short">${s.shortDesc}</p>
+        <div class="svc-price"><small>Precio base</small>${s.price}</div>
+        <button class="btn-ver" style="width:100%;text-align:center">Ver detalle →</button>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════════ MODAL DETALLE CURSO ═══════════
+let detailCourseId=null;
+function openDetail(id){
+  const c=courses.find(x=>x.id===id);if(!c)return;
+  detailCourseId=id;
+  document.getElementById('detTitle').textContent=c.title;
+  document.getElementById('detSub').textContent=c.dis?`Dictado por ${c.dis}`:'Tomauno Estudio';
+  const sMap={active:['background:rgba(232,20,28,.85);color:#fff','🔴 Activo'],soon:['background:rgba(255,165,0,.85);color:#000','🟡 Próximamente'],finished:['background:rgba(60,60,60,.85);color:#bbb','✔ Finalizado']};
+  const[stStyle,stLabel]=sMap[c.estado]||sMap.finished;
+  const priceStr=c.pago==='inscmas'&&c.costoMes?`${c.costo} <span style="font-size:1.2rem;color:var(--mu)">+ ${c.costoMes}/mes</span>`:c.costo||'Consultar';
+  const intCnt=interested[id]||0;
+  const cnt=regs.filter(r=>r.courseId===id).length;
+  let body=`<div class="detail-hero">
+    ${c.img?`<img src="${c.img}" alt="${c.title}" onclick="openLightbox('${c.img}')" title="Clic para ver imagen completa">
+    <div class="img-actions">
+      <span class="img-act-btn" onclick="openLightbox('${c.img}')">🔍 Ver imagen completa</span>
+    </div>`:''}
+    <div class="detail-status" style="${stStyle}">${stLabel}</div>
+    <div class="detail-title">${c.title}</div>
+    <div class="detail-chips">
+      ${c.fecha?`<div class="chip"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${fmtD(c.fecha)}</div>`:''}
+      ${c.hora?`<div class="chip"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${c.hora}</div>`:''}
+      ${c.lugar?`<div class="chip"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>${c.lugar}</div>`:''}
+      ${c.cupos?`<div class="chip">👥 ${c.cupos} cupos · ${cnt} inscripto${cnt!==1?'s':''}</div>`:`<div class="chip">${cnt} inscripto${cnt!==1?'s':''}</div>`}
+      ${c.tipo==='agenda'?`<div class="chip cg">📅 Con agenda de turnos</div>`:''}
+    </div>
+  </div>`;
+  if(c.desc){body+=`<div class="detail-section"><h4>📋 Descripción</h4><div style="font-size:.88rem;color:var(--mu);line-height:1.75">${parseDesc(c.desc)}</div></div>`;}
+  if(c.dirigido){body+=`<div class="detail-section"><h4>🎯 ¿A quién va dirigido?</h4><p>${c.dirigido}</p></div>`;}
+  if(c.incluye){body+=`<div class="detail-section"><h4>✅ ¿Qué incluye?</h4><p>${c.incluye}</p></div>`;}
+  if(c.dis||c.igDis||c.wpDis){
+    body+=`<div class="detail-section"><h4>👤 Disertante</h4><p>${c.dis||''} ${c.igDis?`· <a href="https://instagram.com/${c.igDis.replace('@','')}" target="_blank">${c.igDis}</a>`:''} ${c.wpDis?`· <a href="https://wa.me/549${c.wpDis}" target="_blank">📱 WhatsApp</a>`:''}</p></div>`;
+  }
+  body+=`<div class="detail-price-box"><div class="label">Inversión</div><div class="detail-price-big">${priceStr}</div>${c.pago==='inscmas'?`<div class="detail-price-sub">Inscripción + cuotas mensuales</div>`:''}</div>`;
+  document.getElementById('detBody').innerHTML=body;
+  let foot='';
+  if(c.estado==='active'){
+    const full=isFull(c);
+    const wlCnt=waitlist.filter(w=>w.courseId===id).length;
+    if(full){
+      foot=`<button class="btng btn-sm" onclick="closeDetail()">Cerrar</button>
+      <div style="text-align:right">
+        <div class="waitlist-badge">⚠️ CUPOS AGOTADOS · ${wlCnt} en espera</div>
+        <div style="margin-top:.5rem"><button class="btn-waitlist" onclick="closeDetail();openWait(${id})">⏳ Anotarme en lista de espera</button></div>
+      </div>`;
+    } else if(c.tipo==='agenda'){
+      foot=`<button class="btng btn-sm" onclick="closeDetail()">Cerrar</button><button class="btn btn-sm" onclick="closeDetail();openAg(${id})">📅 Reservar mi turno</button>`;
+    } else {
+      foot=`<button class="btng btn-sm" onclick="closeDetail()">Cerrar</button><button class="btn btn-sm" onclick="closeDetail();openInsc(${id})">Inscribirme →</button>`;
+    }
+  }else if(c.estado==='finished'){
+    foot=`<button class="btng btn-sm" onclick="closeDetail()">Cerrar</button><button class="interested-btn" onclick="markInterested(${id})">👀 Me interesa si se abre de nuevo <span class="interested-count">(${intCnt})</span></button><a href="https://wa.me/5493764354522?text=${encodeURIComponent('Hola Javier! Me interesa si vuelve el curso: '+c.title)}" target="_blank" class="btn-wa btn-sm" style="padding:9px 16px;font-size:.78rem">Consultar WhatsApp</a>`;
+  }else{
+    foot=`<button class="btng btn-sm" onclick="closeDetail()">Cerrar</button><a href="https://wa.me/5493764354522?text=${encodeURIComponent('Hola Javier! Quiero info del curso: '+c.title)}" target="_blank" class="btn-wa btn-sm">Consultar por WhatsApp</a>`;
+  }
+  document.getElementById('detFoot').innerHTML=foot;
+  const ovD=document.getElementById('ovDetail');
+  ovD.classList.add('open');
+  ovD.scrollTop=0;
+  setTimeout(()=>{const m=ovD.querySelector('.modal');if(m)m.scrollTop=0;},10);
+  document.body.style.overflow='hidden';
+}
+function closeDetail(){document.getElementById('ovDetail').classList.remove('open');document.body.style.overflow='';}
+function markInterested(id){
+  if(!interested[id])interested[id]=0;
+  interested[id]++;
+  save();renderCourses();
+  showToast('success','¡Gracias!','Te avisamos cuando el curso se abra de nuevo.');
+  closeDetail();
+}
+
+// ═══════════ MODAL INSCRIPCIÓN ═══════════
+let selC=null;
+function openInsc(id){
+  selC=id;const c=courses.find(x=>x.id===id);if(!c)return;
+  document.getElementById('inscCib').innerHTML=`<div class="cib-t">${c.title}</div><div class="cib-ch">${c.fecha?`<span class="chip" style="font-size:.7rem">${fmtD(c.fecha)}</span>`:''}${c.hora?`<span class="chip" style="font-size:.7rem">${c.hora}</span>`:''}${c.costo?`<span class="chip cr" style="font-size:.7rem">${c.costo}</span>`:''}</div>`;
+  document.getElementById('inscBody').style.display='block';
+  document.getElementById('inscOk').style.display='none';
+  ['fN','fA','fDNI','fWP','fIG','fWT'].forEach(i=>{const el=document.getElementById(i);if(el)el.value='';});
+  document.getElementById('tutRow').style.display='none';
+  document.getElementById('ovInsc').classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>{const fn=document.getElementById('fN');if(fn)fn.focus();},150);
+}
+function closeInsc(){document.getElementById('ovInsc').classList.remove('open');document.body.style.overflow='';selC=null;}
+function chkAge(){const a=parseInt(document.getElementById('fA').value)||0;document.getElementById('tutRow').style.display=a>0&&a<18?'flex':'none';}
+function submitInsc(){
+  const n=document.getElementById('fN').value.trim();
+  const a=parseInt(document.getElementById('fA').value)||0;
+  const w=document.getElementById('fWP').value.trim();
+  if(!n){showToast('warn','Nombre requerido','Completá tu nombre completo.');return;}
+  if(!a||a<1||a>110){showToast('warn','Edad inválida','Ingresá una edad válida.');return;}
+  if(!w||w.replace(/\D/g,'').length<8){showToast('warn','WhatsApp inválido','Ingresá al menos 8 números de WhatsApp.');return;}
+  if(a<18){
+    const wt=document.getElementById('fWT').value.trim();
+    if(!wt||wt.replace(/\D/g,'').length<8){showToast('warn','Tutor requerido','Al ser menor de edad, completá el WhatsApp del tutor (mínimo 8 dígitos).');document.getElementById('tutRow').style.display='flex';document.getElementById('fWT').focus();return;}
+  }
+  const c=courses.find(x=>x.id===selC);
+  const wt=a<18?document.getElementById('fWT').value.trim():'';
+  const r={id:Date.now(),courseId:selC,courseName:c?c.title:'',nombre:n,edad:a,dni:document.getElementById('fDNI').value.trim(),wp:w,ig:document.getElementById('fIG').value.trim(),wpTutor:wt,pago:{},notaPago:'',fecha:new Date().toLocaleDateString('es-AR'),createdAt:Date.now()};
+  regs.push(r);save();if(window.fbSaveReg)window.fbSaveReg(r);renderCourses();showPing(r.nombre,c?c.title:'');bip();
+  // Redirect THIS tab to WA with admin notification — no new tab = no reload risk
+  const waUrl=buildWAUrl(r,c?c.title:'');
+  document.getElementById('inscBody').style.display='none';
+  document.getElementById('inscOk').innerHTML=`
+    <div class="succ-i">🎉</div>
+    <div class="succ-t">¡Inscripción registrada!</div>
+    <p class="succ-d">Tu lugar quedó reservado. En un momento se abrirá WhatsApp para enviarle los datos a Javier.</p>
+    <button class="btng btn-sm" onclick="closeInsc()" style="margin-top:1.5rem">Cerrar</button>`;
+  document.getElementById('inscOk').style.display='block';
+  // Open WA in same tab after short delay so user sees success screen
+  setTimeout(()=>{ window.location.href=waUrl; },2000);
+}
+// ═══ WA URL builder — emojis raw, text encoded ═══
+function waEncode(str){
+  // encodeURIComponent encodes everything including emojis.
+  // We need to encode ONLY non-emoji text.
+  // Strategy: split into emoji vs text segments, encode only text.
+  return str.split('').map(ch=>{
+    const cp=ch.codePointAt(0);
+    // Leave emojis (>0xFFFF or known emoji ranges) and basic symbols raw
+    if(cp>127){return encodeURIComponent(ch);}
+    // Safe ASCII chars that don't need encoding
+    if(/[A-Za-z0-9 \-_.:,;!?@#\/]/.test(ch))return ch;
+    return encodeURIComponent(ch);
+  }).join('');
+}
+function buildWAUrl(r,courseName){
+  const lines=[
+    '\uD83D\uDD34 NUEVA PRE-INSCRIPCION',
+    '\uD83D\uDCDA Curso: '+courseName,
+    '\uD83D\uDC64 Nombre: '+r.nombre,
+    '\uD83D\uDCC4 DNI: '+(r.dni||'No informado'),
+    '\uD83C\uDF82 Edad: '+r.edad,
+    '\uD83D\uDCF8 IG: '+(r.ig||'No informado'),
+    '\uD83D\uDCF1 WP Alumno: '+r.wp,
+  ];
+  if(r.wpTutor) lines.push('\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67 WP Tutor: '+r.wpTutor);
+  // Join with %0A (literal newline encoded) — most reliable for wa.me
+  const encoded=lines.map(line=>
+    line.split('').map(ch=>{
+      const cp=ch.codePointAt(0);
+      if(cp<=127){
+        // encode special URL chars but keep safe ones raw
+        if(/[A-Za-z0-9\-_.~: ]/.test(ch)) return ch==' '?'%20':ch;
+        return encodeURIComponent(ch);
+      }
+      // emoji/unicode: pass raw — wa.me handles them fine
+      return ch;
+    }).join('')
+  ).join('%0A');
+  return 'https://wa.me/5493764354522?text='+encoded;
+}
+function buildAgWAUrl(slot,courseName,n,a,dni,w,ig,wt){
+  const lines=[
+    '\uD83D\uDCF8 NUEVA RESERVA DE TURNO',
+    '\u23F0 Horario: '+slot,
+    '\uD83D\uDCDA Sesion: '+courseName,
+    '\uD83D\uDC64 Nombre: '+n,
+    '\uD83C\uDF82 Edad: '+a,
+    '\uD83D\uDCC4 DNI: '+(dni||'No informado'),
+    '\uD83D\uDCF1 WP: '+w,
+  ];
+  if(ig) lines.push('\uD83D\uDCF8 IG: '+ig);
+  if(wt) lines.push('\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC67 WP Tutor: '+wt);
+  const encoded=lines.map(line=>
+    line.split('').map(ch=>{
+      const cp=ch.codePointAt(0);
+      if(cp<=127){
+        if(/[A-Za-z0-9\-_.~: ]/.test(ch)) return ch==' '?'%20':ch;
+        return encodeURIComponent(ch);
+      }
+      return ch;
+    }).join('')
+  ).join('%0A');
+  return 'https://wa.me/5493764354522?text='+encoded;
+}
+
+// ═══════════ MODAL AGENDA ═══════════
+let selAgC=null,selSlotTime=null;
+function genSlots(s,e,d){const sl=[];let[sh,sm]=s.split(':').map(Number);const[eh,em]=e.split(':').map(Number);let cur=sh*60+sm,fin=eh*60+em;while(cur+d<=fin){sl.push(`${String(Math.floor(cur/60)).padStart(2,'0')}:${String(cur%60).padStart(2,'0')}hs`);cur+=d;}return sl;}
+function openAg(id){
+  selAgC=id;selSlotTime=null;
+  const c=courses.find(x=>x.id===id);if(!c)return;
+  document.getElementById('agMT').textContent=c.title;
+  document.getElementById('agBody').style.display='block';
+  document.getElementById('agOk').style.display='none';
+  document.getElementById('agForm').style.display='none';
+  document.getElementById('agFoot').innerHTML=`<button class="btng btn-sm" onclick="closeAg()">Cancelar</button>`;
+  renderSlotsView(id);
+  document.getElementById('ovAg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeAg(){document.getElementById('ovAg').classList.remove('open');document.body.style.overflow='';}
+function renderSlotsView(id){
+  const c=courses.find(x=>x.id===id);
+  const taken=slotData[id]||[];
+  const all=genSlots(c.aS||'09:00',c.aE||'22:00',c.aD||30);
+  document.getElementById('slotsDiv').innerHTML=`<p style="font-size:.8rem;color:var(--mu);margin-bottom:.75rem">Elegí tu horario disponible — <b style="color:#4ade80">Verde: libre</b> · <b style="color:var(--red)">Rojo: ocupado</b></p><div>${all.map(t=>{const bk=taken.find(s=>s.time===t);if(bk)return`<span class="slot sl-taken">🔴 ${t}</span>`;return`<span class="slot sl-free" id="sl-${t.replace(':','').replace('hs','')}" onclick="selectSlot('${t}')">✓ ${t}</span>`;}).join('')}</div>`;
+}
+function selectSlot(t){
+  document.querySelectorAll('.slot').forEach(s=>{s.classList.remove('sl-selected');if(s.classList.contains('sl-free'))s.classList.add('sl-free');});
+  const id=`sl-${t.replace(':','').replace('hs','')}`;const el=document.getElementById(id);
+  if(el){el.classList.remove('sl-free');el.classList.add('sl-selected');}
+  selSlotTime=t;
+  document.getElementById('selSlotLbl').textContent=`⏰ Horario seleccionado: ${t}`;
+  document.getElementById('agForm').style.display='block';
+  ['agN','agA','agDNI','agW','agIG','agWT'].forEach(i=>{const el2=document.getElementById(i);if(el2)el2.value='';});
+  document.getElementById('agTutRow').style.display='none';
+  document.getElementById('agFoot').innerHTML=`<button class="btng btn-sm" onclick="closeAg()">Cancelar</button><button class="btn btn-sm" onclick="submitAg()">Confirmar turno →</button>`;
+}
+function chkAgAge(){const a=parseInt(document.getElementById('agA').value)||0;document.getElementById('agTutRow').style.display=a>0&&a<18?'flex':'none';}
+function submitAg(){
+  const n=document.getElementById('agN').value.trim();
+  const w=document.getElementById('agW').value.trim();
+  const a=parseInt(document.getElementById('agA').value)||0;
+  if(!n){showToast('warn','Nombre requerido','Completá tu nombre.');return;}
+  if(!a||a<1){showToast('warn','Edad inválida','Ingresá tu edad.');return;}
+  if(!w||w.replace(/\D/g,'').length<8){showToast('warn','WhatsApp inválido','Ingresá al menos 8 números.');return;}
+  if(a<18){
+    const wt=document.getElementById('agWT').value.trim();
+    if(!wt||wt.replace(/\D/g,'').length<8){showToast('warn','Tutor requerido','Al ser menor de edad, completá el WhatsApp del tutor (mínimo 8 dígitos).');document.getElementById('agTutRow').style.display='flex';document.getElementById('agWT').focus();return;}
+  }
+  if(!slotData[selAgC])slotData[selAgC]=[];
+  if(slotData[selAgC].find(s=>s.time===selSlotTime)){showToast('warn','Ocupado','Ese horario ya fue tomado. Elegí otro.');renderSlotsView(selAgC);document.getElementById('agForm').style.display='none';return;}
+  const wt=a<18?document.getElementById('agWT').value.trim():'';
+  const e={time:selSlotTime,name:n,edad:a,dni:document.getElementById('agDNI').value.trim(),wp:w,ig:document.getElementById('agIG').value.trim(),wpTutor:wt,createdAt:Date.now()};
+  slotData[selAgC].push(e);save();if(window.fbSaveSlot)window.fbSaveSlot(selAgC,e);
+  showPing(n,'Sesión '+courses.find(x=>x.id===selAgC)?.title);bip();
+  const c=courses.find(x=>x.id===selAgC);
+  const agUrl=buildAgWAUrl(selSlotTime,c?c.title:'',n,a,e.dni,w,e.ig,wt);
+  document.getElementById('agBody').style.display='none';
+  document.getElementById('agOk').innerHTML=`
+    <div class="succ-i">📸</div>
+    <div class="succ-t">¡Turno reservado!</div>
+    <p class="succ-d">Tu horario quedó confirmado. En un momento se abrirá WhatsApp para notificar a Javier.</p>
+    <button class="btng btn-sm" onclick="closeAg()" style="margin-top:1.5rem">Cerrar</button>`;
+  document.getElementById('agOk').style.display='block';
+  setTimeout(()=>{ window.location.href=agUrl; },2000);
+}
+
+// ═══════════ MODAL SERVICIO ═══════════
+function openSvc(id){
+  const s=services.find(x=>x.id===id);if(!s)return;
+  document.getElementById('svcTitle').textContent=s.ico+' '+s.title;
+  document.getElementById('svcBody').innerHTML=`<div class="detail-price-box" style="margin-bottom:1.25rem"><div class="label">Precio</div><div class="detail-price-big" style="font-size:2rem">${s.price}</div></div><div style="font-size:.88rem;color:var(--mu);line-height:1.8">${s.fullDesc}</div>`;
+  document.getElementById('svcFoot').innerHTML=`<button class="btng btn-sm" onclick="closeSvc()">Cerrar</button><a href="https://wa.me/5493764354522?text=${encodeURIComponent('Hola Javier! Me interesa el servicio: '+s.title)}" target="_blank" onclick="logSvcConsulta(${id},'${s.title.replace(/'/g,'')}')" class="btn-wa btn-sm"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:4px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Consultar por WhatsApp</a>`;
+  document.getElementById('ovSvc').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSvc(){document.getElementById('ovSvc').classList.remove('open');document.body.style.overflow='';}
+function logSvcConsulta(id,title){svcConsultas.push({svcId:id,title,fecha:new Date().toLocaleDateString('es-AR'),createdAt:Date.now()});save();}
+
+// ═══════════ DRAG & DROP ═══════════
+let dragId=null,dragType=null;
+function dragStart(e,type,id){dragId=id;dragType=type;const el=document.getElementById((type==='c'?'cc':'sc')+'-'+id);if(el)el.classList.add('dragging');e.dataTransfer.effectAllowed='move';}
+function dragOver(e){e.preventDefault();e.currentTarget.classList.add('drag-over');}
+function dragLeave(e){e.currentTarget.classList.remove('drag-over');}
+function dropCard(e,type,targetId){
+  e.preventDefault();e.currentTarget.classList.remove('drag-over');
+  if(dragId===targetId||dragType!==type)return;
+  const arr=type==='c'?courses:services;
+  const fromIdx=arr.findIndex(x=>x.id===dragId);
+  const toIdx=arr.findIndex(x=>x.id===targetId);
+  if(fromIdx<0||toIdx<0)return;
+  const tmp=arr.splice(fromIdx,1)[0];arr.splice(toIdx,0,tmp);
+  arr.forEach((x,i)=>x.order=i);
+  save();
+  if(type==='c')renderCourses();else renderServices();
+  const el=document.getElementById((type==='c'?'cc':'sc')+'-'+dragId);
+  if(el)el.classList.remove('dragging');
+  dragId=null;dragType=null;
+}
+
+// ═══════════ ADMIN ═══════════
+function parseAmt(str){if(!str)return 0;return parseInt(str.replace(/[^\d]/g,''))||0;}
+
+function renderAdminDash(){
+  const totalRegs=regs.length;
+  const active=courses.filter(c=>c.estado==='active').length;
+  const pending=(pendingTestimonials||[]).length;
+  const waitTotal=waitlist.length;
+  const pagados=regs.filter(r=>Object.values(r.pago||{}).some(Boolean)).length;
+  const sinPago=totalRegs-pagados;
+  let revenue=0;
+  regs.forEach(r=>{
+    const c=courses.find(x=>x.id===r.courseId);if(!c)return;
+    const cols=c.pago==='inscmas'?[{key:'insc'},...getCols(c)]:[{key:'unico'}];
+    cols.forEach(col=>{if(r.pago&&r.pago[col.key]){if(col.key==='insc'||col.key==='unico')revenue+=parseAmt(c.costo||'0');else revenue+=parseAmt(c.costoMes||'0');}});
+  });
+  const dash=document.getElementById('adminDash');
+  if(!dash)return;
+  dash.innerHTML=`
+    <div class="dash-card"><div class="dash-ico">📋</div><div class="dash-val">${totalRegs}</div><div class="dash-label">Inscriptos totales</div><div class="dash-sub">${active} curso${active!==1?'s':''} activo${active!==1?'s':''}</div></div>
+    <div class="dash-card green"><div class="dash-ico">✅</div><div class="dash-val">${pagados}</div><div class="dash-label">Con pagos</div><div class="dash-sub">${sinPago} pendiente${sinPago!==1?'s':''}</div></div>
+    <div class="dash-card amber"><div class="dash-ico">💰</div><div class="dash-val" style="font-size:1.55rem">$${revenue.toLocaleString('es-AR')}</div><div class="dash-label">Recaudado estimado</div><div class="dash-sub">Según pagos marcados</div></div>
+    <div class="dash-card blue"><div class="dash-ico">⏳</div><div class="dash-val">${waitTotal}</div><div class="dash-label">Lista de espera</div><div class="dash-sub">Interesados sin cupo</div></div>
+    <div class="dash-card purple"><div class="dash-ico">⭐</div><div class="dash-val">${pending}</div><div class="dash-label">Opiniones pendientes</div><div class="dash-sub">${(testimonials||[]).length} publicadas</div></div>`;
+  const bIns=document.getElementById('tabBadgeIns');if(bIns)bIns.textContent=totalRegs;
+  const bTest=document.getElementById('tabBadgeTest');if(bTest){bTest.textContent=pending;bTest.style.display=pending?'inline-flex':'none';}
+}
+
+function login(){
+  if(document.getElementById('aPass').value===PASS){
+    document.getElementById('aLB').style.display='none';
+    document.getElementById('aLOut').style.display='inline-block';
+    document.getElementById('apanel').style.display='block';
+    renderAdminDash();renderIns();renderAdminC();renderPagos();renderAgSelect();renderSvcConsultas();
+  }else showToast('warn','Error','Clave incorrecta.');
+}
+function logout(){document.getElementById('aLB').style.display='flex';document.getElementById('aLOut').style.display='none';document.getElementById('apanel').style.display='none';document.getElementById('aPass').value='';}
+function atab(n,btn){document.querySelectorAll('.atab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.atc').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.getElementById('t-'+n).classList.add('active');}
+
+// Inscripciones admin
+function renderIns(){
+  const cf=document.getElementById('fC').value;
+  const q=document.getElementById('fQ').value.toLowerCase();
+  const sel=document.getElementById('fC'),cur=sel.value;
+  sel.innerHTML='<option value="">Todos los cursos</option>'+courses.map(c=>`<option value="${c.id}"${c.id==cur?' selected':''}>${c.title}</option>`).join('');
+  const list=regs.filter(r=>{if(cf&&r.courseId!=cf)return false;if(q&&!r.nombre.toLowerCase().includes(q))return false;return true;}).sort((a,b)=>b.createdAt-a.createdAt);
+  document.getElementById('noIns').style.display=list.length?'none':'block';
+  // totals
+  const total=list.length;
+  const pagados=list.filter(r=>Object.values(r.pago||{}).some(Boolean)).length;
+  document.getElementById('ins-totals').innerHTML=`<span>Total: <b style="color:var(--w)">${total}</b></span><span>Con al menos un pago: <b style="color:#4ade80">${pagados}</b></span><span>Pendientes: <b style="color:var(--red)">${total-pagados}</b></span>`;
+  document.getElementById('insB').innerHTML=list.map((r,i)=>`<tr>
+    <td style="color:var(--mu)">${i+1}</td>
+    <td><b>${r.nombre}</b></td><td>${r.edad}</td><td style="font-size:.77rem">${r.dni||'-'}</td>
+    <td style="font-size:.77rem;color:var(--mu);max-width:100px;white-space:normal">${r.courseName}</td>
+    <td>${r.ig?`<a href="https://instagram.com/${r.ig.replace('@','')}" target="_blank" style="color:var(--red);text-decoration:none">${r.ig}</a>`:'-'}</td>
+    <td><a href="https://wa.me/549${r.wp}" target="_blank" class="ab wa">${r.wp}</a></td>
+    <td>${r.wpTutor?`<a href="https://wa.me/549${r.wpTutor}" target="_blank" class="ab wa">${r.wpTutor}</a>`:'-'}</td>
+    <td>${Object.values(r.pago||{}).some(Boolean)?'<span class="pb py">Con pagos</span>':'<span class="pb pn">Pendiente</span>'}</td>
+    <td style="display:flex;gap:3px;flex-wrap:wrap">
+      <a href="https://wa.me/549${r.wp}?text=${encodeURIComponent('Hola '+r.nombre+'! Te escribimos desde Tomauno sobre tu inscripción en: '+r.courseName)}" target="_blank" class="ab wa">WA</a>
+      <button class="ab" onclick="sendConfirm(${r.id})" title="Enviar confirmación al alumno" style="border-color:rgba(34,197,94,.3);color:#4ade80">✅ Confirmar</button>
+      <button class="ab dl" onclick="delReg(${r.id})">✕</button>
+    </td>
+  </tr>`).join('');
+}
+function delReg(id){cfConfirm('🗑️','¿Eliminar inscripción?','Se eliminará permanentemente de la lista.',()=>{const r=regs.find(x=>x.id===id);if(r&&window.fbDeleteReg)window.fbDeleteReg(r);regs=regs.filter(x=>x.id!==id);save();renderIns();renderCourses();renderPagos();});}
+
+// Cursos admin
+function togglePago(){const v=document.getElementById('cP').value==='inscmas';document.getElementById('cMW').style.display=v?'block':'none';document.getElementById('cCMW').style.display=v?'block':'none';}
+function toggleAgOpts(){document.getElementById('agS').style.display=document.getElementById('cTp').value==='agenda'?'block':'none';}
+function getCols(c){if(c.pago!=='inscmas'||!c.meses)return[];const startStr=c.inicioMes||(c.fecha?c.fecha.substring(0,7):'');if(!startStr)return[];const mn=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];const[y,mo]=startStr.split('-');const cols=[];for(let i=0;i<c.meses;i++){const m2=(parseInt(mo)-1+i)%12;const y2=parseInt(y)+Math.floor((parseInt(mo)-1+i)/12);cols.push({key:`m${i}`,label:`${mn[m2]} ${y2}`});}return cols;}
+function previewMeses(){
+  const m=parseInt(document.getElementById('cM').value)||0;
+  const fechaVal=document.getElementById('cF').value; // YYYY-MM-DD
+  const prev=document.getElementById('mprev');
+  if(m>0&&fechaVal){
+    const mn=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    const[y,mo]=fechaVal.split('-');
+    let l=[];for(let i=0;i<m;i++){const m2=(parseInt(mo)-1+i)%12;const y2=parseInt(y)+Math.floor((parseInt(mo)-1+i)/12);l.push(`${mn[m2]} ${y2}`);}
+    prev.textContent='Cuotas: '+l.join(' · ');prev.style.display='block';
+  } else {prev.style.display='none';}
+}
+function addCourse(){
+  const t=document.getElementById('cT').value.trim();if(!t){showToast('warn','Error','El título es obligatorio.');return;}
+  const isCu=document.getElementById('cP').value==='inscmas';
+  const c={id:Date.now(),title:t,desc:document.getElementById('cD').value.trim(),dirigido:document.getElementById('cDirigido').value.trim(),incluye:document.getElementById('cIncluye').value.trim(),cupos:document.getElementById('cCupos').value.trim(),dis:document.getElementById('cDis').value.trim(),igDis:document.getElementById('cIG').value.trim(),wpDis:document.getElementById('cWDis').value.trim(),fecha:document.getElementById('cF').value,hora:document.getElementById('cH').value.trim(),lugar:document.getElementById('cL').value.trim(),costo:document.getElementById('cC').value.trim(),costoMes:isCu?document.getElementById('cCM').value.trim():'',pago:document.getElementById('cP').value,meses:isCu?parseInt(document.getElementById('cM').value)||0:0,inicioMes:'',cat:document.getElementById('cCat').value,estado:document.getElementById('cE').value,tipo:document.getElementById('cTp').value,aS:document.getElementById('aS').value,aE:document.getElementById('aE').value,aD:parseInt(document.getElementById('aD').value)||30,img:document.getElementById('cImg').value.trim(),order:courses.length,createdAt:Date.now()};
+  courses.push(c);save();if(window.fbSaveCourse)window.fbSaveCourse(c);renderCourses();renderAdminC();renderAgSelect();
+  ['cT','cD','cDirigido','cIncluye','cCupos','cDis','cIG','cWDis','cF','cH','cC','cCM','cM','cImg','cCat'].forEach(i=>{const el=document.getElementById(i);if(el)el.value='';});
+  document.getElementById('cL').value='Tomauno "Estudio Fotográfico" — Pedro Méndez 2069, Posadas';
+  document.getElementById('mprev').style.display='none';
+  showToast('success','✅ Listo',`"${t}" agregado.`);
+}
+function renderAdminC(){
+  document.getElementById('aCL').innerHTML=[...courses].sort((a,b)=>(a.order||0)-(b.order||0)).map(c=>`
+    <div style="background:var(--g3);border:1px solid var(--br2);border-radius:4px;padding:.85rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:.65rem;flex-wrap:wrap">
+      <div style="flex:1;min-width:180px">
+        <div style="font-family:var(--fd);font-size:1.05rem;letter-spacing:1px">${c.title}</div>
+        <div style="font-size:.76rem;color:var(--mu);margin-top:3px">${c.fecha?fmtD(c.fecha)+' · ':''}${c.hora||''} ${c.costo?'· '+c.costo:''} ${c.cat?'· <span style="color:#93c5fd">'+c.cat+'</span>':''}</div>
+      </div>
+      <div style="display:flex;gap:.38rem;flex-wrap:wrap;align-items:center">
+        <select onchange="chgSt(${c.id},this.value)" style="background:var(--g2);border:1px solid var(--br2);color:var(--w);padding:5px 8px;border-radius:3px;font-family:var(--fb);font-size:.77rem">
+          <option value="active"${c.estado==='active'?' selected':''}>Activo</option>
+          <option value="soon"${c.estado==='soon'?' selected':''}>Próximamente</option>
+          <option value="finished"${c.estado==='finished'?' selected':''}>Finalizado</option>
+          <option value="hidden"${c.estado==='hidden'?' selected':''}>Oculto / Baja</option>
+        </select>
+        <button class="ab dl" onclick="delC(${c.id})">Eliminar</button>
+      </div>
+    </div>`).join('');
+}
+function chgSt(id,st){const c=courses.find(x=>x.id===id);if(c){c.estado=st;save();if(window.fbUpdateCourseStatus)window.fbUpdateCourseStatus(c);renderCourses();}}
+function delC(id){cfConfirm('⚠️','¿Eliminar este curso?','También se eliminarán todas sus inscripciones. Esta acción no se puede deshacer.',()=>{const c=courses.find(x=>x.id===id);if(c&&window.fbDeleteCourse)window.fbDeleteCourse(c);courses=courses.filter(x=>x.id!==id);regs=regs.filter(x=>x.courseId!==id);delete slotData[id];save();renderCourses();renderAdminC();renderIns();renderPagos();});}
+
+// Pagos
+function renderPagos(){
+  const cf=document.getElementById('fPC').value;
+  const sel=document.getElementById('fPC'),cur=sel.value;
+  sel.innerHTML='<option value="">Todos los cursos</option>'+courses.map(c=>`<option value="${c.id}"${c.id==cur?' selected':''}>${c.title}</option>`).join('');
+  const sc=cf?courses.find(x=>x.id==cf):null;
+  // Build columns: always show inscripción, then months if cuotas
+  let cols=[];
+  if(sc){
+    if(sc.pago==='inscmas'){
+      cols.push({key:'insc',label:'Inscripción'});
+      const monthCols=getCols(sc);
+      cols=cols.concat(monthCols);
+    } else {
+      cols=[{key:'unico',label:'Pago único'}];
+    }
+  } else {
+    // All courses: just show generic payment column
+    cols=[{key:'unico',label:'Pago'}];
+  }
+  const list=regs.filter(r=>!cf||r.courseId==cf).sort((a,b)=>b.createdAt-a.createdAt);
+  document.getElementById('noPag').style.display=list.length?'none':'block';
+  document.getElementById('pH').innerHTML=`<tr><th>Nombre</th><th>Curso</th>${cols.map(col=>`<th style="text-align:center">${col.label}</th>`).join('')}<th style="text-align:center">Progreso</th><th>Nota</th></tr>`;
+  const colTotals={};cols.forEach(col=>colTotals[col.key]=0);
+
+  // Determine amount per column for selected course
+  const colAmounts={};
+  if(sc){
+    if(sc.pago==='inscmas'){
+      colAmounts['insc']=parseAmt(sc.costo);
+      getCols(sc).forEach(col=>colAmounts[col.key]=parseAmt(sc.costoMes));
+    } else {
+      colAmounts['unico']=parseAmt(sc.costo);
+    }
+  }
+
+  document.getElementById('pB').innerHTML=list.map(r=>{
+    const effectiveCols=sc?cols:(()=>{const rc=courses.find(x=>x.id===r.courseId);if(!rc)return cols;if(rc.pago==='inscmas'){const mc=getCols(rc);return[{key:'insc',label:'Inscripción'},...mc];}return[{key:'unico',label:'Pago único'}];})();
+    let rowTotal=0;effectiveCols.forEach(col=>{if(r.pago&&r.pago[col.key])rowTotal++;if(colTotals[col.key]!==undefined&&r.pago&&r.pago[col.key])colTotals[col.key]++;});
+    const pct=effectiveCols.length>0?Math.round(rowTotal/effectiveCols.length*100):0;
+    const color=pct===100?'#4ade80':pct>0?'#f59e0b':'var(--red)';
+    return`<tr>
+      <td><b>${r.nombre}</b><br><a href="https://wa.me/549${r.wp}" target="_blank" class="ab wa" style="margin-top:3px;font-size:.68rem">WA</a></td>
+      <td style="font-size:.77rem;color:var(--mu);max-width:90px;white-space:normal">${r.courseName}</td>
+      ${(sc?cols:effectiveCols).map(col=>`<td style="text-align:center">
+        <label style="display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer">
+          <input type="checkbox" ${r.pago&&r.pago[col.key]?'checked':''} onchange="togPago(${r.id},'${col.key}',this.checked)" style="width:15px;height:15px;accent-color:var(--red)">
+          <span class="pb ${r.pago&&r.pago[col.key]?'py':'pn'}" style="font-size:.66rem">${r.pago&&r.pago[col.key]?'✓':'—'}</span>
+        </label>
+        ${!r.pago||!r.pago[col.key]?`<button onclick="openPayReminder(${r.id},'${col.key}','${col.label}')" title="Enviar recordatorio de pago" style="background:none;border:none;cursor:pointer;font-size:.8rem;margin-top:2px;opacity:.6;transition:opacity .2s" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">🔔</button>`:''}
+      </td>`).join('')}
+      <td style="text-align:center">
+        <div style="font-weight:700;color:${color};font-size:.82rem">${rowTotal}/${(sc?cols:effectiveCols).length}</div>
+        <div style="height:4px;background:var(--g4);border-radius:2px;margin-top:3px;overflow:hidden"><div style="height:100%;width:${pct}%;background:${color};border-radius:2px;transition:width .3s"></div></div>
+      </td>
+      <td><input class="pi" value="${r.notaPago||''}" placeholder="Nota..." onchange="updNota(${r.id},this.value)"></td>
+    </tr>`;
+  }).join('');
+
+  // Footer: count + $ collected per column + grand total
+  if(sc){
+    let grandTotal=0;
+    const footCols=cols.map(col=>{
+      const count=colTotals[col.key];
+      const amt=colAmounts[col.key]||0;
+      const subtotal=count*amt;
+      grandTotal+=subtotal;
+      const fmtAmt=amt>0?` · $${subtotal.toLocaleString('es-AR')}`:'';
+      return`<td style="text-align:center;color:#4ade80;font-size:.82rem;font-weight:700">${count}/${list.length}${fmtAmt}</td>`;
+    }).join('');
+    const alDia=list.filter(r=>cols.every(c=>r.pago&&r.pago[c.key])).length;
+    document.getElementById('pF').innerHTML=`
+      <tr class="total-row">
+        <td colspan="2" style="font-family:var(--fd);letter-spacing:1px;font-size:.9rem">TOTALES COBRADOS</td>
+        ${footCols}
+        <td colspan="2" style="color:#4ade80;font-weight:700;font-size:.88rem">${alDia} al día</td>
+      </tr>
+      <tr style="background:rgba(34,197,94,.06);border-top:1px solid rgba(34,197,94,.2)">
+        <td colspan="${cols.length+4}" style="padding:10px;text-align:right">
+          <span style="font-family:var(--fd);font-size:1.4rem;letter-spacing:2px;color:#4ade80">
+            💰 TOTAL RECAUDADO: $${grandTotal.toLocaleString('es-AR')}
+          </span>
+        </td>
+      </tr>`;
+  } else {
+    document.getElementById('pF').innerHTML='';
+  }
+  const totPag=list.filter(r=>Object.values(r.pago||{}).some(Boolean)).length;
+  const sinPago=list.length-totPag;
+  document.getElementById('pag-totals').innerHTML=`
+    <span style="background:var(--g3);border:1px solid var(--br2);padding:5px 12px;border-radius:3px">👥 Inscriptos: <b style="color:var(--w)">${list.length}</b></span>
+    <span style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);padding:5px 12px;border-radius:3px">✅ Con pagos: <b style="color:#4ade80">${totPag}</b></span>
+    <span style="background:rgba(232,20,28,.08);border:1px solid rgba(232,20,28,.2);padding:5px 12px;border-radius:3px">⏳ Sin pagar: <b style="color:var(--red)">${sinPago}</b></span>`;
+}
+function sendConfirm(id){
+  const r=regs.find(x=>x.id===id);if(!r)return;
+  const c=courses.find(x=>x.id===r.courseId);
+  const url='https://wa.me/549'+r.wp+'?text='+buildConfirmMsg(r.nombre,c);
+  window.location.href=url;
+}
+function togPago(id,k,v){const r=regs.find(x=>x.id===id);if(r){if(!r.pago)r.pago={};r.pago[k]=v;save();if(window.fbUpdateRegPago)window.fbUpdateRegPago(r);renderPagos();}}
+function updNota(id,n){const r=regs.find(x=>x.id===id);if(r){r.notaPago=n;save();}}
+
+// Agenda admin
+function renderAgSelect(){
+  const agC=courses.filter(c=>c.tipo==='agenda');
+  const sel=document.getElementById('fAC');
+  sel.innerHTML='<option value="">— Seleccioná un evento con turnos —</option>'+agC.map(c=>`<option value="${c.id}">${c.title}</option>`).join('');
+}
+function renderAgAdmin(){
+  const id=parseInt(document.getElementById('fAC').value);
+  const view=document.getElementById('agView');
+  const btns=document.getElementById('agAdminBtns');
+  if(!id){view.innerHTML='';btns.style.display='none';return;}
+  btns.style.display='flex';
+  const c=courses.find(x=>x.id===id);
+  const taken=slotData[id]||[];
+  const all=genSlots(c.aS||'09:00',c.aE||'22:00',c.aD||30);
+  view.innerHTML=`<p style="font-size:.8rem;color:var(--mu);margin-bottom:.75rem">${taken.length} turnos reservados de ${all.length} disponibles</p>
+  <div class="tw"><table class="at" style="min-width:480px"><thead><tr><th>Horario</th><th>Nombre</th><th>Edad</th><th>DNI</th><th>WhatsApp</th><th>Instagram</th><th>WP Tutor</th><th></th></tr></thead>
+  <tbody>${all.map(t=>{const bk=taken.find(s=>s.time===t);return`<tr><td>${t}</td><td>${bk?`<b>${bk.name}</b>`:'<span style="color:var(--mu)">Libre</span>'}</td><td>${bk?bk.edad||'-':'-'}</td><td>${bk?bk.dni||'-':'-'}</td><td>${bk?`<a href="https://wa.me/549${bk.wp}" target="_blank" class="ab wa">${bk.wp}</a>`:'-'}</td><td>${bk?bk.ig||'-':'-'}</td><td>${bk&&bk.wpTutor?`<a href="https://wa.me/549${bk.wpTutor}" target="_blank" class="ab wa">${bk.wpTutor}</a>`:'-'}</td><td>${bk?`<button class="ab dl" onclick="delSlot(${id},'${t}')">Liberar</button>`:''}</td></tr>`;}).join('')}</tbody></table></div>`;
+}
+function delSlot(id,t){cfConfirm('🔓','¿Liberar este turno?','El horario quedará disponible para otra persona.',()=>{const sl=(slotData[id]||[]).find(s=>s.time===t);if(sl&&window.fbDeleteSlot)window.fbDeleteSlot(id,sl);if(slotData[id])slotData[id]=slotData[id].filter(s=>s.time!==t);save();renderAgAdmin();});}
+function expAgCSV(){
+  const id=parseInt(document.getElementById('fAC').value);if(!id)return;
+  const taken=slotData[id]||[];
+  const c=courses.find(x=>x.id===id);
+  const h=['Horario','Nombre','Edad','DNI','WhatsApp','Instagram','WP Tutor'];
+  const rows=taken.map(s=>[s.time,s.name,s.edad||'',s.dni||'',s.wp,s.ig||'',s.wpTutor||'']);
+  const csv=[h,...rows].map(r=>r.map(x=>`"${x||''}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));a.download=`turnos_${c?c.title.replace(/\s/g,'_'):id}.csv`;a.click();
+}
+function expAgPDF(){
+  const id=parseInt(document.getElementById('fAC').value);if(!id)return;
+  const taken=slotData[id]||[];
+  const c=courses.find(x=>x.id===id);
+  const win=window.open('','_blank');
+  const rows=taken.map((s,i)=>`<tr style="background:${i%2?'#f5f5f5':'#fff'}"><td>${s.time}</td><td>${s.name}</td><td>${s.edad||'-'}</td><td>${s.dni||'-'}</td><td>${s.wp}</td><td>${s.ig||'-'}</td><td>${s.wpTutor||'-'}</td></tr>`).join('');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Turnos ${c?c.title:''}</title><style>body{font-family:Arial,sans-serif;padding:2rem;font-size:12px}h1{color:#E8141C}table{width:100%;border-collapse:collapse}th{background:#E8141C;color:#fff;padding:7px}td{padding:6px;border-bottom:1px solid #eee}@media print{.np{display:none}}</style></head><body><h1>${c?c.title:''} — Turnos</h1><p style="color:#888">${new Date().toLocaleDateString('es-AR')}</p><button class="np" onclick="window.print()" style="background:#E8141C;color:#fff;border:none;padding:7px 16px;border-radius:3px;cursor:pointer;margin:1rem 0">Imprimir / PDF</button><table><thead><tr><th>Horario</th><th>Nombre</th><th>Edad</th><th>DNI</th><th>WhatsApp</th><th>Instagram</th><th>WP Tutor</th></tr></thead><tbody>${rows}</tbody></table></body></html>`);
+  win.document.close();
+}
+function grupoWAag(){
+  const id=parseInt(document.getElementById('fAC').value);if(!id)return;
+  const taken=slotData[id]||[];const c=courses.find(x=>x.id===id);
+  if(!taken.length){showToast('warn','Sin datos','No hay turnos reservados.');return;}
+  const lines=taken.sort((a,b)=>a.time.localeCompare(b.time)).map((s,i)=>`${i+1}. ${s.name} (${s.time}) → 549${s.wp}`).join('\n');
+  window.open(`https://wa.me/5493764354522?text=${encodeURIComponent(`📸 Grupo: ${c?c.title:''}\n\n${lines}`)}`,'_blank');
+}
+
+// ═══════════ SERVICES EDITOR ═══════════
+let editSvcId=null;
+function renderSvcEditor(){
+  const list=[...services].sort((a,b)=>(a.order||0)-(b.order||0));
+  document.getElementById('svcEditorList').innerHTML=list.map(s=>`
+    <div style="background:var(--g3);border:1px solid var(--br2);border-radius:5px;padding:.9rem 1.1rem;display:flex;justify-content:space-between;align-items:center;gap:.75rem;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:.75rem;flex:1;min-width:200px">
+        <span style="font-size:1.6rem">${s.ico}</span>
+        <div>
+          <div style="font-family:var(--fd);font-size:1.05rem;letter-spacing:1px">${s.title}</div>
+          <div style="font-size:.76rem;color:var(--mu);margin-top:2px">${s.price}</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap">
+        <button class="ab pr" onclick="openEditSvc(${s.id})">✏️ Editar</button>
+      </div>
+    </div>`).join('');
+}
+function openEditSvc(id){
+  const s=services.find(x=>x.id===id);if(!s)return;
+  editSvcId=id;
+  document.getElementById('seIco').value=s.ico||'';
+  document.getElementById('seTitle').value=s.title||'';
+  document.getElementById('seShort').value=s.shortDesc||'';
+  document.getElementById('seFull').value=s.fullDesc||'';
+  document.getElementById('sePrice').value=s.price||'';
+  document.getElementById('seImg').value=s.img||'';
+  document.getElementById('ovEditSvc').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeEditSvc(){document.getElementById('ovEditSvc').classList.remove('open');document.body.style.overflow='';editSvcId=null;}
+function saveEditSvc(){
+  const s=services.find(x=>x.id===editSvcId);if(!s)return;
+  const t=document.getElementById('seTitle').value.trim();
+  if(!t){showToast('warn','Error','El título es obligatorio.');return;}
+  s.ico=document.getElementById('seIco').value.trim()||s.ico;
+  s.title=t;
+  s.shortDesc=document.getElementById('seShort').value.trim();
+  s.fullDesc=document.getElementById('seFull').value.trim();
+  s.price=document.getElementById('sePrice').value.trim();
+  s.img=document.getElementById('seImg').value.trim();
+  save();if(window.fbSaveService)window.fbSaveService(s);renderServices();renderSvcEditor();
+  closeEditSvc();
+  showToast('success','✅ Guardado','El servicio fue actualizado.');
+}
+
+// Servicios consultas admin
+function renderSvcConsultas(){
+  renderSvcEditor();
+  const list=[...svcConsultas].sort((a,b)=>b.createdAt-a.createdAt);
+  const el=document.getElementById('svcConsultas');
+  const no=document.getElementById('noSvc');
+  no.style.display=list.length?'none':'block';
+  el.innerHTML=list.map(q=>`<div style="background:var(--g3);border:1px solid var(--br2);border-radius:4px;padding:.75rem 1rem;font-size:.83rem"><b>${q.title}</b> <span style="color:var(--mu);margin-left:.5rem">${q.fecha}</span></div>`).join('');
+}
+
+// Exports generales
+function expCSV(){
+  const cf=document.getElementById('fC').value;
+  const list=regs.filter(r=>!cf||r.courseId==cf);
+  const h=['Nombre','Edad','DNI','Curso','Instagram','WP','Tutor','Fecha'];
+  const rows=list.map(r=>[r.nombre,r.edad,r.dni,r.courseName,r.ig,r.wp,r.wpTutor,r.fecha]);
+  const csv=[h,...rows].map(r=>r.map(x=>`"${x||''}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));a.download='tomauno_inscripciones.csv';a.click();
+}
+function expPDF(){
+  const cf=document.getElementById('fC').value;
+  const list=regs.filter(r=>!cf||r.courseId==cf);
+  const win=window.open('','_blank');
+  const rows=list.map((r,i)=>`<tr style="background:${i%2?'#f5f5f5':'#fff'}"><td>${r.nombre}</td><td>${r.edad}</td><td>${r.dni||'-'}</td><td>${r.courseName}</td><td>${r.ig||'-'}</td><td>${r.wp}</td><td>${r.wpTutor||'-'}</td></tr>`).join('');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Inscripciones Tomauno</title><style>body{font-family:Arial,sans-serif;padding:2rem;font-size:12px}h1{color:#E8141C}table{width:100%;border-collapse:collapse}th{background:#E8141C;color:#fff;padding:7px}td{padding:6px;border-bottom:1px solid #eee}@media print{.np{display:none}}</style></head><body><h1>Tomauno — Inscripciones</h1><p style="color:#888">${new Date().toLocaleDateString('es-AR')}</p><button class="np" onclick="window.print()" style="background:#E8141C;color:#fff;border:none;padding:7px 16px;border-radius:3px;cursor:pointer;margin:1rem 0">Imprimir / PDF</button><table><thead><tr><th>Nombre</th><th>Edad</th><th>DNI</th><th>Curso</th><th>IG</th><th>WP</th><th>Tutor</th></tr></thead><tbody>${rows}</tbody></table></body></html>`);
+  win.document.close();
+}
+function grupoWA(){
+  const cf=document.getElementById('fC').value;
+  const list=regs.filter(r=>!cf||r.courseId==cf);
+  if(!list.length){showToast('warn','Sin datos','No hay inscriptos.');return;}
+  const c=cf?courses.find(x=>x.id==cf):null;
+  const title=c?c.title:'Tomauno';
+  const lines=list.map((r,i)=>`${i+1}. ${r.nombre} → 549${r.wp}`).join('\n');
+  window.open(`https://wa.me/5493764354522?text=${encodeURIComponent(`📚 Grupo: ${title}\n\n${lines}`)}`,'_blank');
+}
+
+// ═══════════ UTILS ═══════════
+function bip(){try{const ctx=new(window.AudioContext||window.webkitAudioContext)();const o=ctx.createOscillator();const g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=880;o.type='sine';g.gain.setValueAtTime(.22,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+.5);o.start();o.stop(ctx.currentTime+.5);}catch(e){}}
+function showPing(nombre,curso){const el=document.getElementById('ping');el.textContent=`🔴 ${nombre||'Alguien'} se inscribió${curso?' en '+curso.substring(0,28):''}`;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),8000);}
+function showToast(type,title,body){
+  const wrap=document.getElementById('toastWrap');
+  const t=document.createElement('div');
+  t.className=`toast ${type}`;
+  t.innerHTML=`<b>${title}</b><span>${body}</span>`;
+  wrap.appendChild(t);
+  setTimeout(()=>t.classList.add('show'),10);
+  setTimeout(()=>{t.classList.remove('show');setTimeout(()=>t.remove(),400);},7000);
+}
+function openLightbox(src){
+  document.getElementById('lbImg').src=src;
+  document.getElementById('lbDownload').href=src;
+  document.getElementById('lbOpen').href=src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+function faq(btn){const a=btn.nextElementSibling;const op=a.classList.contains('open');document.querySelectorAll('.fa').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.fq').forEach(x=>x.classList.remove('open'));if(!op){a.classList.add('open');btn.classList.add('open');}}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+
+// ═══ Confirmation message to alumno ═══
+function buildConfirmMsg(nombre,course){
+  const title=course?course.title:'el curso';
+  const fecha=course&&course.fecha?fmtD(course.fecha):'';
+  const hora=course&&course.hora?course.hora:'';
+  const lugar=course&&course.lugar?course.lugar:'Tomauno Estudio';
+  const costo=course&&course.costo?course.costo:'';
+  const lines=[
+    '\u2705 Hola '+nombre+'! Tu inscripci\u00f3n qued\u00f3 registrada \uD83C\uDF89',
+    '',
+    '\uD83D\uDCDA '+title,
+    fecha?('\uD83D\uDCC5 '+fecha+(hora?' \u00b7 \u23F0 '+hora:'')):'',
+    '\uD83D\uDCCD '+lugar,
+    costo?('\uD83D\uDCB0 '+costo):'',
+    '',
+    'Para confirmar tu lugar abona y envi\u00e1 el comprobante a este WhatsApp.',
+    '\u00a1Te esperamos! \uD83D\uDE0A \u2014 Tomauno Estudio'
+  ].filter(l=>l!==undefined);
+  const encoded=lines.map(l=>l===''?'%0A':l.split('').map(ch=>ch.codePointAt(0)<=127?(ch===' '?'%20':(/[A-Za-z0-9\-_.~:,!?]/.test(ch)?ch:encodeURIComponent(ch))):ch).join('')).join('%0A');
+  return encoded;
+}
+
+// ═══ Confirmation to alumno for sessions ═══
+function buildConfirmAgMsg(nombre,course,slot){
+  const title=course?course.title:'la sesión';
+  const lugar=course&&course.lugar?course.lugar:'Tomauno Estudio';
+  const lines=[
+    '\u2705 Hola '+nombre+'! Tu turno qued\u00f3 reservado \uD83D\uDCF8',
+    '',
+    '\uD83D\uDCDA '+title,
+    '\u23F0 Horario: '+slot,
+    '\uD83D\uDCCD '+lugar,
+    '',
+    'Cualquier consulta respond\u00e9 este mensaje.',
+    '\u00a1Te esperamos! \uD83D\uDE0A \u2014 Tomauno Estudio'
+  ];
+  return lines.map(l=>l===''?'%0A':l.split('').map(ch=>ch.codePointAt(0)<=127?(ch===' '?'%20':(/[A-Za-z0-9\-_.~:,!?]/.test(ch)?ch:encodeURIComponent(ch))):ch).join('')).join('%0A');
+}
+
+function sendAllReminders(){
+  const cf2=document.getElementById('fPC').value;
+  const sc=cf2?courses.find(x=>x.id==cf2):null;
+  const cols=sc?(sc.pago==='inscmas'?[{key:'insc',label:'Inscripción'},...getCols(sc)]:[{key:'unico',label:'Pago'}]):[{key:'unico',label:'Pago'}];
+  const pending=regs.filter(r=>{
+    if(cf2&&r.courseId!=cf2)return false;
+    return cols.some(col=>!r.pago||!r.pago[col.key]);
+  });
+  if(!pending.length){showToast('success','✅ Sin pendientes','Todos los inscriptos están al día con los pagos.');return;}
+  // Open WA for each one sequentially — user clicks each manually
+  let links=pending.map(r=>{
+    const c=courses.find(x=>x.id===r.courseId);
+    const pendCols=cols.filter(col=>!r.pago||!r.pago[col.key]);
+    const label=pendCols.map(c=>c.label).join(', ');
+    const nombre=r.nombre.split(' ')[0];
+    const monto=c&&c.costoMes?c.costoMes:c&&c.costo?c.costo:'';
+    const lines=[
+      'Hola '+nombre+'! \uD83D\uDC4B',
+      'Ten\u00e9s pagos pendientes ('+label+') del curso:',
+      '\uD83D\uDCDA '+r.courseName,
+      monto?('\uD83D\uDCB0 '+monto):'',
+      '',
+      'Pod\u00e9s enviarnos el comprobante por este WhatsApp.',
+      '\u00a1Gracias! \u2014 Tomauno'
+    ].filter(Boolean);
+    const encoded=lines.map(l=>l===''?'%0A':l.split('').map(ch=>ch.codePointAt(0)<=127?(ch===' '?'%20':(/[A-Za-z0-9\-_.~:,!?]/.test(ch)?ch:encodeURIComponent(ch))):ch).join('')).join('%0A');
+    return {nombre:r.nombre,url:'https://wa.me/549'+r.wp+'?text='+encoded};
+  });
+  // Show a custom modal with all links
+  const html=links.map((l,i)=>`<a href="${l.url}" target="_blank" class="btn-wa btn-sm" style="display:flex;align-items:center;gap:6px;margin-bottom:.4rem;text-decoration:none;padding:8px 14px;font-size:.78rem">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    ${i+1}. ${l.nombre}
+  </a>`).join('');
+  cfConfirm('🔔',`${pending.length} alumno${pending.length!==1?'s':''} con pagos pendientes`,'Hacé clic en cada nombre para enviarle el recordatorio por WhatsApp:',()=>{});
+  // Override confirm body with links
+  setTimeout(()=>{
+    document.getElementById('cfMsg').innerHTML=`<div style="display:flex;flex-direction:column;gap:.3rem;margin-top:.75rem;max-height:300px;overflow-y:auto">${html}</div>`;
+    document.getElementById('cfOkBtn').style.display='none';
+    document.querySelector('.cfdialog-btns .btng').textContent='Cerrar';
+  },10);
+}
+function openPayReminder(regId,colKey,colLabel){
+  const r=regs.find(x=>x.id===regId);if(!r)return;
+  const c=courses.find(x=>x.id===r.courseId);
+  const nombre=r.nombre.split(' ')[0];
+  const monto=c&&c.costoMes?c.costoMes:c&&c.costo?c.costo:'';
+  const lines=[
+    'Hola '+nombre+'! \uD83D\uDC4B',
+    'Te recordamos que ten\u00e9s pendiente el pago de '+colLabel+' del curso:',
+    '\uD83D\uDCDA '+r.courseName,
+    monto?('\uD83D\uDCB0 '+monto):'',
+    '',
+    'Pod\u00e9s enviarnos el comprobante por este WhatsApp cuando lo abones.',
+    '\u00a1Muchas gracias! \u2014 Tomauno Estudio'
+  ].filter(Boolean);
+  const encoded=lines.map(l=>l===''?'%0A':l.split('').map(ch=>ch.codePointAt(0)<=127?(ch===' '?'%20':(/[A-Za-z0-9\-_.~:,!?]/.test(ch)?ch:encodeURIComponent(ch))):ch).join('')).join('%0A');
+  window.open('https://wa.me/549'+r.wp+'?text='+encoded,'_blank');
+}
+let testimonials=JSON.parse(localStorage.getItem('tu_tes4')||'[]');
+let waitlist=JSON.parse(localStorage.getItem('tu_wait4')||'[]');
+
+function saveExtra(){
+  localStorage.setItem('tu_gal4',JSON.stringify(gallery));
+  localStorage.setItem('tu_tes4',JSON.stringify(testimonials));
+  localStorage.setItem('tu_wait4',JSON.stringify(waitlist));
+}
+
+// ═══════════ GALERÍA ═══════════
+function renderGallery(){
+  gallery=JSON.parse(localStorage.getItem('tu_gal4')||'[]');
+  const grid=document.getElementById('galleryGrid');
+  if(!gallery.length){
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--mu);font-size:.88rem">Las fotos del estudio aparecerán acá. Agregálas desde el panel de administración.</div>`;
+    return;
+  }
+  grid.innerHTML=gallery.map((p,i)=>`
+    <div class="gallery-item" onclick="openLightbox('${p.url}')">
+      <img src="${p.url}" alt="${p.caption||'Tomauno Estudio'}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=gallery-item-ph>Imagen no disponible</div>'">
+      ${p.caption?`<div class="gallery-caption">${p.caption}</div>`:''}
+    </div>`).join('');
+}
+function renderGalleryAdmin(){
+  const grid=document.getElementById('galAdminGrid');
+  const empty=document.getElementById('galEmpty');
+  empty.style.display=gallery.length?'none':'block';
+  grid.innerHTML=gallery.map((p,i)=>`
+    <div class="gad-item">
+      <img src="${p.url}" alt="${p.caption||''}" onerror="this.src=''" loading="lazy">
+      <div class="gad-cap">${p.caption||'Sin descripción'}</div>
+      <button class="gad-del" onclick="delGalleryPhoto(${i})" title="Eliminar">✕</button>
+    </div>`).join('');
+}
+function addGalleryPhoto(){
+  const url=document.getElementById('galUrl').value.trim();
+  if(!url){showToast('warn','Error','Ingresá una URL de imagen.');return;}
+  const cap=document.getElementById('galCap').value.trim();
+  gallery.push({url,caption:cap,createdAt:Date.now()});
+  saveExtra();renderGallery();renderGalleryAdmin();
+  document.getElementById('galUrl').value='';document.getElementById('galCap').value='';
+  showToast('success','✅ Agregada','Foto publicada en la galería.');
+}
+function delGalleryPhoto(i){cfConfirm('🗑️','¿Eliminar esta foto?','Se quitará de la galería del estudio.',()=>{const g=gallery[i];if(g&&window.fbDeleteGallery)window.fbDeleteGallery(g);gallery.splice(i,1);saveExtra();renderGallery();renderGalleryAdmin();});}
+
+// ═══════════ TESTIMONIOS ═══════════
+function renderTestimonials(){
+  // Always reload from localStorage to catch data added in same session from admin
+  testimonials=JSON.parse(localStorage.getItem('tu_tes4')||'[]');
+  const grid=document.getElementById('testGrid');
+  if(!grid)return;
+  if(!testimonials.length){
+    grid.innerHTML=`<div class="test-empty"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>Los testimonios de tus alumnos aparecerán acá. Agregálos desde el panel de administración.</div>`;
+    return;
+  }
+  grid.innerHTML=testimonials.map((t,i)=>`
+    <div class="test-card">
+      <div class="test-stars">${[1,2,3,4,5].map(s=>`<span class="test-star${s<=t.stars?'':' empty'}">★</span>`).join('')}</div>
+      <p class="test-text">${t.text}</p>
+      <div class="test-author">
+        <div class="test-avatar">${t.avatar?`<img src="${t.avatar}" alt="${t.name}">`:`${t.name.charAt(0).toUpperCase()}`}</div>
+        <div>
+          <div class="test-name">${t.name}</div>
+          ${t.course?`<div class="test-course">${t.course}</div>`:''}
+          <div style="font-size:.7rem;color:var(--mu2);margin-top:2px">${t.date||''}</div>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function renderTestimonialsAdmin(){
+  const sel=document.getElementById('teCourse');
+  sel.innerHTML='<option value="">— Seleccioná un curso —</option>'+courses.map(c=>`<option value="${c.title}">${c.title}</option>`).join('');
+  // Pending from alumni
+  const pendEl=document.getElementById('pendingList');
+  const pendEmpty=document.getElementById('pendingEmpty');
+  const badge=document.getElementById('pendingBadge');
+  const pend=pendingTestimonials||[];
+  badge.style.display=pend.length?'inline-flex':'none';
+  badge.textContent=`⏳ ${pend.length} pendiente${pend.length!==1?'s':''}`;
+  pendEmpty.style.display=pend.length?'none':'block';
+  pendEl.innerHTML=pend.map(t=>`
+    <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.25);border-radius:5px;padding:.9rem 1rem">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.5rem">
+        <div>
+          <b style="font-size:.88rem">${t.name}</b> <span style="color:#f59e0b">${'★'.repeat(t.stars)}</span>
+          ${t.course?`<span style="font-size:.75rem;color:var(--mu);margin-left:.5rem">— ${t.course}</span>`:''}
+        </div>
+        <span style="font-size:.72rem;color:var(--mu2)">${t.date}</span>
+      </div>
+      <p style="font-size:.83rem;color:var(--mu);font-style:italic;margin-bottom:.75rem">"${t.text}"</p>
+      ${t.ig?`<p style="font-size:.75rem;color:var(--mu2);margin-bottom:.75rem">Instagram: ${t.ig}</p>`:''}
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+        <button class="ab pr" onclick="approvePending(${t.id})">✅ Publicar</button>
+        <button class="ab dl" onclick="rejectPending(${t.id})">🗑️ Rechazar</button>
+      </div>
+    </div>`).join('');
+  // Published
+  const list=document.getElementById('testAdminList');
+  const empty=document.getElementById('testEmpty');
+  empty.style.display=testimonials.length?'none':'block';
+  list.innerHTML=testimonials.map((t,i)=>`
+    <div style="background:var(--g3);border:1px solid var(--br2);border-radius:4px;padding:.85rem 1rem;display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem;flex-wrap:wrap">
+      <div style="flex:1;min-width:180px">
+        <div style="font-weight:700;font-size:.88rem">${t.name} <span style="color:var(--red)">${'★'.repeat(t.stars)}</span></div>
+        <div style="font-size:.78rem;color:var(--mu);margin-top:3px;font-style:italic">"${t.text.substring(0,80)}${t.text.length>80?'...':''}"</div>
+        ${t.course?`<div style="font-size:.72rem;color:var(--mu2);margin-top:3px">${t.course}</div>`:''}
+      </div>
+      <button class="ab dl" onclick="delTestimonial(${i})">Eliminar</button>
+    </div>`).join('');
+}
+function addTestimonial(){
+  const name=document.getElementById('teName').value.trim();
+  const text=document.getElementById('teText').value.trim();
+  if(!name||!text){showToast('warn','Requerido','Completá nombre y testimonio.');return;}
+  testimonials.unshift({
+    name,text,
+    course:document.getElementById('teCourse').value,
+    stars:parseInt(document.getElementById('teStars').value)||5,
+    avatar:document.getElementById('teAvatar').value.trim(),
+    date:new Date().toLocaleDateString('es-AR'),
+    createdAt:Date.now()
+  });
+  saveExtra();renderTestimonials();renderTestimonialsAdmin();
+  ['teName','teAvatar','teText'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('teStars').value='5';
+  showToast('success','✅ Publicado','Testimonio agregado.');
+}
+function delTestimonial(i){
+  cfConfirm('🗑️','¿Eliminar testimonio?','Esta acción no se puede deshacer.',()=>{
+    testimonials.splice(i,1);saveExtra();renderTestimonials();renderTestimonialsAdmin();
+  });
+}
+
+// ═══════════ CUSTOM CONFIRM DIALOG ═══════════
+let _cfResolve=null;
+function cfConfirm(icon,title,msg,onOk,okLabel='Eliminar',okClass='btn dl'){
+  document.getElementById('cfIcon').textContent=icon||'⚠️';
+  document.getElementById('cfTitle').textContent=title;
+  document.getElementById('cfMsg').textContent=msg;
+  const btn=document.getElementById('cfOkBtn');
+  btn.textContent=okLabel;
+  btn.className='btn btn-sm '+okClass;
+  _cfResolve=onOk;
+  document.getElementById('cfOv').classList.add('open');
+}
+function cfResolve(ok){
+  document.getElementById('cfOv').classList.remove('open');
+  if(ok&&_cfResolve)_cfResolve();
+  _cfResolve=null;
+}
+
+// ═══════════ ALUMNI TESTIMONIAL (público) ═══════════
+let pendingTestimonials=JSON.parse(localStorage.getItem('tu_ptes4')||'[]');
+function savePending(){localStorage.setItem('tu_ptes4',JSON.stringify(pendingTestimonials));}
+let alumniStars=5;
+let alumniCourseId=null;
+
+function openAlumni(courseId){
+  alumniStars=5;alumniCourseId=courseId||null;
+  setStar(5);
+  const c=courseId?courses.find(x=>x.id===courseId):null;
+  document.getElementById('alumniCib').innerHTML=c
+    ?`<div class="cib-t">${c.title}</div>`
+    :`<div style="font-size:.84rem;color:var(--mu);margin-bottom:.5rem">Seleccioná el curso que realizaste:</div>
+      <select id="alCourse" style="background:var(--g3);border:1px solid var(--br2);color:var(--w);padding:8px 12px;border-radius:3px;font-family:var(--fb);font-size:.86rem;outline:none;width:100%">
+        <option value="">— Seleccioná —</option>
+        ${courses.map(c=>`<option value="${c.title}">${c.title}</option>`).join('')}
+        <option value="General">Experiencia general con el estudio</option>
+      </select>`;
+  document.getElementById('alumniBody').style.display='block';
+  document.getElementById('alumniOk').style.display='none';
+  ['alN','alIG','alAvatar','alText'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('ovAlumni').classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>{const el=document.getElementById('alN');if(el)el.focus();},150);
+}
+function closeAlumni(){document.getElementById('ovAlumni').classList.remove('open');document.body.style.overflow='';}
+function setStar(n){
+  alumniStars=n;
+  document.querySelectorAll('.star-btn').forEach(btn=>{
+    btn.classList.toggle('active',parseInt(btn.dataset.v)<=n);
+  });
+}
+function submitAlumni(){
+  const name=document.getElementById('alN').value.trim();
+  const text=document.getElementById('alText').value.trim();
+  if(!name){showToast('warn','Nombre requerido','¿Cómo te llamás?');return;}
+  if(!text||text.length<15){showToast('warn','Muy corto','Contanos un poco más — al menos 15 caracteres.');return;}
+  const courseEl=document.getElementById('alCourse');
+  const courseName=alumniCourseId
+    ?(courses.find(x=>x.id===alumniCourseId)?.title||'')
+    :(courseEl?courseEl.value:'');
+  pendingTestimonials.push({
+    id:Date.now(),name,text,
+    course:courseName,
+    stars:alumniStars,
+    avatar:document.getElementById('alAvatar').value.trim(),
+    ig:document.getElementById('alIG').value.trim(),
+    date:new Date().toLocaleDateString('es-AR'),
+    createdAt:Date.now()
+  });
+  savePending();
+  document.getElementById('alumniBody').style.display='none';
+  document.getElementById('alumniOk').style.display='block';
+  // Notify admin with ping sound + visual — no WA so alumni feel comfortable
+  showPing('Nuevo testimonio pendiente de revisión','');
+  bip();
+}
+function approvePending(id){
+  const idx=pendingTestimonials.findIndex(t=>t.id===id);
+  if(idx<0)return;
+  const t=pendingTestimonials.splice(idx,1)[0];
+  testimonials.unshift(t);
+  savePending();saveExtra();
+  if(window.fbApprovePending)window.fbApprovePending(t);
+  renderTestimonials();renderTestimonialsAdmin();
+  showToast('success','✅ Publicado','El testimonio fue aprobado y publicado.');
+}
+function rejectPending(id){
+  cfConfirm('🗑️','¿Rechazar testimonio?','Se eliminará sin publicar.',()=>{
+    const t=pendingTestimonials.find(x=>x.id===id);
+    if(t&&window.fbRejectPending)window.fbRejectPending(t);
+    pendingTestimonials=pendingTestimonials.filter(t=>t.id!==id);
+    savePending();renderTestimonialsAdmin();
+  });
+}
+
+// ═══════════ LISTA DE ESPERA ═══════════
+let selWaitC=null;
+function openWait(id){
+  selWaitC=id;
+  const c=courses.find(x=>x.id===id);if(!c)return;
+  document.getElementById('waitCib').innerHTML=`<div class="cib-t">${c.title}</div><div class="cib-ch">${c.fecha?`<span class="chip" style="font-size:.7rem">${fmtD(c.fecha)}</span>`:''}${c.hora?`<span class="chip" style="font-size:.7rem">${c.hora}</span>`:''}</div>`;
+  document.getElementById('waitBody').style.display='block';
+  document.getElementById('waitOk').style.display='none';
+  ['wN','wWP','wIG'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('ovWait').classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>{const el=document.getElementById('wN');if(el)el.focus();},150);
+}
+function closeWait(){document.getElementById('ovWait').classList.remove('open');document.body.style.overflow='';selWaitC=null;}
+function submitWait(){
+  const n=document.getElementById('wN').value.trim();
+  const w=document.getElementById('wWP').value.trim();
+  if(!n){showToast('warn','Nombre requerido','Completá tu nombre.');return;}
+  if(!w||w.replace(/\D/g,'').length<8){showToast('warn','WhatsApp inválido','Ingresá al menos 8 dígitos.');return;}
+  const c=courses.find(x=>x.id===selWaitC);
+  waitlist.push({id:Date.now(),courseId:selWaitC,courseName:c?c.title:'',nombre:n,wp:w,ig:document.getElementById('wIG').value.trim(),fecha:new Date().toLocaleDateString('es-AR'),createdAt:Date.now()});
+  saveExtra();
+  document.getElementById('waitBody').style.display='none';
+  document.getElementById('waitOk').style.display='block';
+  const lines=['\u23F3 NUEVA LISTA DE ESPERA','\uD83D\uDCDA Curso: '+(c?c.title:''),'\uD83D\uDC64 Nombre: '+n,'\uD83D\uDCF1 WP: '+w];
+  if(document.getElementById('wIG').value.trim()) lines.push('\uD83D\uDCF8 IG: '+document.getElementById('wIG').value.trim());
+  const encoded=lines.map(l=>l.split('').map(ch=>ch.codePointAt(0)<=127?(ch===' '?'%20':encodeURIComponent(ch)):ch).join('')).join('%0A');
+  setTimeout(()=>window.open('https://wa.me/5493764354522?text='+encoded,'_blank'),2500);
+}
+
+// isFull helper
+function isFull(c){
+  if(!c.cupos||c.cupos==='')return false;
+  return regs.filter(r=>r.courseId===c.id).length>=parseInt(c.cupos);
+}
+
+// ═══════════ UPDATE atab ═══════════
+function atab(n,btn){
+  document.querySelectorAll('.atab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.atc').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('t-'+n).classList.add('active');
+  if(n==='gal')renderGalleryAdmin();
+  if(n==='test')renderTestimonialsAdmin();
+  renderAdminDash();
+}
+
+// ═══════════ INIT ═══════════
+// Reload all data fresh from localStorage (in case data was saved by a previous session)
+courses=JSON.parse(localStorage.getItem('tu_c4')||'[]');
+regs=JSON.parse(localStorage.getItem('tu_r4')||'[]');
+slotData=JSON.parse(localStorage.getItem('tu_s4')||'{}');
+interested=JSON.parse(localStorage.getItem('tu_int4')||'{}');
+gallery=JSON.parse(localStorage.getItem('tu_gal4')||'[]');
+testimonials=JSON.parse(localStorage.getItem('tu_tes4')||'[]');
+waitlist=JSON.parse(localStorage.getItem('tu_wait4')||'[]');
+pendingTestimonials=JSON.parse(localStorage.getItem('tu_ptes4')||'[]');
+renderCourses();
+renderServices();
+renderGallery();
+renderTestimonials();
+
+// Poll nuevos regs
+let _lc=regs.length;
+setInterval(()=>{
+  const r2=JSON.parse(localStorage.getItem('tu_r4')||'[]');
+  if(r2.length>_lc){
+    const nuevo=r2[r2.length-1];
+    showPing(nuevo?.nombre,nuevo?.courseName);bip();
+    _lc=r2.length;regs=r2;renderCourses();
+    if(document.getElementById('apanel').style.display==='block'){renderIns();renderPagos();}
+  }
+},12000);
+</script>
+</body>
+</html>
