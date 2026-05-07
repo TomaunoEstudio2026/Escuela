@@ -347,6 +347,11 @@ section{padding:4.5rem 1.5rem}
 .waf svg{width:24px;height:24px;fill:#fff}
 .waf-tip{position:absolute;left:58px;background:rgba(37,211,102,.95);color:#fff;padding:5px 11px;border-radius:3px;font-size:.7rem;font-weight:700;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
 .waf:hover .waf-tip{opacity:1}
+/* ── COURSE PERMALINK ── */
+.course-link-box{background:var(--g3);border:1px solid var(--br2);border-radius:4px;padding:.6rem .85rem;display:flex;align-items:center;gap:.5rem;margin-top:.75rem;cursor:pointer;transition:border-color .2s}
+.course-link-box:hover{border-color:var(--red)}
+.course-link-box input{background:none;border:none;color:var(--mu);font-size:.74rem;font-family:var(--fb);flex:1;outline:none;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.link-copied{font-size:.7rem;color:#25d366;font-weight:700;display:none;margin-left:.5rem}
 
 /* FOOTER */
 footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1.5rem}
@@ -445,6 +450,7 @@ footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1
 <div class="mmenu" id="mmenu">
   <a href="#" onclick="showMain('cursos');toggleMob()">Cursos &amp; Capacitaciones</a>
   <a href="#" onclick="showMain('servicios');toggleMob()">Servicios del Estudio</a>
+  <a href="#" onclick="showMain('eventos');toggleMob()">🎪 Eventos de la Ciudad</a>
   <a href="#sec-info" onclick="toggleMob()">El estudio</a>
   <a href="#sec-faq" onclick="toggleMob()">Preguntas Frecuentes</a>
   <a href="https://instagram.com/tomaunomodels" target="_blank" onclick="toggleMob()">Instagram @tomaunomodels</a>
@@ -467,10 +473,11 @@ footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1
       </div>
     </div>
 
-    <!-- TABS CURSOS / SERVICIOS -->
+    <!-- TABS CURSOS / SERVICIOS / EVENTOS -->
     <div class="main-tabs" style="position:static;margin-bottom:1.75rem">
       <button class="mtab active" id="tabCursos" onclick="showMain('cursos')">Cursos &amp; Capacitaciones</button>
-      <button class="mtab" id="tabServicios" onclick="showMain('servicios')">Servicios</button>
+      <button class="mtab" id="tabServicios" onclick="showMain('servicios')">Servicios del Estudio</button>
+      <button class="mtab" id="tabEventos" onclick="showMain('eventos')">🎪 Eventos de la Ciudad</button>
     </div>
 
     <!-- CURSOS -->
@@ -493,6 +500,49 @@ footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1
       <div class="drag-hint"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M8 9l4-4 4 4M16 15l-4 4-4-4"/></svg>Arrastrá para ordenar</div>
       <div class="services-grid" id="sgrid"></div>
     </div>
+
+    <!-- EVENTOS DE LA CIUDAD -->
+    <div class="section-view" id="view-eventos">
+      <div style="background:linear-gradient(135deg,rgba(232,20,28,.08),rgba(59,130,246,.06));border:1px solid rgba(232,20,28,.2);border-radius:8px;padding:1.5rem;margin-bottom:2rem;text-align:center">
+        <div style="font-size:1.8rem;margin-bottom:.5rem">🎪</div>
+        <h3 style="font-family:var(--fd);font-size:1.6rem;letter-spacing:2px;margin-bottom:.5rem">Eventos &amp; Cursos de la Ciudad</h3>
+        <p style="font-size:.85rem;color:var(--mu);max-width:500px;margin:0 auto">Organizadores de la ciudad pueden gestionar sus inscripciones acá.<br>¿Tenés un evento? <a href="https://wa.me/5493764354522?text=Hola%20Javier!%20Me%20interesa%20gestionar%20las%20inscripciones%20de%20mi%20evento%20en%20Tomauno" target="_blank" style="color:var(--red)">Contactanos →</a></p>
+      </div>
+      <!-- Acceso cliente externo -->
+      <div style="background:var(--g2);border:1px solid var(--br2);border-radius:6px;padding:1.25rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+        <div style="flex:1;min-width:200px">
+          <div style="font-family:var(--fd);font-size:1.1rem;letter-spacing:1px;margin-bottom:.35rem">👤 Acceso para organizadores</div>
+          <div style="font-size:.8rem;color:var(--mu)">Ingresá tu clave para ver los inscriptos de tus eventos.</div>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+          <input type="password" id="evtClientPass" placeholder="Tu clave de organizador" style="background:var(--g3);border:1px solid var(--br2);color:var(--w);padding:8px 12px;border-radius:3px;font-family:var(--fb);font-size:.86rem;outline:none;min-width:200px" onkeydown="if(event.key==='Enter')clientLogin()">
+          <button class="btn btn-sm" onclick="clientLogin()">Ingresar</button>
+        </div>
+      </div>
+      <!-- Panel cliente logueado -->
+      <div id="clientPanel" style="display:none">
+        <div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:6px;padding:1rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem">
+          <div>
+            <b id="clientOrgName" style="font-family:var(--fd);font-size:1.2rem;letter-spacing:1px"></b>
+            <div id="clientEvtSelector" style="margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap"></div>
+          </div>
+          <button class="ab" onclick="clientLogout()">Salir</button>
+        </div>
+        <div class="erow">
+          <button class="ab" onclick="clientExpCSV()">📥 Exportar CSV</button>
+          <button class="ab" onclick="clientExpPDF()">📄 Exportar PDF</button>
+          <button class="ab wa" onclick="clientGrupoWA()">💬 Crear grupo WA</button>
+        </div>
+        <div class="tw"><table class="at" id="clientTable" style="min-width:500px">
+          <thead><tr><th>#</th><th>Nombre</th><th>Edad</th><th>DNI</th><th>WhatsApp</th><th>Instagram</th><th>Fecha</th></tr></thead>
+          <tbody id="clientBody"></tbody>
+        </table></div>
+        <div id="clientEmpty" style="text-align:center;padding:2rem;color:var(--mu)">Sin inscriptos aún.</div>
+      </div>
+      <!-- Lista pública de eventos -->
+      <div class="search-info" id="evtInfo"></div>
+      <div class="cgrid" id="evtGrid"></div>
+    </div>
   </div>
 </div>
 
@@ -510,17 +560,17 @@ footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1
       <div class="icard">
         <div class="iico"><svg viewBox="0 0 24 24" stroke-width="1.8" fill="none"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11 11 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498A1 1 0 0121 19v1a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
         <h3>Contacto</h3>
-        <p>WhatsApp: <a href="https://wa.me/5493764354522" target="_blank">+549 3764 354522</a><br>Instagram: <a href="https://instagram.com/tomaunomodels" target="_blank">@tomaunomodels</a></p>
+        <p>WhatsApp: <a href="https://wa.me/5493764354522" target="_blank">+549 3764 354522</a><br>Instagram: <a href="https://instagram.com/tomaunomodels" target="_blank">@tomaunomodels</a><br>Instagram: <a href="https://instagram.com/tomaunoestudio" target="_blank">@tomaunoestudio</a></p>
       </div>
       <div class="icard">
         <div class="iico"><svg viewBox="0 0 24 24" stroke-width="1.8" fill="none"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
         <h3>Horarios</h3>
-        <p>Los horarios varían según el evento y el servicio. Consultá a Javier por WhatsApp para coordinar.</p>
+        <p>Los horarios varían según el evento y el servicio.<br><br>📱 Coordiná con Javier: <a href="https://wa.me/5493764354522" target="_blank">+549 3764 354522</a></p>
       </div>
       <div class="icard">
         <div class="iico"><svg viewBox="0 0 24 24" stroke-width="1.8" fill="none"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div>
         <h3>El espacio</h3>
-        <p>10m x 5m. Ciclorama blanco, 9 fondos infinitos, iluminación profesional, sector maquillaje, cambiador, baño, WiFi, AC, TV plasma.</p>
+        <p>10m x 5m. Ciclorama blanco, 9 fondos infinitos, iluminación profesional, sector maquillaje, cambiador, baño, WiFi, AC, TV plasma, estufa, espejo.<br><br>También contamos con: perchero, bebedero de agua fría y caliente, heladera, freezer y todo lo necesario para que te sientas cómodo durante tu producción.</p>
       </div>
     </div>
     <!-- PREGUNTAS FRECUENTES dentro de El Estudio -->
@@ -576,6 +626,7 @@ footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1
           <button class="btn btn-sm" onclick="login()">Ingresar</button>
         </div>
         <button class="ab" id="aLOut" style="display:none" onclick="logout()">Salir</button>
+        <button class="ab" id="appsBtn" style="display:none;border-color:rgba(139,92,246,.4);color:#a78bfa" onclick="openApps()">🚀 Mis Apps</button>
       </div>
     </div>
     <div class="apanel" id="apanel">
@@ -587,7 +638,9 @@ footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1
         <button class="atab" onclick="atab('pag',this)">💰 Pagos</button>
         <button class="atab" onclick="atab('age',this)">📅 Agenda</button>
         <button class="atab" onclick="atab('svc',this)">🏠 Servicios</button>
+        <button class="atab" onclick="atab('evt',this)">🎪 Eventos</button>
         <button class="atab" onclick="atab('gal',this)">📸 Galería</button>
+        <button class="atab" onclick="atab('apps',this)">🚀 Apps</button>
         <button class="atab" onclick="atab('test',this)">⭐ Testimonios <span class="tab-badge amber" id="tabBadgeTest" style="display:none">0</span></button>
       </div>
 
@@ -704,6 +757,60 @@ footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1
         </div>
       </div>
 
+      <!-- EVENTOS ADMIN -->
+      <div class="atc" id="t-evt">
+        <h3 style="font-family:var(--fd);font-size:1.35rem;letter-spacing:1px;margin-bottom:1.1rem">🎪 Agregar nuevo evento externo</h3>
+        <p style="font-size:.83rem;color:var(--mu);margin-bottom:1.25rem">Eventos de otros organizadores que usan la plataforma Tomauno para gestionar sus inscripciones.</p>
+        <div class="fgrid">
+          <div class="fg" style="grid-column:1/-1"><label>Título del evento *</label><input type="text" id="evT" placeholder="Ej: Taller de Macramé — Centro Cultural"></div>
+          <div class="fg" style="grid-column:1/-1"><label>Descripción</label><textarea id="evD" rows="3" placeholder="Descripción del evento..."></textarea></div>
+          <div class="fg"><label>Organizador / Nombre</label><input type="text" id="evOrg" placeholder="Ej: María García"></div>
+          <div class="fg"><label>Instagram del organizador</label><input type="text" id="evOrgIG" placeholder="@usuario"></div>
+          <div class="fg"><label>WhatsApp del organizador</label><input type="text" id="evOrgWP" placeholder="3764xxxxxx"></div>
+          <div class="fg"><label>Fecha</label><input type="date" id="evF"></div>
+          <div class="fg"><label>Hora</label><input type="text" id="evH" placeholder="18:00hs"></div>
+          <div class="fg"><label>Lugar</label><input type="text" id="evL" placeholder="Dirección del evento"></div>
+          <div class="fg"><label>Costo de inscripción</label><input type="text" id="evC" placeholder="$5.000"></div>
+          <div class="fg"><label>Cupos</label><input type="number" id="evCupos" placeholder="30" min="1"></div>
+          <div class="fg"><label>URL imagen/flyer</label><input type="url" id="evImg" placeholder="https://i.imgur.com/..."></div>
+          <div class="fg"><label>Link grupo WhatsApp (del organizador)</label><input type="url" id="evWAGroup" placeholder="https://chat.whatsapp.com/..."></div>
+          <div class="fg"><label>Clave de acceso para el organizador *</label><input type="text" id="evPass" placeholder="Ej: taller2025 (el org. la usa para ver sus inscriptos)"></div>
+          <div class="fg"><label>Tipo</label>
+            <select id="evTipo">
+              <option value="normal">Inscripción libre</option>
+              <option value="agenda">Con agenda de turnos</option>
+            </select>
+          </div>
+          <div id="evAgendaOpts" style="display:none;grid-column:1/-1">
+            <div class="fgrid">
+              <div class="fg"><label>Hora inicio turnos</label><input type="time" id="evAS" value="09:00"></div>
+              <div class="fg"><label>Hora fin</label><input type="time" id="evAE" value="22:00"></div>
+              <div class="fg"><label>Minutos por turno</label><input type="number" id="evAD" value="30" min="10" max="180"></div>
+            </div>
+          </div>
+        </div>
+        <button class="btn" onclick="addEvento()" style="margin-top:.5rem">Publicar evento</button>
+
+        <h3 style="font-family:var(--fd);font-size:1.25rem;letter-spacing:1px;margin:2rem 0 .75rem">Eventos existentes</h3>
+        <div id="evtAdminList" style="display:flex;flex-direction:column;gap:.6rem"></div>
+      </div>
+
+      <!-- GALERÍA ADMIN -->
+      <!-- APPS ADMIN -->
+      <div class="atc" id="t-apps">
+        <h3 style="font-family:var(--fd);font-size:1.35rem;letter-spacing:1px;margin-bottom:1.1rem">🚀 Mis Aplicaciones Web</h3>
+        <p style="font-size:.83rem;color:var(--mu);margin-bottom:1.5rem">Administrá tus apps. Aparecen en el Hub de Apps accesible desde el panel de admin.</p>
+        <div class="fgrid" style="max-width:600px">
+          <div class="fg"><label>Nombre de la app *</label><input type="text" id="appName" placeholder="Ej: Cronómetro de Sesiones"></div>
+          <div class="fg"><label>Ícono (emoji)</label><input type="text" id="appIco" placeholder="⏱️" style="font-size:1.4rem;text-align:center;width:70px"></div>
+          <div class="fg" style="grid-column:1/-1"><label>URL *</label><input type="url" id="appUrl" placeholder="https://mi-app.vercel.app"></div>
+          <div class="fg" style="grid-column:1/-1"><label>Descripción breve</label><input type="text" id="appDesc" placeholder="Ej: Gestión de tiempos de sesión fotográfica"></div>
+        </div>
+        <button class="btn btn-sm" onclick="addApp()" style="margin-top:.5rem">Agregar app</button>
+        <h3 style="font-family:var(--fd);font-size:1.25rem;letter-spacing:1px;margin:2rem 0 .75rem">Apps registradas</h3>
+        <div id="appsAdminList" style="display:flex;flex-direction:column;gap:.6rem"></div>
+      </div>
+
       <!-- GALERÍA ADMIN -->
       <div class="atc" id="t-gal">
         <h3 style="font-family:var(--fd);font-size:1.35rem;letter-spacing:1px;margin-bottom:1.1rem">Agregar foto al estudio</h3>
@@ -761,7 +868,7 @@ footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1
   <div class="fi-in">
     <div class="ft">
       <div class="fb-brand"><div class="fb-logo">Toma<em>uno</em></div><p>Estudio Fotográfico &amp; Modelaje<br>Posadas, Misiones</p></div>
-      <div class="fc"><h4>Navegación</h4><a href="#" onclick="showMain('cursos')">Cursos</a><a href="#" onclick="showMain('servicios')">Servicios</a><a href="#sec-gallery">Galería</a><a href="#sec-testimonials">Testimonios</a><a href="#sec-info">El estudio</a><a href="#sec-faq">Preguntas Frecuentes</a></div>
+      <div class="fc"><h4>Navegación</h4><a href="#" onclick="showMain('cursos')">Cursos</a><a href="#" onclick="showMain('servicios')">Servicios</a><a href="#" onclick="showMain('eventos')">🎪 Eventos</a><a href="#sec-gallery">Galería</a><a href="#sec-testimonials">Testimonios</a><a href="#sec-info">El estudio</a><a href="#sec-faq">Preguntas Frecuentes</a></div>
       <div class="fc"><h4>Contacto</h4><a href="https://wa.me/5493764354522" target="_blank">WhatsApp Javier</a><a href="https://instagram.com/tomaunomodels" target="_blank">@tomaunomodels</a><a href="https://maps.app.goo.gl/3KNXZ3oeknREZwM8A" target="_blank">Cómo llegar</a></div>
     </div>
     <div class="fb-bot">
@@ -967,6 +1074,73 @@ footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1
   </div>
 </div>
 
+<!-- EDIT TESTIMONIAL MODAL -->
+<div class="ov" id="ovEditTest" onclick="if(event.target===this)closeEditTest()">
+  <div class="modal modal-sm">
+    <div class="mh"><div><div class="mt">Editar testimonio</div><div class="ms">Modificá el contenido del testimonio</div></div><button class="mx" onclick="closeEditTest()">✕</button></div>
+    <div class="mb">
+      <div class="fgrid">
+        <div class="fg"><label>Nombre</label><input type="text" id="etName" placeholder="Nombre del alumno"></div>
+        <div class="fg"><label>Instagram</label><input type="text" id="etIG" placeholder="@usuario"></div>
+        <div class="fg"><label>Foto (URL)</label><input type="url" id="etAvatar" placeholder="https://i.imgur.com/..."></div>
+        <div class="fg"><label>Estrellas</label>
+          <select id="etStars"><option value="5">⭐⭐⭐⭐⭐</option><option value="4">⭐⭐⭐⭐</option><option value="3">⭐⭐⭐</option><option value="2">⭐⭐</option><option value="1">⭐</option></select>
+        </div>
+        <div class="fg" style="grid-column:1/-1"><label>Testimonio *</label><textarea id="etText" rows="4"></textarea></div>
+        <div class="fg"><label>Curso</label><select id="etCourse"></select></div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="btng btn-sm" onclick="closeEditTest()">Cancelar</button>
+      <button class="btn btn-sm" onclick="saveEditTest()">Guardar cambios</button>
+    </div>
+  </div>
+</div>
+
+<!-- EDIT EVENTO MODAL -->
+<div class="ov" id="ovEditEvt" onclick="if(event.target===this)closeEditEvt()">
+  <div class="modal">
+    <div class="mh"><div><div class="mt">Editar evento</div><div class="ms">Modificá los datos del evento</div></div><button class="mx" onclick="closeEditEvt()">✕</button></div>
+    <div class="mb">
+      <div class="fgrid">
+        <div class="fg" style="grid-column:1/-1"><label>Título *</label><input type="text" id="eeT" placeholder="Título del evento"></div>
+        <div class="fg" style="grid-column:1/-1"><label>Descripción</label><textarea id="eeD" rows="3"></textarea></div>
+        <div class="fg"><label>Organizador</label><input type="text" id="eeOrg"></div>
+        <div class="fg"><label>Instagram org.</label><input type="text" id="eeOrgIG" placeholder="@usuario"></div>
+        <div class="fg"><label>WhatsApp org.</label><input type="text" id="eeOrgWP" placeholder="3764xxxxxx"></div>
+        <div class="fg"><label>Fecha</label><input type="date" id="eeF"></div>
+        <div class="fg"><label>Hora</label><input type="text" id="eeH"></div>
+        <div class="fg"><label>Lugar</label><input type="text" id="eeL"></div>
+        <div class="fg"><label>Costo</label><input type="text" id="eeC"></div>
+        <div class="fg"><label>Cupos</label><input type="number" id="eeCupos" min="1"></div>
+        <div class="fg"><label>URL imagen/flyer</label><input type="url" id="eeImg" placeholder="https://i.imgur.com/..."></div>
+        <div class="fg"><label>Link grupo WhatsApp</label><input type="url" id="eeWAGroup"></div>
+        <div class="fg"><label>Clave del organizador</label><input type="text" id="eePass"></div>
+        <div class="fg"><label>Estado</label>
+          <select id="eeEstado"><option value="active">Activo</option><option value="soon">Próximamente</option><option value="finished">Finalizado</option></select>
+        </div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="btng btn-sm" onclick="closeEditEvt()">Cancelar</button>
+      <button class="btn btn-sm" onclick="saveEditEvt()">Guardar cambios</button>
+    </div>
+  </div>
+</div>
+
+<!-- APPS HUB MODAL -->
+<div class="ov" id="ovApps" onclick="if(event.target===this)closeApps()">
+  <div class="modal" style="max-width:700px">
+    <div class="mh">
+      <div><div class="mt">🚀 Apps de Tomauno</div><div class="ms">Herramientas y aplicaciones del estudio</div></div>
+      <button class="mx" onclick="closeApps()">✕</button>
+    </div>
+    <div class="mb">
+      <div id="appsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem"></div>
+    </div>
+  </div>
+</div>
+
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <img id="lbImg" src="" alt="Flyer">
@@ -978,12 +1152,12 @@ footer{background:var(--bk);border-top:1px solid var(--br);padding:3rem 1.5rem 1
 </div>
 
 <!-- FIREBASE -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getDatabase, ref, onValue, set, push, remove, update, get, onDisconnect, serverTimestamp }
-  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-
-const fbApp = initializeApp({
+<!-- Firebase compat SDK (no module needed, works inline) -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+<script>
+// ═══════════ FIREBASE INIT ═══════════
+const fbApp = firebase.initializeApp({
   apiKey: "AIzaSyBtTGAJ1X3yrvj-Dx-fsNmfe_Zw09yfrZo",
   authDomain: "medicamentos-8352a.firebaseapp.com",
   databaseURL: "https://medicamentos-8352a-default-rtdb.firebaseio.com",
@@ -992,46 +1166,104 @@ const fbApp = initializeApp({
   messagingSenderId: "828746191058",
   appId: "1:828746191058:web:00f74a7502f7ce2121dd0b"
 });
-const db = getDatabase(fbApp);
+const fbDb = firebase.database();
+const fbRef = (path) => fbDb.ref(path);
+let __fbReady = false;
 
-// ── Connection indicator ──
-const connRef = ref(db, '.info/connected');
-onValue(connRef, snap => {
-  const online = snap.val() === true;
-  window.__fbOnline = online;
+// ── Connection indicator with timeout fallback ──
+function setDot(online, msg){
   const dot = document.getElementById('connDot');
   const label = document.getElementById('connLabel');
-  if(dot){ dot.style.background = online ? '#25d366' : '#f59e0b'; dot.style.boxShadow = online ? '0 0 8px #25d366' : '0 0 8px #f59e0b'; }
-  if(label){ label.textContent = online ? 'Online' : 'Offline'; label.style.color = online ? '#25d366' : '#f59e0b'; }
+  const color = online===true ? '#25d366' : online===false ? '#e8141c' : '#f59e0b';
+  if(dot){ dot.style.background=color; dot.style.boxShadow=`0 0 8px ${color}88`; }
+  if(label){ label.textContent=msg||''; label.style.color=color; }
+}
+
+// Start as connecting
+setDot(null, 'Conectando...');
+
+// Timeout: if no response in 8s, assume blocked (rules issue)
+const fbTimeout = setTimeout(()=>{
+  if(!__fbReady){
+    setDot(false,'Sin conexión');
+    console.warn('%c⚠️ Firebase no conectó. Verificá las reglas en Firebase Console → Realtime Database → Rules → cambiá a: {"rules":{".read":true,".write":true}}','color:#f59e0b;font-weight:bold');
+  }
+}, 8000);
+
+fbDb.ref('.info/connected').on('value', snap => {
+  const online = snap.val() === true;
+  window.__fbOnline = online;
+  if(online){
+    clearTimeout(fbTimeout);
+    setDot(true, 'Online ●');
+    if(!__fbReady){ __fbReady = true; fbSeedIfEmpty(); }
+  } else {
+    if(__fbReady) setDot(false, 'Offline');
+  }
 });
+
+// Test write to catch permission errors
+setTimeout(()=>{
+  fbDb.ref('tomauno/__ping').set(Date.now()).then(()=>{
+    setDot(true,'Online ●');
+    clearTimeout(fbTimeout);
+    if(!__fbReady){ __fbReady=true; fbSeedIfEmpty(); }
+  }).catch(err=>{
+    clearTimeout(fbTimeout);
+    setDot(false,'Sin permisos');
+    console.error('%c🔥 Firebase: Sin permisos de escritura. Actualizá las reglas en Firebase Console.','color:#E8141C;font-weight:bold');
+    console.log('Reglas necesarias:\n{\n  "rules": {\n    ".read": true,\n    ".write": true\n  }\n}');
+  });
+}, 3000);
 
 // ── Helpers ──
-function objToArr(obj){ if(!obj) return []; return Object.keys(obj).map(k=>({...obj[k], _fbKey:k})); }
+function fbObjToArr(obj){ if(!obj) return []; return Object.keys(obj).map(k=>({...obj[k], _fbKey:k})); }
 
-// ── Expose FB functions to global scope ──
-window.FB = { db, ref, onValue, set, push, remove, update, get, objToArr };
+// ── Seed Firebase if empty (first time) ──
+function fbSeedIfEmpty(){
+  fbDb.ref('tomauno/cursos').once('value', snap => {
+    if(!snap.val() && window.courses && window.courses.length){
+      window.courses.forEach(c => {
+        const data = {...c}; delete data._fbKey;
+        fbDb.ref('tomauno/cursos/'+c.id).set(data);
+      });
+    }
+  });
+  fbDb.ref('tomauno/servicios').once('value', snap => {
+    if(!snap.val() && window.services && window.services.length){
+      window.services.forEach(s => {
+        const data = {...s}; delete data._fbKey;
+        fbDb.ref('tomauno/servicios/'+s.id).set(data);
+      });
+    }
+  });
+}
 
-// ── COURSES sync ──
-onValue(ref(db,'tomauno/cursos'), snap => {
+// ═══════════ REAL-TIME LISTENERS ═══════════
+
+// COURSES
+fbDb.ref('tomauno/cursos').on('value', snap => {
   const data = snap.val();
   if(data){
-    const arr = objToArr(data).sort((a,b)=>(a.order||0)-(b.order||0));
+    const arr = fbObjToArr(data).sort((a,b)=>(a.order||0)-(b.order||0));
     window.courses = arr;
     localStorage.setItem('tu_c4', JSON.stringify(arr));
+    if(window.renderCourses) window.renderCourses();
+    if(window.renderAdminC) window.renderAdminC();
   }
-  if(window.renderCourses) window.renderCourses();
-  if(window.renderAdminC) window.renderAdminC();
 });
 
-// ── REGISTRATIONS sync ──
-onValue(ref(db,'tomauno/inscripciones'), snap => {
+// REGISTRATIONS
+let __prevRegCount = 0;
+fbDb.ref('tomauno/inscripciones').on('value', snap => {
   const data = snap.val();
-  const arr = data ? objToArr(data).sort((a,b)=>b.createdAt-a.createdAt) : [];
-  const prev = (window.regs||[]).length;
+  const arr = data ? fbObjToArr(data).sort((a,b)=>b.createdAt-a.createdAt) : [];
+  const isNew = arr.length > __prevRegCount && __prevRegCount > 0;
+  __prevRegCount = arr.length;
   window.regs = arr;
   localStorage.setItem('tu_r4', JSON.stringify(arr));
-  if(arr.length > prev && prev > 0){
-    const nuevo = arr[arr.length-1];
+  if(isNew){
+    const nuevo = arr[0];
     if(window.showPing) window.showPing(nuevo?.nombre, nuevo?.courseName);
     if(window.bip) window.bip();
   }
@@ -1039,65 +1271,68 @@ onValue(ref(db,'tomauno/inscripciones'), snap => {
   if(window.renderIns) window.renderIns();
   if(window.renderPagos) window.renderPagos();
   if(window.renderAdminDash) window.renderAdminDash();
-  const badge = document.getElementById('tabBadgeIns');
-  if(badge) badge.textContent = arr.length;
-  document.getElementById('sI').textContent = arr.length;
+  const el=document.getElementById('sI'); if(el) el.textContent=arr.length;
+  const b=document.getElementById('tabBadgeIns'); if(b) b.textContent=arr.length;
 });
 
-// ── GALLERY sync ──
-onValue(ref(db,'tomauno/galeria'), snap => {
-  const data = snap.val();
-  const arr = data ? objToArr(data) : [];
+// GALLERY
+fbDb.ref('tomauno/galeria').on('value', snap => {
+  const arr = fbObjToArr(snap.val());
   window.gallery = arr;
   localStorage.setItem('tu_gal4', JSON.stringify(arr));
   if(window.renderGallery) window.renderGallery();
   if(window.renderGalleryAdmin) window.renderGalleryAdmin();
 });
 
-// ── TESTIMONIALS sync ──
-onValue(ref(db,'tomauno/testimonios'), snap => {
-  const data = snap.val();
-  const arr = data ? objToArr(data).sort((a,b)=>b.createdAt-a.createdAt) : [];
+// TESTIMONIALS
+fbDb.ref('tomauno/testimonios').on('value', snap => {
+  const arr = fbObjToArr(snap.val()).sort((a,b)=>b.createdAt-a.createdAt);
   window.testimonials = arr;
   localStorage.setItem('tu_tes4', JSON.stringify(arr));
   if(window.renderTestimonials) window.renderTestimonials();
   if(window.renderTestimonialsAdmin) window.renderTestimonialsAdmin();
 });
 
-// ── PENDING TESTIMONIALS sync ──
-onValue(ref(db,'tomauno/testimonios_pendientes'), snap => {
-  const data = snap.val();
-  const arr = data ? objToArr(data).sort((a,b)=>b.createdAt-a.createdAt) : [];
+// PENDING TESTIMONIALS
+fbDb.ref('tomauno/testimonios_pendientes').on('value', snap => {
+  const arr = fbObjToArr(snap.val()).sort((a,b)=>b.createdAt-a.createdAt);
   window.pendingTestimonials = arr;
   localStorage.setItem('tu_ptes4', JSON.stringify(arr));
-  const badge = document.getElementById('tabBadgeTest');
-  if(badge){ badge.textContent=arr.length; badge.style.display=arr.length?'inline-flex':'none'; }
+  if(arr.length > 0){
+    const badge=document.getElementById('tabBadgeTest');
+    if(badge){ badge.textContent=arr.length; badge.style.display='inline-flex'; }
+  }
+  if(window.checkNewPending) window.checkNewPending();
   if(window.renderTestimonialsAdmin) window.renderTestimonialsAdmin();
   if(window.renderAdminDash) window.renderAdminDash();
 });
 
-// ── SLOTS (agenda) sync ──
-onValue(ref(db,'tomauno/slots'), snap => {
-  const data = snap.val();
-  window.slotData = data || {};
-  localStorage.setItem('tu_s4', JSON.stringify(data||{}));
+// SLOTS
+fbDb.ref('tomauno/slots').on('value', snap => {
+  const data = snap.val() || {};
+  // Convert nested objects
+  const converted = {};
+  Object.keys(data).forEach(courseId => {
+    converted[courseId] = fbObjToArr(data[courseId]);
+  });
+  window.slotData = converted;
+  localStorage.setItem('tu_s4', JSON.stringify(converted));
   if(window.renderAgAdmin) window.renderAgAdmin();
 });
 
-// ── WAITLIST sync ──
-onValue(ref(db,'tomauno/espera'), snap => {
-  const data = snap.val();
-  const arr = data ? objToArr(data) : [];
+// WAITLIST
+fbDb.ref('tomauno/espera').on('value', snap => {
+  const arr = fbObjToArr(snap.val());
   window.waitlist = arr;
   localStorage.setItem('tu_wait4', JSON.stringify(arr));
   if(window.renderAdminDash) window.renderAdminDash();
 });
 
-// ── SERVICES sync ──
-onValue(ref(db,'tomauno/servicios'), snap => {
+// SERVICES
+fbDb.ref('tomauno/servicios').on('value', snap => {
   const data = snap.val();
   if(data){
-    const arr = objToArr(data).sort((a,b)=>(a.order||0)-(b.order||0));
+    const arr = fbObjToArr(data).sort((a,b)=>(a.order||0)-(b.order||0));
     window.services = arr;
     localStorage.setItem('tu_sv4', JSON.stringify(arr));
     if(window.renderServices) window.renderServices();
@@ -1105,117 +1340,44 @@ onValue(ref(db,'tomauno/servicios'), snap => {
   }
 });
 
-// ── INTERESTED sync ──
-onValue(ref(db,'tomauno/interesados'), snap => {
+// INTERESTED
+fbDb.ref('tomauno/interesados').on('value', snap => {
   window.interested = snap.val() || {};
   localStorage.setItem('tu_int4', JSON.stringify(window.interested));
 });
 
-// ══════════════════════════════════════════
-//  FIREBASE WRITE HELPERS — exposed globally
-// ══════════════════════════════════════════
+// ═══════════ FIREBASE WRITE FUNCTIONS ═══════════
+window.fbSaveCourse = function(c){ const d={...c}; delete d._fbKey; fbDb.ref('tomauno/cursos/'+(c._fbKey||c.id)).set(d); };
+window.fbDeleteCourse = function(c){
+  fbDb.ref('tomauno/cursos/'+(c._fbKey||c.id)).remove();
+  fbDb.ref('tomauno/inscripciones').once('value', s => {
+    const d=s.val(); if(!d) return;
+    Object.keys(d).forEach(k=>{ if(d[k].courseId===c.id) fbDb.ref('tomauno/inscripciones/'+k).remove(); });
+  });
+  fbDb.ref('tomauno/slots/'+(c._fbKey||c.id)).remove();
+};
+window.fbSaveReg = function(r){ const d={...r}; delete d._fbKey; return fbDb.ref('tomauno/inscripciones').push(d); };
+window.fbDeleteReg = function(r){ if(r._fbKey) fbDb.ref('tomauno/inscripciones/'+r._fbKey).remove(); };
+window.fbUpdateRegPago = function(r){ if(r._fbKey) fbDb.ref('tomauno/inscripciones/'+r._fbKey).update({pago:r.pago,notaPago:r.notaPago||''}); };
+window.fbUpdateRegNota = function(r){ if(r._fbKey) fbDb.ref('tomauno/inscripciones/'+r._fbKey).update({notaPago:r.notaPago||''}); };
+window.fbSaveGallery = function(p){ const d={...p}; delete d._fbKey; fbDb.ref('tomauno/galeria').push(d); };
+window.fbDeleteGallery = function(p){ if(p._fbKey) fbDb.ref('tomauno/galeria/'+p._fbKey).remove(); };
+window.fbSaveTestimonial = function(t){ const d={...t}; delete d._fbKey; if(t._fbKey) fbDb.ref('tomauno/testimonios/'+t._fbKey).set(d); else fbDb.ref('tomauno/testimonios').push(d); };
+window.fbDeleteTestimonial = function(t){ if(t._fbKey) fbDb.ref('tomauno/testimonios/'+t._fbKey).remove(); };
+window.fbSavePending = function(t){ const d={...t}; delete d._fbKey; fbDb.ref('tomauno/testimonios_pendientes').push(d); };
+window.fbApprovePending = function(t){ const key=t._fbKey; const d={...t}; delete d._fbKey; fbDb.ref('tomauno/testimonios').push(d); if(key) fbDb.ref('tomauno/testimonios_pendientes/'+key).remove(); };
+window.fbRejectPending = function(t){ if(t._fbKey) fbDb.ref('tomauno/testimonios_pendientes/'+t._fbKey).remove(); };
+window.fbSaveSlot = function(courseId,slot){ const d={...slot}; delete d._fbKey; fbDb.ref('tomauno/slots/'+courseId).push(d); };
+window.fbDeleteSlot = function(courseId,slot){ if(slot._fbKey) fbDb.ref('tomauno/slots/'+courseId+'/'+slot._fbKey).remove(); };
+window.fbSaveWait = function(e){ const d={...e}; delete d._fbKey; fbDb.ref('tomauno/espera').push(d); };
+window.fbSaveService = function(s){ const d={...s}; delete d._fbKey; fbDb.ref('tomauno/servicios/'+(s._fbKey||s.id)).set(d); };
+window.fbDeleteService = function(s){ fbDb.ref('tomauno/servicios/'+(s._fbKey||s.id)).remove(); };
+window.fbSaveInterested = function(cid,n){ fbDb.ref('tomauno/interesados/'+cid).set(n); };
+window.fbUpdateCourseStatus = function(c){ fbDb.ref('tomauno/cursos/'+(c._fbKey||c.id)).update({estado:c.estado}); };
+window.fbUpdateCourseOrder = function(arr){ const u={}; arr.forEach(c=>{ u['tomauno/cursos/'+(c._fbKey||c.id)+'/order']=c.order; }); fbDb.ref().update(u); };
+window.fbUpdateServiceOrder = function(arr){ const u={}; arr.forEach(s=>{ u['tomauno/servicios/'+(s._fbKey||s.id)+'/order']=s.order; }); fbDb.ref().update(u); };
 
-// Save course
-window.fbSaveCourse = async function(course){
-  const key = course._fbKey || course.id.toString();
-  const data = {...course}; delete data._fbKey;
-  await set(ref(db, 'tomauno/cursos/'+key), data);
-};
-// Delete course
-window.fbDeleteCourse = async function(course){
-  const key = course._fbKey || course.id.toString();
-  await remove(ref(db, 'tomauno/cursos/'+key));
-  // Also remove its inscripciones
-  const snap = await get(ref(db,'tomauno/inscripciones'));
-  if(snap.val()){
-    const updates={};
-    Object.keys(snap.val()).forEach(k=>{ if(snap.val()[k].courseId===course.id) updates['tomauno/inscripciones/'+k]=null; });
-    if(Object.keys(updates).length) await update(ref(db),updates);
-  }
-  // Remove slots
-  await remove(ref(db,'tomauno/slots/'+course.id));
-};
-// Save registration
-window.fbSaveReg = async function(reg){
-  const data = {...reg}; delete data._fbKey;
-  const r = await push(ref(db,'tomauno/inscripciones'), data);
-  return r.key;
-};
-// Delete registration
-window.fbDeleteReg = async function(reg){
-  const key = reg._fbKey;
-  if(key) await remove(ref(db,'tomauno/inscripciones/'+key));
-};
-// Update registration pago
-window.fbUpdateRegPago = async function(reg){
-  const key = reg._fbKey;
-  if(key) await update(ref(db,'tomauno/inscripciones/'+key), {pago: reg.pago, notaPago: reg.notaPago||''});
-};
-// Save gallery photo
-window.fbSaveGallery = async function(photo){
-  const data = {...photo}; delete data._fbKey;
-  await push(ref(db,'tomauno/galeria'), data);
-};
-// Delete gallery photo
-window.fbDeleteGallery = async function(photo){
-  if(photo._fbKey) await remove(ref(db,'tomauno/galeria/'+photo._fbKey));
-};
-// Save testimonial
-window.fbSaveTestimonial = async function(t){
-  const data = {...t}; delete data._fbKey;
-  await push(ref(db,'tomauno/testimonios'), data);
-};
-// Delete testimonial
-window.fbDeleteTestimonial = async function(t){
-  if(t._fbKey) await remove(ref(db,'tomauno/testimonios/'+t._fbKey));
-};
-// Save pending testimonial
-window.fbSavePending = async function(t){
-  const data = {...t}; delete data._fbKey;
-  await push(ref(db,'tomauno/testimonios_pendientes'), data);
-};
-// Approve pending → move to published
-window.fbApprovePending = async function(t){
-  const key = t._fbKey;
-  const data = {...t}; delete data._fbKey;
-  await push(ref(db,'tomauno/testimonios'), data);
-  if(key) await remove(ref(db,'tomauno/testimonios_pendientes/'+key));
-};
-// Reject pending
-window.fbRejectPending = async function(t){
-  if(t._fbKey) await remove(ref(db,'tomauno/testimonios_pendientes/'+t._fbKey));
-};
-// Save slot
-window.fbSaveSlot = async function(courseId, slot){
-  const data = {...slot}; delete data._fbKey;
-  await push(ref(db,'tomauno/slots/'+courseId), data);
-};
-// Delete slot
-window.fbDeleteSlot = async function(courseId, slot){
-  if(slot._fbKey) await remove(ref(db,'tomauno/slots/'+courseId+'/'+slot._fbKey));
-};
-// Save waitlist entry
-window.fbSaveWait = async function(entry){
-  const data = {...entry}; delete data._fbKey;
-  await push(ref(db,'tomauno/espera'), data);
-};
-// Save service
-window.fbSaveService = async function(svc){
-  const key = svc._fbKey || svc.id.toString();
-  const data = {...svc}; delete data._fbKey;
-  await set(ref(db,'tomauno/servicios/'+key), data);
-};
-// Save interested count
-window.fbSaveInterested = async function(courseId, count){
-  await set(ref(db,'tomauno/interesados/'+courseId), count);
-};
-// Update course status
-window.fbUpdateCourseStatus = async function(course){
-  const key = course._fbKey || course.id.toString();
-  await update(ref(db,'tomauno/cursos/'+key), {estado: course.estado});
-};
-
-console.log('%c🔥 Firebase Tomauno conectado','color:#E8141C;font-weight:bold;font-size:13px');
+console.log('%c🔥 Firebase Tomauno ready (compat mode)','color:#E8141C;font-weight:bold;font-size:13px');
 </script>
 
 <script>
@@ -1270,6 +1432,8 @@ function showMain(v){
   document.getElementById('view-'+v).classList.add('active');
   document.getElementById('tabCursos').classList.toggle('active',v==='cursos');
   document.getElementById('tabServicios').classList.toggle('active',v==='servicios');
+  document.getElementById('tabEventos').classList.toggle('active',v==='eventos');
+  if(v==='eventos') renderEventos();
   document.getElementById('hero').scrollIntoView({behavior:'smooth'});
 }
 
@@ -1469,6 +1633,13 @@ function openDetail(id){
       ${c.cupos?`<div class="chip">👥 ${c.cupos} cupos · ${cnt} inscripto${cnt!==1?'s':''}</div>`:`<div class="chip">${cnt} inscripto${cnt!==1?'s':''}</div>`}
       ${c.tipo==='agenda'?`<div class="chip cg">📅 Con agenda de turnos</div>`:''}
     </div>
+  </div>`;
+  // Permalink box
+  body+=`<div class="course-link-box" onclick="copyPermalink(${id},this)">
+    <svg viewBox="0 0 24 24" stroke-width="2" fill="none"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+    <input type="text" value="${getCourseUrl(id)}" readonly>
+    <span class="link-copied">¡Copiado!</span>
+    <span style="font-size:.7rem;color:var(--mu);white-space:nowrap">Copiar link del curso</span>
   </div>`;
   if(c.desc){body+=`<div class="detail-section"><h4>📋 Descripción</h4><div style="font-size:.88rem;color:var(--mu);line-height:1.75">${parseDesc(c.desc)}</div></div>`;}
   if(c.dirigido){body+=`<div class="detail-section"><h4>🎯 ¿A quién va dirigido?</h4><p>${c.dirigido}</p></div>`;}
@@ -1711,7 +1882,8 @@ function dropCard(e,type,targetId){
   const tmp=arr.splice(fromIdx,1)[0];arr.splice(toIdx,0,tmp);
   arr.forEach((x,i)=>x.order=i);
   save();
-  if(type==='c')renderCourses();else renderServices();
+  if(type==='c'){ renderCourses(); if(window.fbUpdateCourseOrder) window.fbUpdateCourseOrder(arr); }
+  else { renderServices(); if(window.fbUpdateServiceOrder) window.fbUpdateServiceOrder(arr); }
   const el=document.getElementById((type==='c'?'cc':'sc')+'-'+dragId);
   if(el)el.classList.remove('dragging');
   dragId=null;dragType=null;
@@ -1749,6 +1921,7 @@ function login(){
   if(document.getElementById('aPass').value===PASS){
     document.getElementById('aLB').style.display='none';
     document.getElementById('aLOut').style.display='inline-block';
+    document.getElementById('appsBtn').style.display='inline-block';
     document.getElementById('apanel').style.display='block';
     renderAdminDash();renderIns();renderAdminC();renderPagos();renderAgSelect();renderSvcConsultas();
   }else showToast('warn','Error','Clave incorrecta.');
@@ -1932,7 +2105,7 @@ function sendConfirm(id){
   window.location.href=url;
 }
 function togPago(id,k,v){const r=regs.find(x=>x.id===id);if(r){if(!r.pago)r.pago={};r.pago[k]=v;save();if(window.fbUpdateRegPago)window.fbUpdateRegPago(r);renderPagos();}}
-function updNota(id,n){const r=regs.find(x=>x.id===id);if(r){r.notaPago=n;save();}}
+function updNota(id,n){const r=regs.find(x=>x.id===id);if(r){r.notaPago=n;save();if(window.fbUpdateRegNota)window.fbUpdateRegNota(r);}}
 
 // Agenda admin
 function renderAgSelect(){
@@ -1994,13 +2167,23 @@ function renderSvcEditor(){
         </div>
       </div>
       <div style="display:flex;gap:.4rem;flex-wrap:wrap">
-        <button class="ab pr" onclick="openEditSvc(${s.id})">✏️ Editar</button>
+        <button class="ab pr" onclick="openEditSvc('${s._fbKey||s.id}')">✏️ Editar</button>
+        <button class="ab dl" onclick="delSvc('${s._fbKey||s.id}')">🗑️ Eliminar</button>
       </div>
     </div>`).join('');
 }
-function openEditSvc(id){
-  const s=services.find(x=>x.id===id);if(!s)return;
-  editSvcId=id;
+function delSvc(key){
+  cfConfirm('🗑️','¿Eliminar este servicio?','Se eliminará de la web y de la base de datos.',()=>{
+    const s=services.find(x=>(x._fbKey||x.id.toString())===key.toString());
+    if(s&&window.fbDeleteService) window.fbDeleteService(s);
+    services=services.filter(x=>(x._fbKey||x.id.toString())!==key.toString());
+    save();renderServices();renderSvcEditor();
+    showToast('success','✅ Eliminado','El servicio fue eliminado.');
+  });
+}
+function openEditSvc(key){
+  const s=services.find(x=>(x._fbKey||x.id.toString())===key.toString());if(!s)return;
+  editSvcId=key;
   document.getElementById('seIco').value=s.ico||'';
   document.getElementById('seTitle').value=s.title||'';
   document.getElementById('seShort').value=s.shortDesc||'';
@@ -2012,7 +2195,7 @@ function openEditSvc(id){
 }
 function closeEditSvc(){document.getElementById('ovEditSvc').classList.remove('open');document.body.style.overflow='';editSvcId=null;}
 function saveEditSvc(){
-  const s=services.find(x=>x.id===editSvcId);if(!s)return;
+  const s=services.find(x=>(x._fbKey||x.id.toString())===editSvcId.toString());if(!s)return;
   const t=document.getElementById('seTitle').value.trim();
   if(!t){showToast('warn','Error','El título es obligatorio.');return;}
   s.ico=document.getElementById('seIco').value.trim()||s.ico;
@@ -2083,8 +2266,246 @@ function openLightbox(src){
   document.body.style.overflow='hidden';
 }
 function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow='';}
+// ═══════════ EDIT EVENTO ═══════════
+let editEvtKey=null;
+function openEditEvt(key){
+  const ev=eventos.find(x=>(x._fbKey||x.id.toString())===String(key));if(!ev)return;
+  editEvtKey=key;
+  document.getElementById('eeT').value=ev.title||'';
+  document.getElementById('eeD').value=ev.desc||'';
+  document.getElementById('eeOrg').value=ev.org||'';
+  document.getElementById('eeOrgIG').value=ev.orgIG||'';
+  document.getElementById('eeOrgWP').value=ev.orgWP||'';
+  document.getElementById('eeF').value=ev.fecha||'';
+  document.getElementById('eeH').value=ev.hora||'';
+  document.getElementById('eeL').value=ev.lugar||'';
+  document.getElementById('eeC').value=ev.costo||'';
+  document.getElementById('eeCupos').value=ev.cupos||'';
+  document.getElementById('eeImg').value=ev.img||'';
+  document.getElementById('eeWAGroup').value=ev.waGroup||'';
+  document.getElementById('eePass').value=ev.pass||'';
+  document.getElementById('eeEstado').value=ev.estado||'active';
+  document.getElementById('ovEditEvt').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeEditEvt(){document.getElementById('ovEditEvt').classList.remove('open');document.body.style.overflow='';editEvtKey=null;}
+function saveEditEvt(){
+  const ev=eventos.find(x=>(x._fbKey||x.id.toString())===String(editEvtKey));if(!ev)return;
+  const t=document.getElementById('eeT').value.trim();
+  if(!t){showToast('warn','Error','El título es obligatorio.');return;}
+  const newPass=document.getElementById('eePass').value.trim();
+  const newOrg=document.getElementById('eeOrg').value.trim();
+  if(newPass && newPass!==ev.pass){
+    const conflict=eventos.find(x=>(x._fbKey||x.id.toString())!==String(editEvtKey)&&x.pass===newPass&&x.org&&newOrg&&x.org.toLowerCase()!==newOrg.toLowerCase());
+    if(conflict){showToast('warn','Clave en uso','Esa clave ya pertenece a otro organizador.');return;}
+  }
+  ev.title=t;
+  ev.desc=document.getElementById('eeD').value.trim();
+  ev.org=document.getElementById('eeOrg').value.trim();
+  ev.orgIG=document.getElementById('eeOrgIG').value.trim();
+  ev.orgWP=document.getElementById('eeOrgWP').value.trim();
+  ev.fecha=document.getElementById('eeF').value;
+  ev.hora=document.getElementById('eeH').value.trim();
+  ev.lugar=document.getElementById('eeL').value.trim();
+  ev.costo=document.getElementById('eeC').value.trim();
+  ev.cupos=document.getElementById('eeCupos').value.trim();
+  ev.img=document.getElementById('eeImg').value.trim();
+  ev.waGroup=document.getElementById('eeWAGroup').value.trim();
+  ev.pass=document.getElementById('eePass').value.trim();
+  ev.estado=document.getElementById('eeEstado').value;
+  saveEvt();
+  if(window.fbDb){
+    const fbKey=ev._fbKey||ev.id;
+    const d={...ev}; delete d._fbKey;
+    fbDb.ref('tomauno/eventos/'+fbKey).set(d);
+  }
+  renderEventos();renderEvtAdmin();
+  closeEditEvt();
+  showToast('success','✅ Guardado','Evento actualizado.');
+}
+
+// ═══════════ APPS HUB ═══════════
+let apps=JSON.parse(localStorage.getItem('tu_apps4')||'null');
+if(!apps){
+  apps=[
+    {id:1,name:'Cronómetro de Sesiones',ico:'⏱️',url:'https://cronometro-two.vercel.app/',desc:'Gestión de tiempos de sesión fotográfica'},
+    {id:2,name:'Reproductor de Música',ico:'🎵',url:'https://reproductortomauno.lovable.app/',desc:'Reproductor musical para el estudio'},
+    {id:3,name:'Sorteos',ico:'🎲',url:'https://claude.ai/public/artifacts/a0ae2a0e-4f45-4262-926b-7f8caa51191f',desc:'Aplicación de sorteos'},
+    {id:4,name:'CEI San Jorge',ico:'🏫',url:'https://secretaria-bice.vercel.app/',desc:'Sistema secretaría CEI San Jorge'},
+  ];
+  localStorage.setItem('tu_apps4',JSON.stringify(apps));
+}
+function saveApps(){localStorage.setItem('tu_apps4',JSON.stringify(apps));}
+
+function openApps(){
+  renderAppsGrid();
+  document.getElementById('ovApps').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeApps(){document.getElementById('ovApps').classList.remove('open');document.body.style.overflow='';}
+
+function renderAppsGrid(){
+  const grid=document.getElementById('appsGrid');if(!grid)return;
+  grid.innerHTML=apps.map(a=>`
+    <a href="${a.url}" target="_blank" style="background:var(--g3);border:1px solid var(--br2);border-radius:8px;padding:1.25rem;text-decoration:none;color:var(--w);display:flex;flex-direction:column;gap:.5rem;transition:all .25s;position:relative"
+      onmouseover="this.style.borderColor='var(--red)';this.style.transform='translateY(-3px)'"
+      onmouseout="this.style.borderColor='var(--br2)';this.style.transform=''">
+      <div style="font-size:2rem;line-height:1">${a.ico}</div>
+      <div style="font-family:var(--fd);font-size:1.1rem;letter-spacing:1px">${a.name}</div>
+      <div style="font-size:.76rem;color:var(--mu);line-height:1.5">${a.desc||''}</div>
+      <div style="font-size:.68rem;color:var(--mu2);margin-top:.25rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.url}</div>
+    </a>`).join('');
+}
+
+function renderAppsAdmin(){
+  const el=document.getElementById('appsAdminList');if(!el)return;
+  el.innerHTML=apps.length?apps.map((a,i)=>`
+    <div style="background:var(--g3);border:1px solid var(--br2);border-radius:4px;padding:.85rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:.65rem;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:.75rem;flex:1;min-width:200px">
+        <span style="font-size:1.5rem">${a.ico}</span>
+        <div>
+          <div style="font-weight:700;font-size:.88rem">${a.name}</div>
+          <div style="font-size:.74rem;color:var(--mu);margin-top:2px">${a.desc||''}</div>
+          <a href="${a.url}" target="_blank" style="font-size:.72rem;color:var(--red);text-decoration:none">${a.url}</a>
+        </div>
+      </div>
+      <div style="display:flex;gap:.4rem">
+        <button class="ab pr" onclick="openEditApp(${a.id})">✏️</button>
+        <button class="ab dl" onclick="delApp(${a.id})">🗑️</button>
+      </div>
+    </div>`).join(''):'<p style="color:var(--mu);font-size:.85rem">Sin apps registradas.</p>';
+}
+
+function addApp(){
+  const name=document.getElementById('appName').value.trim();
+  const url=document.getElementById('appUrl').value.trim();
+  if(!name||!url){showToast('warn','Error','Nombre y URL son obligatorios.');return;}
+  const a={id:Date.now(),name,ico:document.getElementById('appIco').value.trim()||'🔗',url,desc:document.getElementById('appDesc').value.trim()};
+  apps.push(a);saveApps();renderAppsAdmin();renderAppsGrid();
+  ['appName','appIco','appUrl','appDesc'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  showToast('success','✅ App agregada',`${a.name} ya aparece en el Hub.`);
+}
+
+let editAppId=null;
+function openEditApp(id){
+  const a=apps.find(x=>x.id===id);if(!a)return;
+  editAppId=id;
+  // Reuse a simple inline edit — populate fields and scroll
+  document.getElementById('appName').value=a.name;
+  document.getElementById('appIco').value=a.ico;
+  document.getElementById('appUrl').value=a.url;
+  document.getElementById('appDesc').value=a.desc||'';
+  // Change button label temporarily
+  const btn=document.querySelector('[onclick="addApp()"]');
+  if(btn){btn.textContent='Guardar cambios';btn.setAttribute('onclick','saveEditApp()');}
+  document.getElementById('t-apps').scrollIntoView({behavior:'smooth'});
+  showToast('warn','Editando','Modificá los datos arriba y presioná Guardar cambios.');
+}
+function saveEditApp(){
+  const a=apps.find(x=>x.id===editAppId);if(!a)return;
+  a.name=document.getElementById('appName').value.trim()||a.name;
+  a.ico=document.getElementById('appIco').value.trim()||a.ico;
+  a.url=document.getElementById('appUrl').value.trim()||a.url;
+  a.desc=document.getElementById('appDesc').value.trim();
+  saveApps();renderAppsAdmin();renderAppsGrid();
+  ['appName','appIco','appUrl','appDesc'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  const btn=document.querySelector('[onclick="saveEditApp()"]');
+  if(btn){btn.textContent='Agregar app';btn.setAttribute('onclick','addApp()');}
+  editAppId=null;
+  showToast('success','✅ Guardado','App actualizada.');
+}
+function delApp(id){
+  cfConfirm('🗑️','¿Eliminar esta app?','Se quitará del Hub.',()=>{
+    apps=apps.filter(x=>x.id!==id);saveApps();renderAppsAdmin();renderAppsGrid();
+  });
+}
+
+// ═══════════ EDIT TESTIMONIAL ═══════════
+let editTestKey=null;
+function openEditTest(key){
+  const t=testimonials.find(x=>
+    x._fbKey===String(key)||
+    (x.id&&x.id.toString()===String(key))||
+    (x.createdAt&&x.createdAt.toString()===String(key))
+  );if(!t)return;
+  editTestKey=key;
+  document.getElementById('etName').value=t.name||'';
+  document.getElementById('etIG').value=t.ig||'';
+  document.getElementById('etAvatar').value=t.avatar||'';
+  document.getElementById('etStars').value=t.stars||5;
+  document.getElementById('etText').value=t.text||'';
+  const sel=document.getElementById('etCourse');
+  sel.innerHTML='<option value="">Sin curso</option>'+courses.map(c=>`<option value="${c.title}"${c.title===t.course?' selected':''}>${c.title}</option>`).join('');
+  document.getElementById('ovEditTest').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeEditTest(){document.getElementById('ovEditTest').classList.remove('open');document.body.style.overflow='';editTestKey=null;}
+function saveEditTest(){
+  const t=testimonials.find(x=>
+    x._fbKey===String(editTestKey)||
+    (x.id&&x.id.toString()===String(editTestKey))||
+    (x.createdAt&&x.createdAt.toString()===String(editTestKey))
+  );if(!t)return;
+  const txt=document.getElementById('etText').value.trim();
+  if(!txt){showToast('warn','Requerido','El texto del testimonio no puede estar vacío.');return;}
+  t.name=document.getElementById('etName').value.trim()||t.name;
+  t.ig=document.getElementById('etIG').value.trim();
+  t.avatar=document.getElementById('etAvatar').value.trim();
+  t.stars=parseInt(document.getElementById('etStars').value)||5;
+  t.text=txt;
+  t.course=document.getElementById('etCourse').value;
+  saveExtra();
+  if(window.fbSaveTestimonial) window.fbSaveTestimonial(t);
+  renderTestimonials();renderTestimonialsAdmin();
+  closeEditTest();
+  showToast('success','✅ Guardado','Testimonio actualizado.');
+}
+
+// ═══════════ COURSE PERMALINK ═══════════
+function getCourseUrl(id){
+  const base=window.location.href.split('#')[0].split('?')[0];
+  return base+'?curso='+id;
+}
+function copyPermalink(id,btn){
+  const url=getCourseUrl(id);
+  navigator.clipboard.writeText(url).then(()=>{
+    const lbl=btn.querySelector('.link-copied');
+    if(lbl){lbl.style.display='inline';setTimeout(()=>lbl.style.display='none',2500);}
+    showToast('success','✅ Link copiado','Pegalo en tu flyer o donde quieras.');
+  }).catch(()=>{
+    // Fallback for older browsers
+    const inp=btn.querySelector('input');
+    if(inp){inp.select();document.execCommand('copy');showToast('success','✅ Copiado','Link copiado al portapapeles.');}
+  });
+}
+// Auto-open course from URL param
+function checkUrlParam(){
+  const params=new URLSearchParams(window.location.search);
+  const cid=params.get('curso');
+  if(cid){
+    const c=courses.find(x=>x.id==cid||x._fbKey===cid);
+    if(c) setTimeout(()=>openDetail(c.id||c._fbKey),800);
+  }
+}
+
+// ═══════════ PENDING TESTIMONIAL NOTIFICATION ═══════════
+let _prevPendingCount=0;
+window.checkNewPending = function checkNewPending(){
+  const cur=(pendingTestimonials||[]).length;
+  if(cur>_prevPendingCount&&_prevPendingCount>=0){
+    _prevPendingCount=cur;
+    showToast('warn','⭐ Nueva opinión','Un alumno dejó un testimonio. ¡Revisalo en Admin → Testimonios!');
+    bip();
+    // Also show persistent ping
+    const ping=document.getElementById('ping');
+    if(ping){ping.textContent='⭐ Nueva opinión de alumno — revisá Admin';ping.classList.add('show');setTimeout(()=>ping.classList.remove('show'),8000);}
+  } else {
+    _prevPendingCount=cur;
+  }
+}
+
 function faq(btn){const a=btn.nextElementSibling;const op=a.classList.contains('open');document.querySelectorAll('.fa').forEach(x=>x.classList.remove('open'));document.querySelectorAll('.fq').forEach(x=>x.classList.remove('open'));if(!op){a.classList.add('open');btn.classList.add('open');}}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeLightbox();closeEditTest();}});
 
 // ═══ Confirmation message to alumno ═══
 function buildConfirmMsg(nombre,course){
@@ -2230,12 +2651,11 @@ function delGalleryPhoto(i){cfConfirm('🗑️','¿Eliminar esta foto?','Se quit
 
 // ═══════════ TESTIMONIOS ═══════════
 function renderTestimonials(){
-  // Always reload from localStorage to catch data added in same session from admin
   testimonials=JSON.parse(localStorage.getItem('tu_tes4')||'[]');
   const grid=document.getElementById('testGrid');
   if(!grid)return;
   if(!testimonials.length){
-    grid.innerHTML=`<div class="test-empty"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>Los testimonios de tus alumnos aparecerán acá. Agregálos desde el panel de administración.</div>`;
+    grid.innerHTML=`<div class="test-empty"><svg fill="none" viewBox="0 0 24 24" stroke-width="1.5"><path d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>Los testimonios aparecerán acá.</div>`;
     return;
   }
   grid.innerHTML=testimonials.map((t,i)=>`
@@ -2246,6 +2666,7 @@ function renderTestimonials(){
         <div class="test-avatar">${t.avatar?`<img src="${t.avatar}" alt="${t.name}">`:`${t.name.charAt(0).toUpperCase()}`}</div>
         <div>
           <div class="test-name">${t.name}</div>
+          ${t.ig?`<a href="https://instagram.com/${t.ig.replace('@','')}" target="_blank" style="font-size:.75rem;color:var(--red);text-decoration:none;display:block;margin-top:2px">${t.ig.startsWith('@')?t.ig:'@'+t.ig}</a>`:''}
           ${t.course?`<div class="test-course">${t.course}</div>`:''}
           <div style="font-size:.7rem;color:var(--mu2);margin-top:2px">${t.date||''}</div>
         </div>
@@ -2255,13 +2676,17 @@ function renderTestimonials(){
 function renderTestimonialsAdmin(){
   const sel=document.getElementById('teCourse');
   sel.innerHTML='<option value="">— Seleccioná un curso —</option>'+courses.map(c=>`<option value="${c.title}">${c.title}</option>`).join('');
-  // Pending from alumni
   const pendEl=document.getElementById('pendingList');
   const pendEmpty=document.getElementById('pendingEmpty');
   const badge=document.getElementById('pendingBadge');
   const pend=pendingTestimonials||[];
-  badge.style.display=pend.length?'inline-flex':'none';
-  badge.textContent=`⏳ ${pend.length} pendiente${pend.length!==1?'s':''}`;
+  // Show toast notification if there are new pending ones
+  if(pend.length>0){
+    badge.style.display='inline-flex';
+    badge.textContent=`⏳ ${pend.length} pendiente${pend.length!==1?'s':''}`;
+  } else {
+    badge.style.display='none';
+  }
   pendEmpty.style.display=pend.length?'none':'block';
   pendEl.innerHTML=pend.map(t=>`
     <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.25);border-radius:5px;padding:.9rem 1rem">
@@ -2269,28 +2694,32 @@ function renderTestimonialsAdmin(){
         <div>
           <b style="font-size:.88rem">${t.name}</b> <span style="color:#f59e0b">${'★'.repeat(t.stars)}</span>
           ${t.course?`<span style="font-size:.75rem;color:var(--mu);margin-left:.5rem">— ${t.course}</span>`:''}
+          ${t.ig?`<a href="https://instagram.com/${t.ig.replace('@','')}" target="_blank" style="font-size:.75rem;color:var(--red);margin-left:.5rem;text-decoration:none">${t.ig.startsWith('@')?t.ig:'@'+t.ig}</a>`:''}
         </div>
         <span style="font-size:.72rem;color:var(--mu2)">${t.date}</span>
       </div>
       <p style="font-size:.83rem;color:var(--mu);font-style:italic;margin-bottom:.75rem">"${t.text}"</p>
-      ${t.ig?`<p style="font-size:.75rem;color:var(--mu2);margin-bottom:.75rem">Instagram: ${t.ig}</p>`:''}
       <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-        <button class="ab pr" onclick="approvePending(${t.id})">✅ Publicar</button>
-        <button class="ab dl" onclick="rejectPending(${t.id})">🗑️ Rechazar</button>
+        <button class="ab pr" onclick="approvePending('${t._fbKey||t.id}')">✅ Publicar</button>
+        <button class="ab dl" onclick="rejectPending('${t._fbKey||t.id}')">🗑️ Rechazar</button>
       </div>
     </div>`).join('');
-  // Published
   const list=document.getElementById('testAdminList');
   const empty=document.getElementById('testEmpty');
   empty.style.display=testimonials.length?'none':'block';
   list.innerHTML=testimonials.map((t,i)=>`
     <div style="background:var(--g3);border:1px solid var(--br2);border-radius:4px;padding:.85rem 1rem;display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem;flex-wrap:wrap">
       <div style="flex:1;min-width:180px">
-        <div style="font-weight:700;font-size:.88rem">${t.name} <span style="color:var(--red)">${'★'.repeat(t.stars)}</span></div>
+        <div style="font-weight:700;font-size:.88rem">${t.name} <span style="color:var(--red)">${'★'.repeat(t.stars)}</span>
+          ${t.ig?`<a href="https://instagram.com/${t.ig.replace('@','')}" target="_blank" style="font-size:.75rem;color:var(--red);margin-left:.5rem;text-decoration:none">${t.ig.startsWith('@')?t.ig:'@'+t.ig}</a>`:''}
+        </div>
         <div style="font-size:.78rem;color:var(--mu);margin-top:3px;font-style:italic">"${t.text.substring(0,80)}${t.text.length>80?'...':''}"</div>
         ${t.course?`<div style="font-size:.72rem;color:var(--mu2);margin-top:3px">${t.course}</div>`:''}
       </div>
-      <button class="ab dl" onclick="delTestimonial(${i})">Eliminar</button>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap">
+        <button class="ab pr" onclick="openEditTest('${t._fbKey||t.id||t.createdAt||i}')">✏️ Editar</button>
+        <button class="ab dl" onclick="delTestimonial('${t._fbKey||t.id||t.createdAt||i}')">Eliminar</button>
+      </div>
     </div>`).join('');
 }
 function addTestimonial(){
@@ -2391,8 +2820,8 @@ function submitAlumni(){
   showPing('Nuevo testimonio pendiente de revisión','');
   bip();
 }
-function approvePending(id){
-  const idx=pendingTestimonials.findIndex(t=>t.id===id);
+function approvePending(key){
+  const idx=pendingTestimonials.findIndex(t=>(t._fbKey||t.id.toString())===key.toString());
   if(idx<0)return;
   const t=pendingTestimonials.splice(idx,1)[0];
   testimonials.unshift(t);
@@ -2401,11 +2830,11 @@ function approvePending(id){
   renderTestimonials();renderTestimonialsAdmin();
   showToast('success','✅ Publicado','El testimonio fue aprobado y publicado.');
 }
-function rejectPending(id){
+function rejectPending(key){
   cfConfirm('🗑️','¿Rechazar testimonio?','Se eliminará sin publicar.',()=>{
-    const t=pendingTestimonials.find(x=>x.id===id);
+    const t=pendingTestimonials.find(x=>(x._fbKey||x.id.toString())===key.toString());
     if(t&&window.fbRejectPending)window.fbRejectPending(t);
-    pendingTestimonials=pendingTestimonials.filter(t=>t.id!==id);
+    pendingTestimonials=pendingTestimonials.filter(x=>(x._fbKey||x.id.toString())!==key.toString());
     savePending();renderTestimonialsAdmin();
   });
 }
@@ -2454,7 +2883,392 @@ function atab(n,btn){
   document.getElementById('t-'+n).classList.add('active');
   if(n==='gal')renderGalleryAdmin();
   if(n==='test')renderTestimonialsAdmin();
+  if(n==='evt')renderEvtAdmin();
+  if(n==='apps')renderAppsAdmin();
   renderAdminDash();
+}
+
+// ═══════════ EVENTOS ═══════════
+let eventos = JSON.parse(localStorage.getItem('tu_evt4')||'[]');
+let evRegs  = JSON.parse(localStorage.getItem('tu_evr4')||'[]');
+let evSlots = JSON.parse(localStorage.getItem('tu_evs4')||'{}');
+
+function saveEvt(){
+  localStorage.setItem('tu_evt4',JSON.stringify(eventos));
+  localStorage.setItem('tu_evr4',JSON.stringify(evRegs));
+  localStorage.setItem('tu_evs4',JSON.stringify(evSlots));
+}
+
+// Firebase listeners for eventos
+if(window.fbDb){
+  fbDb.ref('tomauno/eventos').on('value', snap => {
+    const data = snap.val();
+    const arr = data ? fbObjToArr(data).sort((a,b)=>(a.order||0)-(b.order||0)) : [];
+    eventos = arr; localStorage.setItem('tu_evt4', JSON.stringify(arr));
+    renderEventos(); renderEvtAdmin();
+  });
+  fbDb.ref('tomauno/evRegs').on('value', snap => {
+    const data = snap.val();
+    evRegs = data ? fbObjToArr(data) : []; localStorage.setItem('tu_evr4', JSON.stringify(evRegs));
+    renderEventos(); renderClientPanel();
+  });
+  fbDb.ref('tomauno/evSlots').on('value', snap => {
+    const data = snap.val()||{};
+    Object.keys(data).forEach(k=>{ if(typeof data[k]==='object'&&!Array.isArray(data[k])) data[k]=fbObjToArr(data[k]); });
+    evSlots = data; localStorage.setItem('tu_evs4', JSON.stringify(evSlots));
+  });
+}
+
+// Toggle agenda options
+document.getElementById('evTipo')?.addEventListener('change',function(){
+  const show = this.value==='agenda';
+  const el=document.getElementById('evAgendaOpts');
+  if(el) el.style.display=show?'block':'none';
+});
+
+function addEvento(){
+  const t=document.getElementById('evT').value.trim();
+  if(!t){showToast('warn','Error','El título es obligatorio.');return;}
+  const pass=document.getElementById('evPass').value.trim();
+  if(!pass){showToast('warn','Error','La clave de acceso es obligatoria.');return;}
+  const org=document.getElementById('evOrg').value.trim();
+  // Check if clave already exists for a DIFFERENT organizer
+  const existing=eventos.find(x=>x.pass===pass);
+  if(existing && existing.org && org && existing.org.toLowerCase()!==org.toLowerCase()){
+    showToast('warn','Clave en uso','Esa clave ya pertenece a otro organizador. Elegí otra.');return;
+  }
+  const tipo=document.getElementById('evTipo').value;
+  const ev={
+    id:Date.now(),title:t,desc:document.getElementById('evD').value.trim(),
+    org:document.getElementById('evOrg').value.trim(),
+    orgIG:document.getElementById('evOrgIG').value.trim(),
+    orgWP:document.getElementById('evOrgWP').value.trim(),
+    fecha:document.getElementById('evF').value,hora:document.getElementById('evH').value.trim(),
+    lugar:document.getElementById('evL').value.trim(),costo:document.getElementById('evC').value.trim(),
+    cupos:document.getElementById('evCupos').value.trim(),
+    img:document.getElementById('evImg').value.trim(),
+    waGroup:document.getElementById('evWAGroup').value.trim(),
+    pass,tipo,
+    aS:document.getElementById('evAS').value,
+    aE:document.getElementById('evAE').value,
+    aD:parseInt(document.getElementById('evAD').value)||30,
+    estado:'active',order:eventos.length,createdAt:Date.now()
+  };
+  eventos.push(ev); saveEvt();
+  if(window.fbDb){ const d={...ev}; delete d._fbKey; fbDb.ref('tomauno/eventos/'+ev.id).set(d); }
+  renderEventos(); renderEvtAdmin();
+  ['evT','evD','evOrg','evOrgIG','evOrgWP','evF','evH','evL','evC','evCupos','evImg','evWAGroup','evPass'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  showToast('success','✅ Publicado','Evento agregado correctamente.');
+}
+
+function renderEvtAdmin(){
+  const el=document.getElementById('evtAdminList'); if(!el)return;
+  const list=[...eventos].sort((a,b)=>b.createdAt-a.createdAt);
+  el.innerHTML=list.length?list.map(ev=>{
+    const cnt=evRegs.filter(r=>r.evId==ev.id||r.evId===String(ev.id)).length;
+    return`<div style="background:var(--g3);border:1px solid var(--br2);border-radius:4px;padding:.85rem 1rem;display:flex;justify-content:space-between;align-items:center;gap:.65rem;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px">
+        <div style="font-family:var(--fd);font-size:1.05rem;letter-spacing:1px">${ev.title}</div>
+        <div style="font-size:.76rem;color:var(--mu);margin-top:3px">${ev.org?ev.org+' · ':''} ${ev.fecha?fmtD(ev.fecha)+' · ':''} ${cnt} inscripto${cnt!==1?'s':''} · Clave: <code style="background:var(--g4);padding:1px 5px;border-radius:2px">${ev.pass}</code></div>
+      </div>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap">
+        <button class="ab pr" onclick="openEditEvt('${ev._fbKey||ev.id}')">✏️ Editar</button>
+        <select onchange="chgEvtSt('${ev._fbKey||ev.id}',this.value)" style="background:var(--g2);border:1px solid var(--br2);color:var(--w);padding:5px 8px;border-radius:3px;font-family:var(--fb);font-size:.77rem">
+          <option value="active"${ev.estado==='active'?' selected':''}>Activo</option>
+          <option value="soon"${ev.estado==='soon'?' selected':''}>Próximamente</option>
+          <option value="finished"${ev.estado==='finished'?' selected':''}>Finalizado</option>
+        </select>
+        <button class="ab dl" onclick="delEvt('${ev._fbKey||ev.id}')">Eliminar</button>
+      </div>
+    </div>`;
+  }).join(''):'<p style="color:var(--mu);font-size:.85rem">Sin eventos aún.</p>';
+}
+function chgEvtSt(id,st){
+  const ev=eventos.find(x=>x._fbKey===String(id)||x.id==id); if(!ev)return;
+  ev.estado=st; saveEvt();
+  if(window.fbDb) fbDb.ref('tomauno/eventos/'+(ev._fbKey||ev.id)).update({estado:st});
+  renderEventos();
+}
+function delEvt(id){
+  cfConfirm('🗑️','¿Eliminar este evento?','También se eliminarán sus inscriptos.',()=>{
+    const ev=eventos.find(x=>x._fbKey===String(id)||x.id==id);
+    if(ev&&window.fbDb){ fbDb.ref('tomauno/eventos/'+(ev._fbKey||ev.id)).remove(); fbDb.ref('tomauno/evRegs').once('value',s=>{const d=s.val();if(d)Object.keys(d).forEach(k=>{if(d[k].evId===id)fbDb.ref('tomauno/evRegs/'+k).remove();})}); }
+    eventos=eventos.filter(x=>x.id!==id); evRegs=evRegs.filter(r=>r.evId!==id);
+    saveEvt(); renderEventos(); renderEvtAdmin();
+  });
+}
+
+// Public eventos grid
+function renderEventos(){
+  const grid=document.getElementById('evtGrid'); if(!grid)return;
+  const list=[...eventos].filter(e=>e.estado!=='hidden').sort((a,b)=>(a.order||0)-(b.order||0));
+  if(!list.length){grid.innerHTML=`<div class="empty-state"><p>No hay eventos por el momento.</p></div>`;return;}
+  const info=document.getElementById('evtInfo');
+  if(info) info.textContent=`${list.length} evento${list.length!==1?'s':''} disponible${list.length!==1?'s':''}`;
+  grid.innerHTML=list.map(ev=>{
+    const cnt=evRegs.filter(r=>r.evId==ev.id||r.evId===String(ev.id)).length;
+    const sMap={active:['sa','🔴 Activo'],soon:['ss','🟡 Próximamente'],finished:['sf','✔ Finalizado']};
+    const[sc,sl]=sMap[ev.estado]||['sf','—'];
+    const full=ev.cupos&&cnt>=parseInt(ev.cupos);
+    return`<div class="cc${ev.estado==='finished'?' fin':''}" onclick="openEvtDetail('${ev._fbKey||ev.id}')" style="cursor:pointer">
+      <div class="card-img-wrap">${ev.img?`<img src="${ev.img}" alt="${ev.title}">`:`<div class="card-ph"><div class="card-ph-t">🎪</div><div class="card-ph-s">${ev.org||'Evento'}</div></div>`}</div>
+      <span class="cst ${sc}">${sl}</span>
+      <span class="ccupos-badge">${cnt} inscripto${cnt!==1?'s':''}</span>
+      <div class="cbody">
+        <div class="ctitle${ev.estado==='finished'?' fin-t':''}">${ev.title}</div>
+        <div class="chips">
+          ${ev.fecha?`<div class="chip"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>${fmtD(ev.fecha)}</div>`:''}
+          ${ev.hora?`<div class="chip"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>${ev.hora}</div>`:''}
+          ${ev.lugar?`<div class="chip"><svg viewBox="0 0 24 24" stroke-width="2" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>${ev.lugar.substring(0,30)}</div>`:''}
+          ${ev.org?`<div class="chip">👤 ${ev.org}</div>`:''}
+          ${ev.tipo==='agenda'?`<div class="chip cg">📅 Con turnos</div>`:''}
+        </div>
+        ${ev.desc?`<p class="cdesc-short">${ev.desc}</p>`:''}
+        <div class="cfoot">
+          <div class="price"><small>Inversión</small><div class="price-v">${ev.costo||'Consultar'}</div></div>
+          ${ev.estado==='active'
+            ?full
+              ?`<button class="btn-waitlist" style="padding:7px 12px;font-size:.74rem" onclick="event.stopPropagation()">⚠️ Sin cupos</button>`
+              :`<button class="btn-ver">Ver más →</button>`
+            :`<span style="font-size:.76rem;color:var(--mu2);font-weight:700;text-transform:uppercase">Finalizado</span>`}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Evento detail modal (reuses ovDetail)
+let selEvt=null;
+function openEvtDetail(id){
+  const ev=eventos.find(x=>x.id===id||x.id==id||x._fbKey===String(id)); if(!ev)return;
+  id=ev.id; // normalize
+  selEvt=id;
+  const cnt=evRegs.filter(r=>r.evId==id||r.evId===String(id)).length;
+  const full=ev.cupos&&cnt>=parseInt(ev.cupos);
+  document.getElementById('detTitle').textContent=ev.title;
+  document.getElementById('detSub').textContent=ev.org?`Organizado por ${ev.org}`:'Evento en la ciudad';
+  const sMap={active:['background:rgba(232,20,28,.85);color:#fff','🔴 Activo'],soon:['background:rgba(255,165,0,.85);color:#000','🟡 Próximamente'],finished:['background:rgba(60,60,60,.85);color:#bbb','✔ Finalizado']};
+  const[stStyle,stLabel]=sMap[ev.estado]||sMap.finished;
+  let body=`<div class="detail-hero">
+    ${ev.img?`<img src="${ev.img}" alt="${ev.title}" onclick="openLightbox('${ev.img}')" title="Ver imagen"><div class="img-actions"><span class="img-act-btn" onclick="openLightbox('${ev.img}')">🔍 Ver imagen completa</span></div>`:''}
+    <div class="detail-status" style="${stStyle}">${stLabel}</div>
+    <div class="detail-title">${ev.title}</div>
+    <div class="detail-chips">
+      ${ev.fecha?`<div class="chip">${fmtD(ev.fecha)}</div>`:''}
+      ${ev.hora?`<div class="chip">${ev.hora}</div>`:''}
+      ${ev.lugar?`<div class="chip">📍 ${ev.lugar}</div>`:''}
+      ${ev.cupos?`<div class="chip">👥 ${ev.cupos} cupos · ${cnt} inscripto${cnt!==1?'s':''}</div>`:`<div class="chip">${cnt} inscripto${cnt!==1?'s':''}</div>`}
+    </div>
+  </div>`;
+  if(ev.desc) body+=`<div class="detail-section"><h4>📋 Descripción</h4><div style="font-size:.88rem;color:var(--mu);line-height:1.75">${parseDesc(ev.desc)}</div></div>`;
+  if(ev.org||ev.orgIG||ev.orgWP){
+    body+=`<div class="detail-section"><h4>👤 Organizador</h4><p>${ev.org||''} ${ev.orgIG?`· <a href="https://instagram.com/${ev.orgIG.replace('@','')}" target="_blank">${ev.orgIG}</a>`:''} ${ev.orgWP?`· <a href="https://wa.me/549${ev.orgWP}" target="_blank">📱 WhatsApp</a>`:''}</p></div>`;
+  }
+  if(ev.waGroup) body+=`<div class="detail-section"><h4>💬 Grupo de WhatsApp</h4><a href="${ev.waGroup}" target="_blank" class="btn-wa btn-sm" style="display:inline-flex;align-items:center;gap:6px;text-decoration:none;padding:8px 14px;font-size:.78rem">Unirme al grupo</a></div>`;
+  body+=`<div class="detail-price-box"><div class="label">Inversión</div><div class="detail-price-big">${ev.costo||'Consultar'}</div></div>`;
+  document.getElementById('detBody').innerHTML=body;
+  let foot='';
+  if(ev.estado==='active'){
+    if(full){
+      foot=`<button class="btng btn-sm" onclick="closeDetail()">Cerrar</button><span style="color:#f59e0b;font-size:.82rem;font-weight:700">⚠️ Cupos agotados</span>`;
+    } else if(ev.tipo==='agenda'){
+      foot=`<button class="btng btn-sm" onclick="closeDetail()">Cerrar</button><button class="btn btn-sm" onclick="closeDetail();openEvtAg(${id})">📅 Reservar mi turno</button>`;
+    } else {
+      foot=`<button class="btng btn-sm" onclick="closeDetail()">Cerrar</button><button class="btn btn-sm" onclick="closeDetail();openEvtInsc(${id})">Inscribirme →</button>`;
+    }
+  } else {
+    foot=`<button class="btng btn-sm" onclick="closeDetail()">Cerrar</button>`;
+  }
+  document.getElementById('detFoot').innerHTML=foot;
+  const ovD=document.getElementById('ovDetail');
+  ovD.classList.add('open');
+  ovD.scrollTop=0;
+  setTimeout(()=>{const m=ovD.querySelector('.modal');if(m)m.scrollTop=0;},10);
+  document.body.style.overflow='hidden';
+}
+
+// Evento inscription modal (reuses ovInsc)
+function openEvtInsc(id){
+  selEvt=id; selC=null; // selC=null signals it's an evento
+  const ev=eventos.find(x=>x._fbKey===String(id)||x.id==id); if(!ev)return;
+  selEvt=ev.id;
+  document.getElementById('inscCib').innerHTML=`<div class="cib-t">${ev.title}</div><div class="cib-ch">${ev.fecha?`<span class="chip" style="font-size:.7rem">${fmtD(ev.fecha)}</span>`:''}${ev.costo?`<span class="chip cr" style="font-size:.7rem">${ev.costo}</span>`:''}</div>`;
+  document.getElementById('inscBody').style.display='block';
+  document.getElementById('inscOk').innerHTML=`<div class="succ-i">🎉</div><div class="succ-t">¡Inscripción registrada!</div><p class="succ-d">Tu lugar quedó reservado. En un momento se abrirá WhatsApp.</p><button class="btng btn-sm" onclick="closeInsc()" style="margin-top:1.5rem">Cerrar</button>`;
+  ['fN','fA','fDNI','fWP','fIG','fWT'].forEach(i=>{const el=document.getElementById(i);if(el)el.value='';});
+  document.getElementById('tutRow').style.display='none';
+  document.getElementById('ovInsc').classList.add('open');
+  document.body.style.overflow='hidden';
+  setTimeout(()=>{const el=document.getElementById('fN');if(el)el.focus();},150);
+}
+
+// Override submitInsc to handle evento
+const _origSubmitInsc = window.submitInsc;
+window.submitInscEvt = function(){
+  const n=document.getElementById('fN').value.trim();
+  const a=parseInt(document.getElementById('fA').value)||0;
+  const w=document.getElementById('fWP').value.trim();
+  if(!n){showToast('warn','Nombre requerido','Completá tu nombre.');return;}
+  if(!a){showToast('warn','Edad inválida','Ingresá tu edad.');return;}
+  if(!w||w.replace(/\D/g,'').length<8){showToast('warn','WA inválido','Ingresá al menos 8 dígitos.');return;}
+  if(a<18){const wt=document.getElementById('fWT').value.trim();if(!wt||wt.replace(/\D/g,'').length<8){showToast('warn','Tutor requerido','Completá el WA del tutor.');document.getElementById('tutRow').style.display='flex';return;}}
+  const ev=eventos.find(x=>x.id===selEvt); if(!ev)return;
+  const r={id:Date.now(),evId:String(selEvt),evName:ev.title,nombre:n,edad:a,dni:document.getElementById('fDNI').value.trim(),wp:w,ig:document.getElementById('fIG').value.trim(),wpTutor:a<18?document.getElementById('fWT').value.trim():'',fecha:new Date().toLocaleDateString('es-AR'),createdAt:Date.now()};
+  evRegs.push(r); saveEvt();
+  if(window.fbDb){ const d={...r}; delete d._fbKey; fbDb.ref('tomauno/evRegs').push(d); }
+  document.getElementById('inscBody').style.display='none';
+  document.getElementById('inscOk').style.display='block';
+  // Notify Javier
+  let txt='\uD83C\uDF89 NUEVA INSCRIPCION EVENTO\n\uD83C\uDFAA '+ev.title+'\n\uD83D\uDC64 '+n+'\n\uD83C\uDF82 '+a+'\n\uD83D\uDCF1 '+w;
+  if(r.ig) txt+='\n\uD83D\uDCF8 '+r.ig;
+  const waUrl='https://wa.me/5493764354522?text='+txt.split('').map(ch=>ch.codePointAt(0)<=127?(ch===' '?'%20':(/[A-Za-z0-9\-_.~:,!?]/.test(ch)?ch:encodeURIComponent(ch))):ch).join('');
+  setTimeout(()=>window.location.href=waUrl, 2000);
+  renderEventos();
+};
+
+// Patch submitInsc to route to evt if selEvt is set and selC is null
+const __origSI = submitInsc;
+function submitInsc(){
+  if(selEvt!==null && selC===null){ window.submitInscEvt(); return; }
+  __origSI();
+}
+
+// Evento agenda (reuses ovAg)
+function openEvtAg(id){
+  selAgC=null; // signal it's evento
+  window._selEvtAg=id;
+  const ev=eventos.find(x=>x._fbKey===String(id)||x.id==id); if(!ev)return;
+  window._selEvtAg=ev.id;
+  document.getElementById('agMT').textContent=ev.title;
+  document.getElementById('agBody').style.display='block';
+  document.getElementById('agOk').style.display='none';
+  document.getElementById('agForm').style.display='none';
+  document.getElementById('agFoot').innerHTML=`<button class="btng btn-sm" onclick="closeAg()">Cancelar</button>`;
+  // Render slots
+  const taken=evSlots[id]||[];
+  const all=genSlots(ev.aS||'09:00',ev.aE||'22:00',ev.aD||30);
+  document.getElementById('slotsDiv').innerHTML=`<p style="font-size:.8rem;color:var(--mu);margin-bottom:.75rem">Elegí tu horario:</p><div>${all.map(t=>{const bk=taken.find(s=>s.time===t);return bk?`<span class="slot sl-taken">🔴 ${t}</span>`:`<span class="slot sl-free" id="evsl-${t.replace(':','').replace('hs','')}" onclick="selEvtSlot('${t}')">✓ ${t}</span>`;}).join('')}</div>`;
+  document.getElementById('ovAg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function selEvtSlot(t){
+  document.querySelectorAll('.slot').forEach(s=>{s.classList.remove('sl-selected');if(s.classList.contains('sl-free'))s.classList.add('sl-free');});
+  const id=`evsl-${t.replace(':','').replace('hs','')}`;const el=document.getElementById(id);
+  if(el){el.classList.remove('sl-free');el.classList.add('sl-selected');}
+  window._selEvtSlot=t;
+  document.getElementById('selSlotLbl').textContent=`⏰ Horario: ${t}`;
+  document.getElementById('agForm').style.display='block';
+  ['agN','agA','agDNI','agW','agIG','agWT'].forEach(i=>{const el2=document.getElementById(i);if(el2)el2.value='';});
+  document.getElementById('agTutRow').style.display='none';
+  document.getElementById('agFoot').innerHTML=`<button class="btng btn-sm" onclick="closeAg()">Cancelar</button><button class="btn btn-sm" onclick="submitEvtAg()">Confirmar turno →</button>`;
+}
+function submitEvtAg(){
+  const evId=window._selEvtAg;const slot=window._selEvtSlot;
+  const n=document.getElementById('agN').value.trim();const w=document.getElementById('agW').value.trim();const a=parseInt(document.getElementById('agA').value)||0;
+  if(!n||!w||!a){showToast('warn','Requerido','Completá todos los campos.');return;}
+  if(!evSlots[evId])evSlots[evId]=[];
+  if(evSlots[evId].find(s=>s.time===slot)){showToast('warn','Ocupado','Ese horario ya fue tomado.');return;}
+  const entry={time:slot,name:n,edad:a,dni:document.getElementById('agDNI').value.trim(),wp:w,ig:document.getElementById('agIG').value.trim(),createdAt:Date.now()};
+  evSlots[evId].push(entry); saveEvt();
+  if(window.fbDb){ const d={...entry}; delete d._fbKey; fbDb.ref('tomauno/evSlots/'+evId).push(d); }
+  const ev=eventos.find(x=>x.id===evId);
+  document.getElementById('agBody').style.display='none';
+  document.getElementById('agOk').innerHTML=`<div class="succ-i">📸</div><div class="succ-t">¡Turno reservado!</div><p class="succ-d">Tu horario quedó confirmado.</p><button class="btn btn-sm" onclick="closeAg()" style="margin-top:1.5rem">Cerrar</button>`;
+  document.getElementById('agOk').style.display='block';
+  bip();
+  let txt='\uD83D\uDCF8 NUEVA RESERVA EVENTO\n\u23F0 '+slot+'\n\uD83C\uDFAA '+(ev?ev.title:'')+'\n\uD83D\uDC64 '+n+'\n\uD83D\uDCF1 '+w;
+  setTimeout(()=>window.location.href='https://wa.me/5493764354522?text='+txt.split('').map(ch=>ch.codePointAt(0)<=127?(ch===' '?'%20':(/[A-Za-z0-9\-_.~:,!?]/.test(ch)?ch:encodeURIComponent(ch))):ch).join(''), 2000);
+}
+
+// Cliente externo login
+let clientEvt=null;
+let clientEvts=[]; // all events for this organizer
+function clientLogin(){
+  const cp=document.getElementById('evtClientPass').value.trim();
+  if(!cp){showToast('warn','Requerido','Ingresá tu clave de organizador.');return;}
+  // Find all events with this password
+  const myEvts=eventos.filter(x=>x.pass===cp);
+  if(!myEvts.length){showToast('warn','Clave incorrecta','No encontramos eventos asociados a esa clave.');return;}
+  clientEvts=myEvts;
+  clientEvt=myEvts[0]; // default: first event
+  // Show org name (use organizer field or default)
+  const orgName=clientEvt.org||'Organizador';
+  document.getElementById('clientOrgName').textContent='Bienvenido, '+orgName;
+  // Build event selector tabs if multiple events
+  const sel=document.getElementById('clientEvtSelector');
+  if(myEvts.length===1){
+    sel.innerHTML=`<span style="font-size:.82rem;color:var(--mu)">${clientEvt.title}${clientEvt.fecha?' · '+fmtD(clientEvt.fecha):''}</span>`;
+  } else {
+    sel.innerHTML=myEvts.map((ev,i)=>`
+      <button class="cat-pill${i===0?' active':''}" onclick="switchClientEvt(${ev.id||"'"+ev._fbKey+"'"})">
+        ${ev.title}${ev.fecha?' · '+fmtD(ev.fecha):''}
+      </button>`).join('');
+  }
+  document.getElementById('clientPanel').style.display='block';
+  renderClientPanel();
+}
+function switchClientEvt(id){
+  clientEvt=clientEvts.find(x=>x.id==id||x._fbKey===String(id))||clientEvt;
+  // Update active pill
+  document.querySelectorAll('#clientEvtSelector .cat-pill').forEach(p=>p.classList.remove('active'));
+  event.target.classList.add('active');
+  renderClientPanel();
+}
+function clientLogout(){
+  clientEvt=null;clientEvts=[];
+  document.getElementById('clientPanel').style.display='none';
+  document.getElementById('evtClientPass').value='';
+}
+function renderClientPanel(){
+  if(!clientEvt)return;
+  let list=[];
+  const evId=clientEvt.id||clientEvt._fbKey;
+  if(clientEvt.tipo==='agenda'){
+    list=(evSlots[evId]||[]).map(s=>({nombre:s.name,edad:s.edad,dni:s.dni,wp:s.wp,ig:s.ig,extra:s.time}));
+  } else {
+    list=evRegs.filter(r=>r.evId==evId||r.evId===String(evId));
+  }
+  const tbody=document.getElementById('clientBody');
+  const empty=document.getElementById('clientEmpty');
+  empty.style.display=list.length?'none':'block';
+  tbody.innerHTML=list.map((r,i)=>`<tr>
+    <td style="color:var(--mu)">${i+1}</td>
+    <td><b>${r.nombre||r.name}</b></td>
+    <td>${r.edad||'-'}</td><td>${r.dni||'-'}</td>
+    <td><a href="https://wa.me/549${r.wp}" target="_blank" class="ab wa">${r.wp||'-'}</a></td>
+    <td>${r.ig?`<a href="https://instagram.com/${r.ig.replace('@','')}" target="_blank" style="color:var(--red);text-decoration:none">${r.ig}</a>`:'-'}</td>
+    <td style="color:var(--mu);font-size:.77rem">${r.extra||r.fecha||'-'}</td>
+  </tr>`).join('');
+}
+function clientExpCSV(){
+  if(!clientEvt)return;
+  const evId=clientEvt.id||clientEvt._fbKey;
+  let list=clientEvt.tipo==='agenda'
+    ?(evSlots[evId]||[]).map(s=>({nombre:s.name,edad:s.edad||'',dni:s.dni||'',wp:s.wp,ig:s.ig||'',extra:s.time}))
+    :evRegs.filter(r=>r.evId==evId||r.evId===String(evId));
+  const h=['Nombre','Edad','DNI','WhatsApp','Instagram','Fecha/Horario'];
+  const rows=list.map(r=>[r.nombre||r.name,r.edad||'',r.dni||'',r.wp,r.ig||'',r.extra||r.fecha||'']);
+  const csv=[h,...rows].map(r=>r.map(x=>`"${x||''}"`).join(',')).join('\n');
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv'}));a.download=`${clientEvt.title.replace(/\s/g,'_')}_inscriptos.csv`;a.click();
+}
+function clientExpPDF(){
+  if(!clientEvt)return;
+  const evId=clientEvt.id||clientEvt._fbKey;
+  let list=clientEvt.tipo==='agenda'
+    ?(evSlots[evId]||[]).map(s=>({nombre:s.name,edad:s.edad||'-',dni:s.dni||'-',wp:s.wp,ig:s.ig||'-',extra:s.time}))
+    :evRegs.filter(r=>r.evId==evId||r.evId===String(evId));
+  const win=window.open('','_blank');
+  const rows=list.map((r,i)=>`<tr style="background:${i%2?'#f5f5f5':'#fff'}"><td>${r.nombre||r.name}</td><td>${r.edad||'-'}</td><td>${r.dni||'-'}</td><td>${r.wp}</td><td>${r.ig||'-'}</td><td>${r.extra||r.fecha||'-'}</td></tr>`).join('');
+  win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${clientEvt.title}</title><style>body{font-family:Arial,sans-serif;padding:2rem;font-size:12px}h1{color:#E8141C}table{width:100%;border-collapse:collapse}th{background:#E8141C;color:#fff;padding:7px}td{padding:6px;border-bottom:1px solid #eee}@media print{.np{display:none}}</style></head><body><h1>${clientEvt.title}</h1><p style="color:#888">${clientEvt.org||''} · ${new Date().toLocaleDateString('es-AR')}</p><button class="np" onclick="window.print()" style="background:#E8141C;color:#fff;border:none;padding:7px 16px;border-radius:3px;cursor:pointer;margin:1rem 0">Imprimir / PDF</button><table><thead><tr><th>Nombre</th><th>Edad</th><th>DNI</th><th>WP</th><th>IG</th><th>Fecha/Turno</th></tr></thead><tbody>${rows}</tbody></table></body></html>`);
+  win.document.close();
+}
+function clientGrupoWA(){
+  if(!clientEvt)return;
+  const evId=clientEvt.id||clientEvt._fbKey;
+  let list=clientEvt.tipo==='agenda'?(evSlots[evId]||[]):evRegs.filter(r=>r.evId==evId||r.evId===String(evId));
+  if(!list.length){showToast('warn','Sin datos','No hay inscriptos.');return;}
+  const lines=list.map((r,i)=>`${i+1}. ${r.nombre||r.name}${r.time?' ('+r.time+')':''} → 549${r.wp}`).join('\n');
+  window.open(`https://wa.me/5493764354522?text=${encodeURIComponent('\uD83C\uDFAA Grupo: '+clientEvt.title+'\n\n'+lines)}`,'_blank');
 }
 
 // ═══════════ INIT ═══════════
@@ -2467,12 +3281,19 @@ gallery=JSON.parse(localStorage.getItem('tu_gal4')||'[]');
 testimonials=JSON.parse(localStorage.getItem('tu_tes4')||'[]');
 waitlist=JSON.parse(localStorage.getItem('tu_wait4')||'[]');
 pendingTestimonials=JSON.parse(localStorage.getItem('tu_ptes4')||'[]');
+eventos=JSON.parse(localStorage.getItem('tu_evt4')||'[]');
+evRegs=JSON.parse(localStorage.getItem('tu_evr4')||'[]');
+evSlots=JSON.parse(localStorage.getItem('tu_evs4')||'{}');
+
 renderCourses();
 renderServices();
 renderGallery();
 renderTestimonials();
+renderEventos();
+checkUrlParam();
+checkNewPending();
 
-// Poll nuevos regs
+// Poll nuevos regs (localStorage fallback when offline)
 let _lc=regs.length;
 setInterval(()=>{
   const r2=JSON.parse(localStorage.getItem('tu_r4')||'[]');
